@@ -1,0 +1,942 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>北美斩杀线模拟器 v2.0 — 单页 Demo（增强版）</title>
+  <style>
+    :root { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji"; }
+    body { margin: 0; background: #0b0f14; color: #e6edf3; }
+    header { padding: 14px 16px; border-bottom: 1px solid #1f2a37; position: sticky; top: 0; background: rgba(11,15,20,.92); backdrop-filter: blur(8px); z-index: 10; }
+    h1 { margin: 0; font-size: 16px; font-weight: 650; letter-spacing: .2px; }
+    .sub { margin-top: 6px; color: #9fb0c0; font-size: 12px; line-height: 1.35; }
+    .wrap { display: grid; grid-template-columns: 380px 1fr; gap: 12px; padding: 12px; }
+    @media (max-width: 980px){ .wrap { grid-template-columns: 1fr; } }
+    .card { background: #0f1620; border: 1px solid #1f2a37; border-radius: 14px; padding: 12px; box-shadow: 0 10px 24px rgba(0,0,0,.22); }
+    .row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+    .btn { border: 1px solid #2b3a4b; background: #111a25; color: #e6edf3; padding: 8px 10px; border-radius: 10px; cursor: pointer; font-size: 12px; }
+    .btn:hover { border-color: #3a4f66; }
+    .btn.primary { background: #152235; border-color: #3b82f6; }
+    .btn.danger { background: #2a1416; border-color: #ef4444; }
+    .btn:disabled { opacity: .55; cursor: not-allowed; }
+    .pill { padding: 2px 8px; border-radius: 999px; font-size: 12px; border: 1px solid #2b3a4b; color: #c7d2de; background: #0c1320; }
+    .k { color:#9fb0c0; font-size: 12px; }
+    .v { font-weight: 650; }
+    .stat { display: grid; grid-template-columns: 1fr auto; gap: 6px; align-items: center; margin: 8px 0; }
+    .bar { height: 10px; border-radius: 8px; background: #0b0f14; border: 1px solid #223245; overflow: hidden; }
+    .fill { height: 100%; width: 50%; background: #2b90ff; }
+    .money { font-feature-settings: "tnum"; font-variant-numeric: tabular-nums; }
+    .small { font-size: 12px; color: #9fb0c0; line-height: 1.4; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace; }
+    .muted { color: #8aa0b3; }
+    .warn { color: #fecaca; }
+    .ok { color: #bbf7d0; }
+    .hr { height:1px; background:#1f2a37; margin: 10px 0; }
+    input[type=file]{ color:#9fb0c0; font-size: 12px; }
+    details summary{ cursor:pointer; color:#c7d2de; }
+    code { background:#0b0f14; border:1px solid #223245; border-radius: 8px; padding: 2px 6px; }
+    .cardsGrid { display:grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    @media (max-width: 1200px){ .cardsGrid{ grid-template-columns: 1fr; } }
+    .event { border: 1px solid #233044; border-radius: 14px; padding: 12px; background: #0c1320; position: relative; }
+    .event h3 { margin: 0 0 6px; font-size: 14px; }
+    .event p { margin: 0; color: #b9c6d3; font-size: 12px; line-height: 1.5; white-space: pre-wrap; }
+    .choice { margin-top: 10px; padding: 10px; border-radius: 12px; border: 1px solid #223245; background: #0f1620; cursor: pointer; }
+    .choice:hover { border-color: #3a4f66; }
+    .choice .desc { font-size: 13px; font-weight: 600; margin-bottom: 6px; }
+    .choice .eff { font-size: 12px; color: #9fb0c0; }
+    .choice .eff b { color: #e6edf3; }
+    .log { max-height: 380px; overflow: auto; padding-right: 6px; }
+    .log .line { padding: 8px 10px; border-bottom: 1px dashed #223245; }
+    .log .line:last-child { border-bottom: 0; }
+    .tooltip {
+      position: fixed; z-index: 9999; pointer-events: none;
+      background: rgba(12,19,32,.98); border: 1px solid #2b3a4b;
+      padding: 10px 10px; border-radius: 12px; max-width: 360px;
+      box-shadow: 0 10px 26px rgba(0,0,0,.35);
+      display:none;
+    }
+    .tooltip h4 { margin:0 0 6px; font-size: 12px; }
+    .tooltip .t { font-size: 12px; color: #c7d2de; line-height: 1.35; white-space: pre-wrap; }
+    .miniBars .item { display:grid; grid-template-columns: 64px 1fr auto; gap: 8px; align-items:center; margin: 6px 0; }
+    .miniBars .track { height: 10px; background:#0b0f14; border:1px solid #223245; border-radius: 8px; overflow:hidden; }
+    .miniBars .barfill { height:100%; background:#2b90ff; width: 0%; }
+  </style>
+</head>
+<body>
+<header>
+  <h1>北美斩杀线模拟器 v2.0 — 单页 Demo（增强版）</h1>
+  <div class="sub">
+    新增：每月四张牌一次性展示（Slay the Spire 风格） · 事件/状态 Tooltip · 统计面板（标签分布/最近30重复率/Top10占比） · 自动玩家（贪心/保命）<br/>
+    玩法：每月 4 次发牌。你选择事件选项，立刻改变属性/状态；月初被动恢复+状态月结；月底结算房租（含通胀）；anti-repeat 提升体验覆盖。
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="card">
+    <div class="row">
+      <span class="pill">数据</span>
+      <input id="fileEvents" type="file" accept=".json" />
+      <input id="fileStates" type="file" accept=".json" />
+      <input id="fileConfig" type="file" accept=".json" />
+      <button class="btn" id="btnLoad">加载文件</button>
+    </div>
+    <div class="small" style="margin-top:8px">
+      推荐：同目录放 <code>events.json</code> / <code>states.json</code> / <code>config.json</code> 后，用本地服务器打开。也可用文件选择器加载。
+      <details style="margin-top:8px">
+        <summary>如何启动本地服务器</summary>
+        <div class="small" style="margin-top:6px">
+          <span class="mono">python -m http.server 8000</span> 然后打开 <span class="mono">http://localhost:8000/index.html</span>
+        </div>
+      </details>
+    </div>
+
+    <div class="hr"></div>
+
+    <div class="row" style="justify-content: space-between;">
+      <div>
+        <div class="k">进度</div>
+        <div class="v"><span id="monthLabel">未开始</span></div>
+        <div class="small muted" id="modeHint">模式：—</div>
+      </div>
+      <div class="row">
+        <button class="btn primary" id="btnNew" disabled>新开局</button>
+        <button class="btn" id="btnNext" disabled>下一轮</button>
+        <button class="btn" id="btnAuto20" disabled>随机 x20</button>
+        <button class="btn danger" id="btnReset" disabled>重置</button>
+      </div>
+    </div>
+
+    <div class="row" style="margin-top:10px; justify-content:space-between">
+      <span class="pill">游戏化设置</span>
+      <span class="small muted">更像 STS</span>
+    </div>
+    <div class="row" style="margin-top:6px">
+      <button class="btn" id="btnMode" disabled>切换：单张/四张</button>
+      <button class="btn" id="btnGreedy" disabled>贪心自动 x20</button>
+      <button class="btn" id="btnSafe" disabled>保命自动 x20</button>
+    </div>
+    <div class="small muted" style="margin-top:6px">
+      贪心：最大化 money + 属性收益。保命：优先降低 strikes 风险（欠租/极限压力/低血等）。
+    </div>
+
+    <div class="hr"></div>
+
+    <div>
+      <div class="row" style="justify-content:space-between">
+        <span class="pill">属性</span>
+        <span class="small muted">money 可为负；其余 0–100</span>
+      </div>
+
+      <div class="stat">
+        <div class="k">金钱 <span class="mono muted">(money)</span></div>
+        <div class="v money mono" id="moneyVal">—</div>
+      </div>
+
+      <div class="stat">
+        <div class="k">健康 <span class="mono muted">(health)</span></div>
+        <div class="v mono" id="healthVal">—</div>
+        <div class="bar"><div class="fill" id="healthBar"></div></div>
+      </div>
+
+      <div class="stat">
+        <div class="k">压力 <span class="mono muted">(stress)</span></div>
+        <div class="v mono" id="stressVal">—</div>
+        <div class="bar"><div class="fill" id="stressBar"></div></div>
+      </div>
+
+      <div class="stat">
+        <div class="k">家庭 <span class="mono muted">(family)</span></div>
+        <div class="v mono" id="familyVal">—</div>
+        <div class="bar"><div class="fill" id="familyBar"></div></div>
+      </div>
+
+      <div class="stat">
+        <div class="k">友情 <span class="mono muted">(friendship)</span></div>
+        <div class="v mono" id="friendVal">—</div>
+        <div class="bar"><div class="fill" id="friendBar"></div></div>
+      </div>
+
+      <div class="hr"></div>
+
+      <div class="row" style="justify-content:space-between">
+        <span class="pill">状态（悬停看 tooltip）</span>
+        <span class="small muted" id="strikesLabel">strikes: —</span>
+      </div>
+      <div class="small" id="stateList">—</div>
+    </div>
+
+    <div class="hr"></div>
+
+    <div class="row" style="justify-content:space-between">
+      <span class="pill">统计面板（实时）</span>
+      <span class="small muted" id="uniqLabel">已体验事件：—</span>
+    </div>
+
+    <div class="small">
+      最近 30 张：重复率 <span class="mono" id="repeat30">—</span> · 标签分布（最近 30）：
+    </div>
+    <div class="miniBars" id="tagBars"></div>
+
+    <div class="small" style="margin-top:10px">
+      全局：Top10 事件占比 <span class="mono" id="top10Share">—</span>
+    </div>
+
+    <div class="hr"></div>
+
+    <div class="small">
+      anti-repeat beta: <span class="mono" id="betaVal">—</span> · recent window: <span class="mono" id="recentWinVal">—</span> · recent penalty: <span class="mono" id="recentPenVal">—</span><br/>
+      rent base: <span class="mono" id="rentVal">—</span> · paycheck: <span class="mono" id="payVal">—</span><br/>
+      inflation/year: <span class="mono" id="inflVal">—</span> · wage growth/year: <span class="mono" id="wgVal">—</span> · strikes to lose: <span class="mono" id="loseVal">—</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="row" style="justify-content:space-between">
+      <span class="pill">牌面</span>
+      <span class="small muted" id="deckHint">请先加载文件并新开局</span>
+    </div>
+    <div class="cardsGrid" id="cards"></div>
+
+    <div class="hr"></div>
+
+    <div class="row" style="justify-content:space-between">
+      <span class="pill">日志</span>
+      <span class="small muted">提示：悬停事件/状态可看 tooltip</span>
+    </div>
+    <div class="log" id="log"></div>
+  </div>
+</div>
+
+<div class="tooltip" id="tooltip"></div>
+
+<script>
+const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
+const fmtMoney = (n) => {
+  const sign = n < 0 ? "-" : "";
+  const x = Math.abs(Math.round(n));
+  return sign + x.toString().replace(/\\B(?=(\\d{3})+(?!\\d))/g, ",");
+};
+const pickWeighted = (items, weights) => {
+  let total = 0; for (const w of weights) total += w;
+  let r = Math.random() * total, acc = 0;
+  for (let i=0;i<items.length;i++){ acc += weights[i]; if (r <= acc) return items[i]; }
+  return items[items.length-1];
+};
+const deepCopy = (x) => JSON.parse(JSON.stringify(x));
+const pct = (x) => (Math.round(x * 10000) / 100).toFixed(2) + "%";
+
+const tt = document.getElementById("tooltip");
+let ttOn = false;
+function showTT(html, x, y){ tt.innerHTML = html; tt.style.left=(x+14)+"px"; tt.style.top=(y+14)+"px"; tt.style.display="block"; ttOn=true; }
+function moveTT(x, y){ if(!ttOn) return; tt.style.left=(x+14)+"px"; tt.style.top=(y+14)+"px"; }
+function hideTT(){ tt.style.display="none"; ttOn=false; }
+window.addEventListener("mousemove", (e)=>moveTT(e.clientX,e.clientY));
+
+let EVENTS=null, STATES=null, CONFIG=null;
+let pools=null, stateIndex=null, eventIndex=null;
+
+const TAGS = ["job","debt","housing","health","social","admin","car","money"];
+const STATE_TAG_MULT = {
+  "S_LAYOFF": {"job": 1.6, "debt": 1.35, "money": 0.9, "social": 0.95},
+  "S_RENT_ARREARS": {"housing": 1.7, "debt": 1.25, "job": 1.1},
+  "S_HIGH_INTEREST_LOAN": {"debt": 1.55, "money": 0.85},
+  "S_CREDIT_CARD_DEBT": {"debt": 1.25, "money": 0.92},
+  "S_INJURED": {"health": 1.55, "job": 0.95},
+  "S_HEALTH_SCARE": {"health": 1.35, "admin": 1.1},
+  "S_IMMIGRATION_ISSUE": {"admin": 1.55, "job": 1.1},
+  "S_CAR_BROKEN": {"car": 1.8, "job": 1.05},
+  "S_SOCIAL_ISOLATION": {"social": 1.45, "health": 1.1},
+  "S_WINDFALL_BUFFER": {"debt": 0.88, "housing": 0.92, "money": 1.12},
+  "S_RENT_DUE": {"housing": 2.2},
+  "S_TAX_DUE": {"admin": 2.0},
+  "S_TRAFFIC_TICKET": {"car": 1.6, "admin": 1.15},
+  "S_COLLECTIONS_NOTICE": {"debt": 1.4, "admin": 1.2},
+};
+
+let game = null;
+
+function logLine(html){
+  const el = document.getElementById("log");
+  const div = document.createElement("div");
+  div.className = "line";
+  div.innerHTML = html;
+  el.prepend(div);
+}
+
+function rebuildPools(){
+  pools = {}; for (const t of TAGS) pools[t]=[];
+  eventIndex = {};
+  for (const ev of EVENTS){ pools[ev.primary_tag].push(ev); eventIndex[ev.id]=ev; }
+}
+function buildStateIndex(){ stateIndex = {}; for (const s of STATES) stateIndex[s.id]=s; }
+
+function costFactor(month){ const infl = (CONFIG.economy?.inflation_per_year ?? 0); return Math.pow(1+infl, month/12.0); }
+function wageFactor(month){ const wg = (CONFIG.economy?.wage_growth_per_year ?? 0); return Math.pow(1+wg, month/12.0); }
+function effectiveGain(baseGain, statValue){
+  if (baseGain <= 0) return baseGain;
+  const alpha = CONFIG.recovery.alpha, floor = CONFIG.recovery.soft_floor;
+  const penalty = Math.max(0, floor - statValue);
+  return baseGain * Math.exp(-alpha * penalty);
+}
+function applyEffects(stats, eff){
+  for (const [k,dv] of Object.entries(eff)){
+    if (!(k in stats)) continue;
+    stats[k] += dv;
+    if (["health","stress","family","friendship"].includes(k)){
+      stats[k] = Math.round(clamp(stats[k],0,100));
+    }
+  }
+}
+function addState(active, sid){
+  const sdef = stateIndex[sid]; if(!sdef) return;
+  if (sdef.type === "counter"){ if(!active[sid]) active[sid] = {remaining:null}; return; }
+  const dur = (sdef.duration ?? null);
+  if (dur === null){ if(!active[sid]) active[sid] = {remaining:null}; return; }
+  if (active[sid]){
+    const behavior = sdef.stacking ?? "refresh";
+    if (behavior === "extend" && active[sid].remaining != null) active[sid].remaining += dur;
+    else active[sid].remaining = dur;
+  } else active[sid] = {remaining:dur};
+}
+function removeState(active, sid){ delete active[sid]; }
+
+function monthlyPassive(stats){
+  const mp = CONFIG.recovery.monthly_passive;
+  const baseH = mp.health_base_regen * (1.0 - stats.stress/140.0);
+  const dh = effectiveGain(baseH, stats.health);
+  const baseS = mp.stress_base_decay * (0.6 + stats.health/140.0 + stats.friendship/250.0);
+  const ds = -baseS;
+  const baseR = mp.relationship_base_regen * (1.0 - stats.stress/140.0);
+  const dr = effectiveGain(baseR, stats.family);
+  const df = effectiveGain(baseR, stats.friendship);
+  applyEffects(stats, {health:Math.round(dh), stress:Math.round(ds), family:Math.round(dr), friendship:Math.round(df)});
+}
+function applyStateMonthly(stats, active, counters, month){
+  const cf=costFactor(month), wf=wageFactor(month);
+  for (const sid of Object.keys(active)){
+    const sdef = stateIndex[sid]; if(!sdef) continue;
+    if (sid === "S_PAYCHECK" && active["S_LAYOFF"]){
+      // skip
+    } else {
+      const eff = sdef.monthly_effect ?? {};
+      const eff2 = {};
+      for (const [k,v] of Object.entries(eff)){
+        if (["health","family","friendship"].includes(k) && v>0) eff2[k]=Math.round(effectiveGain(v, stats[k]));
+        else if (k==="money" && v>0 && active["S_HIGH_INTEREST_LOAN"]) eff2[k]=Math.round(v*0.85);
+        else eff2[k]=v;
+      }
+      if ("money" in eff2){
+        let m = eff2.money;
+        if (m>0) m = m*CONFIG.balance.pos_money_mult*wf;
+        else m = m*CONFIG.balance.neg_money_mult*cf;
+        eff2.money = Math.round(m);
+      }
+      if ("stress" in eff2) eff2.stress = Math.round(eff2.stress * CONFIG.balance.stress_mult);
+      applyEffects(stats, eff2);
+    }
+    if (sdef.type === "counter"){
+      if (sid === "S_RENT_ARREARS") counters.rent_arrears_months = (counters.rent_arrears_months ?? 0) + 1;
+      continue;
+    }
+    if (active[sid].remaining != null){
+      active[sid].remaining -= 1;
+      if (active[sid].remaining <= 0) delete active[sid];
+    }
+  }
+}
+
+function tagWeights(active){
+  const w={}; for (const t of TAGS) w[t]=1.0;
+  for (const sid of Object.keys(active)){
+    const mods = STATE_TAG_MULT[sid]; if(!mods) continue;
+    for (const [t,m] of Object.entries(mods)){ if (t in w) w[t]*=m; }
+  }
+  for (const t of TAGS) w[t]=clamp(w[t],0.75,1.55);
+  return w;
+}
+function drawEvent(){
+  const tw = tagWeights(game.active);
+  const tags = Object.keys(tw);
+  const tag = pickWeighted(tags, tags.map(t=>tw[t]));
+  const pool = pools[tag];
+
+  const beta = CONFIG.draw.anti_repeat_beta;
+  const recentWin = CONFIG.draw.recent_window;
+  const recentPenalty = CONFIG.draw.recent_penalty;
+  const recentSet = new Set(game.recent.slice(Math.max(0, game.recent.length - recentWin)));
+
+  const cand=[], ws=[];
+  for (const ev of pool){
+    const seen = game.seenCounts[ev.id] ?? 0;
+    let w = (ev.base_weight ?? 1.0) / Math.pow(1.0 + seen, beta);
+    if (recentSet.has(ev.id)) w *= recentPenalty;
+    cand.push(ev); ws.push(w);
+  }
+  return pickWeighted(cand, ws);
+}
+
+function strikesNow(){
+  let s=0;
+  if (game.stats.money < CONFIG.thresholds.money_hard) s++;
+  if (game.active["S_RENT_ARREARS"] && (game.counters.rent_arrears_months ?? 0) >= CONFIG.thresholds.eviction_months) s++;
+  if (game.stats.health <= 0) s++;
+  if (game.stats.stress >= 100) s++;
+  if (game.stats.family <= 0) s++;
+  if (game.stats.friendship <= 0) s++;
+  return s;
+}
+function monthEndRent(){
+  const rent = Math.round(CONFIG.economy.rent * costFactor(game.month));
+  if (game.active["S_RENT_DUE"]){
+    if (game.stats.money >= rent){
+      applyEffects(game.stats, {money:-rent, stress:-1});
+      removeState(game.active, "S_RENT_DUE");
+      logLine(`月底结算：扣房租 <b class="mono">${fmtMoney(rent)}</b>（含通胀）。`);
+    } else {
+      removeState(game.active, "S_RENT_DUE");
+      addState(game.active, "S_RENT_ARREARS");
+      logLine(`<span class="warn">月底结算：钱不够交房租 → “房租欠缴”。</span>`);
+    }
+  }
+  addState(game.active, "S_RENT_DUE");
+}
+
+function applyChoice(ev, ch){
+  const eff = deepCopy(ch.effects ?? {});
+  const cf = costFactor(game.month);
+  const wf = wageFactor(game.month);
+
+  if (ch.action === "PAY_RENT"){
+    const rent = Math.round(CONFIG.economy.rent * cf);
+    eff.money = (eff.money ?? 0) - rent;
+  }
+  for (const k of ["health","family","friendship"]){
+    if (k in eff && eff[k] > 0) eff[k] = Math.round(effectiveGain(eff[k], game.stats[k]));
+  }
+  if ("money" in eff){
+    let m = eff.money;
+    if (m > 0){
+      m = m * CONFIG.balance.pos_money_mult * wf;
+      if (game.active["S_HIGH_INTEREST_LOAN"]) m *= 0.85;
+    } else {
+      m = m * CONFIG.balance.neg_money_mult * cf;
+    }
+    eff.money = Math.round(m);
+  }
+  if ("stress" in eff) eff.stress = Math.round(eff.stress * CONFIG.balance.stress_mult);
+
+  applyEffects(game.stats, eff);
+
+  for (const sid of (ch.add_states ?? [])) addState(game.active, sid);
+  for (const sid of (ch.remove_states ?? [])){
+    removeState(game.active, sid);
+    if (sid === "S_RENT_ARREARS") game.counters.rent_arrears_months = 0;
+  }
+
+  game.seenCounts[ev.id] = (game.seenCounts[ev.id] ?? 0) + 1;
+  game.seenSet.add(ev.id);
+  game.recent.push(ev.id);
+  if (game.recent.length > 60) game.recent = game.recent.slice(-60);
+  game.last30.push(ev.id);
+  if (game.last30.length > 30) game.last30 = game.last30.slice(-30);
+  game.tagLast30.push(ev.primary_tag);
+  if (game.tagLast30.length > 30) game.tagLast30 = game.tagLast30.slice(-30);
+
+  game.turnInMonth += 1;
+}
+
+function startMonthIfNeeded(){
+  if (game.turnInMonth === 0){
+    monthlyPassive(game.stats);
+    applyStateMonthly(game.stats, game.active, game.counters, game.month);
+    logLine(`<span class="muted">—— 月初结算（被动恢复 + 状态月结）完成 ——</span>`);
+  }
+}
+function endMonthIfNeeded(){
+  if (game.turnInMonth >= CONFIG.turns_per_month){
+    monthEndRent();
+    game.month += 1;
+    game.turnInMonth = 0;
+    if (game.month >= CONFIG.max_months){
+      game.ended = true; game.win = true;
+      logLine(`<span class="ok"><b>通关！</b>你撑到了第 ${CONFIG.max_months} 个月。</span>`);
+    }
+  }
+}
+function checkGameOver(){
+  const s = strikesNow();
+  document.getElementById("strikesLabel").textContent = `strikes: ${s}/${CONFIG.thresholds.collections_strikes}`;
+  if (!game.ended && s >= CONFIG.thresholds.collections_strikes){
+    game.ended = true; game.win = false;
+    logLine(`<span class="warn"><b>Game Over</b>（strikes 达到阈值）</span>`);
+  }
+}
+
+function renderTooltipForState(sid){
+  const def = stateIndex[sid]; if(!def) return "";
+  const mEff = def.monthly_effect ?? {};
+  const lines = [];
+  if (Object.keys(mEff).length){
+    const parts = [];
+    for (const k of ["money","health","stress","family","friendship"]){
+      if (k in mEff) parts.push(`${k} ${mEff[k]>=0?"+":""}${mEff[k]}`);
+    }
+    if (parts.length) lines.push(`每月：${parts.join(" · ")}`);
+  }
+  if (def.type === "counter") lines.push("类型：计数器（不会自动消失，直到被事件清掉）");
+  else if (def.duration == null) lines.push("持续：常驻（∞）");
+  else lines.push(`持续：${def.duration} 回合`);
+  const mods = STATE_TAG_MULT[sid];
+  if (mods){
+    const m = Object.entries(mods).map(([t,v]) => `${t}×${v}`).join(" · ");
+    lines.push(`抽卡倾向：${m}`);
+  }
+  return `<h4>${def.name} <span class="mono muted">(${sid})</span></h4><div class="t">${def.desc || ""}\n${lines.join("\n")}</div>`;
+}
+function renderTooltipForEvent(ev){
+  const parts = [`标签：${ev.primary_tag}`, `事件ID：${ev.id}`];
+  if (ev.base_weight != null) parts.push(`base_weight：${ev.base_weight}`);
+  return `<h4>${ev.title}</h4><div class="t">${ev.text}\n\n${parts.join("\n")}</div>`;
+}
+
+function updateStatsPanel(){
+  const last = game.last30;
+  const uniq = new Set(last).size;
+  const repeatRate = last.length ? (1 - uniq/last.length) : 0;
+  document.getElementById("repeat30").textContent = last.length ? pct(repeatRate) : "—";
+
+  const c={}; for (const t of TAGS) c[t]=0;
+  for (const t of game.tagLast30) c[t]+=1;
+  const maxv = Math.max(1, ...Object.values(c));
+  document.getElementById("tagBars").innerHTML = TAGS.map(t=>{
+    const v=c[t]; const w=(v/maxv)*100;
+    return `<div class="item"><div class="mono muted">${t}</div><div class="track"><div class="barfill" style="width:${w}%;"></div></div><div class="mono">${v}</div></div>`;
+  }).join("");
+
+  const total = Object.values(game.seenCounts).reduce((a,b)=>a+b,0) || 1;
+  const sorted = Object.entries(game.seenCounts).sort((a,b)=>b[1]-a[1]);
+  const top10 = sorted.slice(0,10).reduce((a,kv)=>a+kv[1],0);
+  document.getElementById("top10Share").textContent = total ? pct(top10/total) : "—";
+}
+
+function uiUpdate(){
+  document.getElementById("monthLabel").textContent = game ? `第 ${game.month+1} 个月 · 本月第 ${game.turnInMonth+1}/${CONFIG.turns_per_month} 次` : "未开始";
+  document.getElementById("modeHint").textContent = `模式：${game ? (game.mode==="FOUR"?"四张同屏":"单张") : "—"}`;
+
+  const s = game?.stats; if(!s) return;
+  document.getElementById("moneyVal").textContent = fmtMoney(s.money);
+  document.getElementById("healthVal").textContent = s.health;
+  document.getElementById("stressVal").textContent = s.stress;
+  document.getElementById("familyVal").textContent = s.family;
+  document.getElementById("friendVal").textContent = s.friendship;
+
+  document.getElementById("healthBar").style.width = `${clamp(s.health,0,100)}%`;
+  document.getElementById("stressBar").style.width = `${clamp(s.stress,0,100)}%`;
+  document.getElementById("familyBar").style.width = `${clamp(s.family,0,100)}%`;
+  document.getElementById("friendBar").style.width = `${clamp(s.friendship,0,100)}%`;
+
+  document.getElementById("uniqLabel").textContent = `已体验事件：${game.seenSet.size} / ${EVENTS.length}`;
+
+  const keys = Object.keys(game.active).sort();
+  document.getElementById("stateList").innerHTML = keys.length ? keys.map(sid=>{
+    const def = stateIndex[sid]; const rem = game.active[sid].remaining;
+    const remTxt = rem==null ? "∞" : `${rem}m`;
+    const extra = sid==="S_RENT_ARREARS" ? ` · 欠缴月数 ${game.counters.rent_arrears_months ?? 0}/${CONFIG.thresholds.eviction_months}` : "";
+    return `<div class="stateItem" data-sid="${sid}" style="padding:8px 10px; border:1px solid #223245; border-radius:12px; background:#0c1320; margin-top:8px">• <b>${def?.name ?? sid}</b> <span class="muted mono">(${sid})</span> <span class="pill">${remTxt}</span>${extra}</div>`;
+  }).join("") : "—";
+
+  for (const el of document.querySelectorAll(".stateItem")){
+    el.addEventListener("mouseenter", (e)=>{ const sid=el.getAttribute("data-sid"); showTT(renderTooltipForState(sid), e.clientX, e.clientY); });
+    el.addEventListener("mouseleave", hideTT);
+  }
+
+  document.getElementById("betaVal").textContent = CONFIG.draw.anti_repeat_beta;
+  document.getElementById("recentWinVal").textContent = CONFIG.draw.recent_window;
+  document.getElementById("recentPenVal").textContent = CONFIG.draw.recent_penalty;
+  document.getElementById("rentVal").textContent = fmtMoney(CONFIG.economy.rent);
+  document.getElementById("payVal").textContent = fmtMoney(CONFIG.economy.base_paycheck ?? 0);
+  document.getElementById("inflVal").textContent = (CONFIG.economy.inflation_per_year ?? 0);
+  document.getElementById("wgVal").textContent = (CONFIG.economy.wage_growth_per_year ?? 0);
+  document.getElementById("loseVal").textContent = CONFIG.thresholds.collections_strikes;
+
+  updateStatsPanel();
+
+  const ended = game.ended;
+  document.getElementById("btnNext").disabled = ended;
+  document.getElementById("btnAuto20").disabled = ended;
+  document.getElementById("btnMode").disabled = ended;
+  document.getElementById("btnGreedy").disabled = ended;
+  document.getElementById("btnSafe").disabled = ended;
+}
+
+function bindEventTooltip(scope){
+  for (const el of scope.querySelectorAll(".event")){
+    el.addEventListener("mouseenter", (e)=>{
+      const eid = el.getAttribute("data-eid");
+      const ev = eventIndex[eid]; if(!ev) return;
+      showTT(renderTooltipForEvent(ev), e.clientX, e.clientY);
+    });
+    el.addEventListener("mouseleave", hideTT);
+  }
+}
+
+function renderChoice(ev, ch, idx){
+  const choiceEl = document.createElement("div");
+  choiceEl.className = "choice";
+  const eff = ch.effects ?? {};
+  const add = (ch.add_states ?? []).map(s => stateIndex[s]?.name ?? s);
+  const rem = (ch.remove_states ?? []).map(s => stateIndex[s]?.name ?? s);
+
+  const effParts = [];
+  for (const k of ["money","health","stress","family","friendship"]){
+    if (k in eff) effParts.push(`<b>${k}</b> ${eff[k]>=0?"+":""}${eff[k]}`);
+  }
+  if (ch.action === "PAY_RENT") effParts.push(`<b>money</b> -rent(动态)`);
+
+  choiceEl.innerHTML = `
+    <div class="desc">${idx+1}. ${ch.desc}</div>
+    <div class="eff">
+      ${effParts.length ? `即时：${effParts.join(" · ")}` : "即时：—"}
+      ${add.length ? `<br/>获得状态：<span class="mono">${add.join(", ")}</span>` : ""}
+      ${rem.length ? `<br/>移除状态：<span class="mono">${rem.join(", ")}</span>` : ""}
+    </div>
+  `;
+  choiceEl.onclick = ()=>{
+    applyChoice(ev, ch);
+    logLine(`<b>${ev.title}</b>：选择「${ch.desc}」`);
+    checkGameOver();
+    endMonthIfNeeded();
+    uiUpdate();
+    renderCards();
+  };
+  return choiceEl;
+}
+
+function renderEventCard(ev, fourMode){
+  const el = document.createElement("div");
+  el.className = "event";
+  el.setAttribute("data-eid", ev.id);
+
+  const header = `
+    <div class="row" style="justify-content:space-between">
+      <h3>${ev.title} <span class="pill mono">${ev.primary_tag}</span></h3>
+      <span class="small muted mono">${ev.id}</span>
+    </div>
+    <p>${ev.text}</p>
+  `;
+
+  if (!fourMode){
+    el.innerHTML = header;
+    for (let i=0;i<ev.choices.length;i++) el.appendChild(renderChoice(ev, ev.choices[i], i));
+    return el;
+  }
+
+  el.innerHTML = header + `<div class="small muted" style="margin-top:8px">点击此事件以选择它（随后在此卡上选择具体选项）。</div>`;
+  el.style.cursor = "pointer";
+  el.addEventListener("click", ()=>{
+    const box = document.getElementById("cards");
+    for (const e2 of box.querySelectorAll(".event")){
+      e2.style.opacity="0.55"; e2.style.pointerEvents="none";
+    }
+    el.style.opacity="1"; el.style.pointerEvents="auto"; el.style.cursor="default";
+    el.innerHTML = header + `<div class="hr"></div><div class="small muted">已选择这张牌：请选择一个选项</div>`;
+    for (let i=0;i<ev.choices.length;i++) el.appendChild(renderChoice(ev, ev.choices[i], i));
+    bindEventTooltip(el);
+  }, {once:true});
+  return el;
+}
+
+function renderCards(){
+  const box = document.getElementById("cards");
+  box.innerHTML = "";
+  if (!game || game.ended){
+    document.getElementById("deckHint").textContent = game?.ended ? "已结束（可重置/新开局）" : "请先加载文件并新开局";
+    return;
+  }
+  startMonthIfNeeded();
+
+  if (game.mode === "SINGLE"){
+    const ev = drawEvent();
+    document.getElementById("deckHint").textContent = `抽到：${ev.primary_tag} · ${ev.id}`;
+    box.appendChild(renderEventCard(ev, false));
+    bindEventTooltip(box);
+    uiUpdate(); checkGameOver();
+    return;
+  }
+
+  const evs = [drawEvent(), drawEvent(), drawEvent(), drawEvent()];
+  document.getElementById("deckHint").textContent = `本轮 4 张：选择 1 张进入“选项”`;
+  for (const ev of evs) box.appendChild(renderEventCard(ev, true));
+  bindEventTooltip(box);
+  uiUpdate(); checkGameOver();
+}
+
+/** Auto players **/
+function scoreChoiceGreedy(ev, ch){
+  const eff = ch.effects ?? {};
+  let s = 0;
+  s += (eff.money ?? 0) / 200.0;
+  s += (eff.health ?? 0) * 0.20;
+  s += (-(eff.stress ?? 0)) * 0.18;
+  s += (eff.family ?? 0) * 0.10;
+  s += (eff.friendship ?? 0) * 0.10;
+
+  for (const sid of (ch.add_states ?? [])){
+    if (sid === "S_HIGH_INTEREST_LOAN") s -= 3.0;
+    if (sid === "S_RENT_ARREARS") s -= 4.0;
+    if (sid === "S_LAYOFF") s -= 3.0;
+    if (sid === "S_INJURED") s -= 2.0;
+  }
+  for (const sid of (ch.remove_states ?? [])){
+    if (sid === "S_RENT_ARREARS") s += 3.0;
+    if (sid === "S_HIGH_INTEREST_LOAN") s += 2.0;
+    if (sid === "S_CREDIT_CARD_DEBT") s += 1.5;
+    if (sid === "S_LAYOFF") s += 2.5;
+  }
+  if (ch.action === "PAY_RENT") s += 1.0;
+  return s;
+}
+function riskScoreSnapshot(stats, active, counters){
+  let r=0;
+  const margin = stats.money - CONFIG.thresholds.money_hard;
+  if (margin < 0) r += 6;
+  else if (margin < 800) r += 2;
+  if (active["S_RENT_ARREARS"]){
+    const m = counters.rent_arrears_months ?? 0;
+    r += 1 + (m/CONFIG.thresholds.eviction_months) * 4;
+  }
+  if (stats.health < 25) r += 4;
+  else if (stats.health < 40) r += 2;
+  if (stats.stress > 80) r += 4;
+  else if (stats.stress > 65) r += 2;
+  if (stats.family < 25) r += 3;
+  if (stats.friendship < 25) r += 3;
+  return r;
+}
+function simulateApplyChoiceForScoring(ev, ch){
+  const tmpStats = deepCopy(game.stats);
+  const tmpActive = deepCopy(game.active);
+  const tmpCounters = deepCopy(game.counters);
+
+  const eff = deepCopy(ch.effects ?? {});
+  const cf = costFactor(game.month);
+  if (ch.action === "PAY_RENT"){
+    const rent = Math.round(CONFIG.economy.rent * cf);
+    eff.money = (eff.money ?? 0) - rent;
+  }
+  applyEffects(tmpStats, eff);
+  for (const sid of (ch.add_states ?? [])) addState(tmpActive, sid);
+  for (const sid of (ch.remove_states ?? [])){
+    removeState(tmpActive, sid);
+    if (sid === "S_RENT_ARREARS") tmpCounters.rent_arrears_months = 0;
+  }
+  return {tmpStats,tmpActive,tmpCounters};
+}
+function scoreChoiceSafe(ev, ch){
+  const before = riskScoreSnapshot(game.stats, game.active, game.counters);
+  const {tmpStats,tmpActive,tmpCounters} = simulateApplyChoiceForScoring(ev, ch);
+  const after = riskScoreSnapshot(tmpStats, tmpActive, tmpCounters);
+  let s = (before - after) * 2.0;
+  const eff = ch.effects ?? {};
+  s += (-(eff.stress ?? 0)) * 0.15;
+  if (ch.action === "PAY_RENT") s += 1.2;
+  if ((ch.remove_states ?? []).includes("S_RENT_ARREARS")) s += 2.0;
+  if ((ch.add_states ?? []).includes("S_HIGH_INTEREST_LOAN")) s -= 5.0;
+  return s;
+}
+function chooseByPolicy(ev, policy){
+  let bi=0, bs=-1e18;
+  for (let i=0;i<ev.choices.length;i++){
+    const ch = ev.choices[i];
+    const sc = (policy==="GREEDY") ? scoreChoiceGreedy(ev,ch) : scoreChoiceSafe(ev,ch);
+    if (sc > bs){ bs = sc; bi = i; }
+  }
+  return ev.choices[bi];
+}
+function autoStep(policy){
+  if (!game || game.ended) return;
+  startMonthIfNeeded();
+
+  if (game.mode === "SINGLE"){
+    const ev = drawEvent();
+    const ch = chooseByPolicy(ev, policy);
+    applyChoice(ev, ch);
+    logLine(`<span class="muted">[${policy}] ${ev.title} → 「${ch.desc}」</span>`);
+    checkGameOver(); endMonthIfNeeded(); uiUpdate(); renderCards();
+    return;
+  }
+  const evs = [drawEvent(), drawEvent(), drawEvent(), drawEvent()];
+  let bestEv = evs[0], bestCh = chooseByPolicy(bestEv, policy);
+  let bestScore = (policy==="GREEDY") ? scoreChoiceGreedy(bestEv,bestCh) : scoreChoiceSafe(bestEv,bestCh);
+
+  for (let i=1;i<evs.length;i++){
+    const ev = evs[i];
+    const ch = chooseByPolicy(ev, policy);
+    const sc = (policy==="GREEDY") ? scoreChoiceGreedy(ev,ch) : scoreChoiceSafe(ev,ch);
+    if (sc > bestScore){ bestScore=sc; bestEv=ev; bestCh=ch; }
+  }
+  applyChoice(bestEv, bestCh);
+  logLine(`<span class="muted">[${policy}]（四选一）${bestEv.title} → 「${bestCh.desc}」</span>`);
+  checkGameOver(); endMonthIfNeeded(); uiUpdate(); renderCards();
+}
+
+/** Lifecycle **/
+function newGame(){
+  game = {
+    month:0, turnInMonth:0,
+    stats: {
+      money: CONFIG.attrs.money.start,
+      health: CONFIG.attrs.health.start,
+      stress: CONFIG.attrs.stress.start,
+      family: CONFIG.attrs.family.start,
+      friendship: CONFIG.attrs.friendship.start,
+    },
+    active: {},
+    counters: {rent_arrears_months:0},
+    recent: [],
+    last30: [],
+    tagLast30: [],
+    seenCounts: {},
+    seenSet: new Set(),
+    ended:false, win:false,
+    mode: "FOUR",
+  };
+  addState(game.active, "S_RENT_DUE");
+  addState(game.active, "S_PAYCHECK");
+
+  document.getElementById("log").innerHTML="";
+  logLine(`<span class="ok">新开局：money=${fmtMoney(game.stats.money)} · rent_base=${fmtMoney(CONFIG.economy.rent)} · paycheck=${fmtMoney(CONFIG.economy.base_paycheck ?? 0)} · 模式=${game.mode}</span>`);
+  uiUpdate(); renderCards();
+}
+function resetAll(){
+  game=null;
+  document.getElementById("cards").innerHTML="";
+  document.getElementById("deckHint").textContent="请先加载文件并新开局";
+  document.getElementById("log").innerHTML="";
+  document.getElementById("stateList").textContent="—";
+  document.getElementById("monthLabel").textContent="未开始";
+  document.getElementById("modeHint").textContent="模式：—";
+  document.getElementById("uniqLabel").textContent="已体验事件：—";
+  ["moneyVal","healthVal","stressVal","familyVal","friendVal"].forEach(id=>document.getElementById(id).textContent="—");
+  ["healthBar","stressBar","familyBar","friendBar"].forEach(id=>document.getElementById(id).style.width="50%");
+  document.getElementById("tagBars").innerHTML="";
+  document.getElementById("repeat30").textContent="—";
+  document.getElementById("top10Share").textContent="—";
+  hideTT();
+}
+
+/** Loading **/
+async function readJsonFromFileInput(inputEl){
+  return new Promise((resolve,reject)=>{
+    const f = inputEl.files?.[0];
+    if(!f) return resolve(null);
+    const fr = new FileReader();
+    fr.onload = ()=>{ try{ resolve(JSON.parse(fr.result)); } catch(e){ reject(e);} };
+    fr.onerror = reject;
+    fr.readAsText(f, "utf-8");
+  });
+}
+async function tryFetchJson(path){
+  try{ const r = await fetch(path, {cache:"no-store"}); if(!r.ok) return null; return await r.json(); }
+  catch(e){ return null; }
+}
+async function loadData(){
+  const fe=document.getElementById("fileEvents");
+  const fs=document.getElementById("fileStates");
+  const fc=document.getElementById("fileConfig");
+  let je=await readJsonFromFileInput(fe);
+  let js=await readJsonFromFileInput(fs);
+  let jc=await readJsonFromFileInput(fc);
+  if(!je) je=await tryFetchJson("./events.json");
+  if(!js) js=await tryFetchJson("./states.json");
+  if(!jc) jc=await tryFetchJson("./config.json");
+  if(!je||!js||!jc){ alert("加载失败：请用文件选择器选择 events/states/config，或用本地服务器打开并把三个 json 放同目录。"); return; }
+
+  EVENTS = je.events ?? je;
+  STATES = js.states ?? js;
+  CONFIG = (jc.config ?? jc);
+
+  if(!CONFIG.economy) CONFIG.economy = {};
+  if(!("base_paycheck" in CONFIG.economy)){
+    const pay = (STATES.find(s=>s.id==="S_PAYCHECK")?.monthly_effect?.money) ?? 0;
+    CONFIG.economy.base_paycheck = pay;
+  }
+
+  rebuildPools(); buildStateIndex();
+
+  if(stateIndex["S_PAYCHECK"]){
+    stateIndex["S_PAYCHECK"].monthly_effect = stateIndex["S_PAYCHECK"].monthly_effect || {};
+    stateIndex["S_PAYCHECK"].monthly_effect.money = CONFIG.economy.base_paycheck;
+  }
+
+  ["btnNew","btnReset","btnNext","btnAuto20","btnMode","btnGreedy","btnSafe"].forEach(id=>document.getElementById(id).disabled=false);
+  logLine(`<span class="ok">数据已加载：events=${EVENTS.length}，states=${STATES.length}</span>`);
+  uiUpdate();
+}
+
+document.getElementById("btnLoad").onclick = loadData;
+document.getElementById("btnNew").onclick = ()=>{ if(!EVENTS||!STATES||!CONFIG) return; newGame(); };
+document.getElementById("btnReset").onclick = resetAll;
+document.getElementById("btnNext").onclick = ()=>{ if(!game) return; renderCards(); };
+
+document.getElementById("btnAuto20").onclick = ()=>{
+  if(!game||game.ended) return;
+  for (let i=0;i<20;i++){
+    if(game.ended) break;
+    startMonthIfNeeded();
+    if (game.mode === "SINGLE"){
+      const ev = drawEvent();
+      const ch = ev.choices[Math.floor(Math.random()*ev.choices.length)];
+      applyChoice(ev, ch);
+      logLine(`<span class="muted">[RND] ${ev.title} → 「${ch.desc}」</span>`);
+    } else {
+      const evs = [drawEvent(),drawEvent(),drawEvent(),drawEvent()];
+      const ev = evs[Math.floor(Math.random()*4)];
+      const ch = ev.choices[Math.floor(Math.random()*ev.choices.length)];
+      applyChoice(ev, ch);
+      logLine(`<span class="muted">[RND]（四选一）${ev.title} → 「${ch.desc}」</span>`);
+    }
+    checkGameOver(); endMonthIfNeeded();
+  }
+  uiUpdate(); renderCards();
+};
+
+document.getElementById("btnMode").onclick = ()=>{
+  if(!game) return;
+  game.mode = (game.mode === "FOUR") ? "SINGLE" : "FOUR";
+  logLine(`<span class="ok">切换模式：${game.mode === "FOUR" ? "四张同屏" : "单张"}</span>`);
+  uiUpdate(); renderCards();
+};
+document.getElementById("btnGreedy").onclick = ()=>{ if(!game||game.ended) return; for(let i=0;i<20;i++){ if(game.ended) break; autoStep("GREEDY"); } };
+document.getElementById("btnSafe").onclick = ()=>{ if(!game||game.ended) return; for(let i=0;i<20;i++){ if(game.ended) break; autoStep("SAFE"); } };
+
+document.addEventListener("click", (e)=>{ if(e.target.closest(".event")||e.target.closest(".stateItem")||e.target.closest(".choice")) return; hideTT(); });
+
+(async ()=>{
+  const je = await tryFetchJson("./events.json");
+  const js = await tryFetchJson("./states.json");
+  const jc = await tryFetchJson("./config.json");
+  if (je && js && jc){
+    EVENTS = je.events ?? je;
+    STATES = js.states ?? js;
+    CONFIG = (jc.config ?? jc);
+    rebuildPools(); buildStateIndex();
+
+    if(!CONFIG.economy) CONFIG.economy = {};
+    if(!("base_paycheck" in CONFIG.economy)){
+      const pay = (STATES.find(s=>s.id==="S_PAYCHECK")?.monthly_effect?.money) ?? 0;
+      CONFIG.economy.base_paycheck = pay;
+    }
+    if(stateIndex["S_PAYCHECK"]){
+      stateIndex["S_PAYCHECK"].monthly_effect = stateIndex["S_PAYCHECK"].monthly_effect || {};
+      stateIndex["S_PAYCHECK"].monthly_effect.money = CONFIG.economy.base_paycheck;
+    }
+
+    ["btnNew","btnReset","btnNext","btnAuto20","btnMode","btnGreedy","btnSafe"].forEach(id=>document.getElementById(id).disabled=false);
+    logLine(`<span class="ok">已自动从同目录加载 JSON（server mode）</span>`);
+    uiUpdate();
+  }
+})();
+</script>
+</body>
+</html>

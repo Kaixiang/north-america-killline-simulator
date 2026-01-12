@@ -1,0 +1,79 @@
+{
+  "version": "2.0",
+  "config": {
+    "version": "2.0",
+    "game_name": "北美斩杀线模拟器",
+    "turns_per_month": 4,
+    "max_months": 120,
+    "attrs": {
+      "money": {
+        "type": "float",
+        "start": 1800
+      },
+      "health": {
+        "type": "int",
+        "start": 80,
+        "min": 0,
+        "max": 100
+      },
+      "stress": {
+        "type": "int",
+        "start": 35,
+        "min": 0,
+        "max": 100
+      },
+      "family": {
+        "type": "int",
+        "start": 60,
+        "min": 0,
+        "max": 100
+      },
+      "friendship": {
+        "type": "int",
+        "start": 55,
+        "min": 0,
+        "max": 100
+      }
+    },
+    "thresholds": {
+      "money_hard": -3200,
+      "eviction_months": 4,
+      "collections_strikes": 3
+    },
+    "economy": {
+      "rent": 2150,
+      "base_paycheck": 1500,
+      "inflation_per_year": 0.1,
+      "wage_growth_per_year": 0.01
+    },
+    "recovery": {
+      "soft_floor": 40,
+      "alpha": 0.055,
+      "monthly_passive": {
+        "health_base_regen": 1.25,
+        "stress_base_decay": 1.25,
+        "relationship_base_regen": 0.85
+      }
+    },
+    "draw": {
+      "anti_repeat_beta": 1.3,
+      "recent_window": 14,
+      "recent_penalty": 0.2
+    },
+    "balance": {
+      "pos_money_mult": 1.0,
+      "neg_money_mult": 1.1,
+      "stress_mult": 1.02
+    }
+  },
+  "metrics_2000_runs": {
+    "win_rate": 0.085,
+    "uniq_ge_100": 0.9295,
+    "uniq_avg": 162.611,
+    "top10_share": 0.06311665065921593,
+    "top25_share": 0.15646737390494483,
+    "uniq_p10": 108,
+    "uniq_p50": 174,
+    "uniq_p90": 198
+  }
+}

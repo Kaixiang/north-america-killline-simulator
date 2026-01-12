@@ -1,0 +1,460 @@
+{
+  "version": "2.0",
+  "states": [
+    {
+      "id": "S_RENT_DUE",
+      "name": "房租待缴",
+      "type": "timed",
+      "duration": 1,
+      "desc": "本月房租待缴。月底若未处理将进入欠缴状态。",
+      "monthly_effect": {},
+      "stacking": "refresh",
+      "tags": [
+        "housing"
+      ]
+    },
+    {
+      "id": "S_RENT_ARREARS",
+      "name": "房租欠缴",
+      "type": "counter",
+      "duration": null,
+      "desc": "房租未付。每月产生滞纳金并累计欠缴月数，达到阈值会被驱逐。",
+      "monthly_effect": {
+        "money": -120
+      },
+      "counter_key": "rent_arrears_months",
+      "tags": [
+        "housing",
+        "debt"
+      ]
+    },
+    {
+      "id": "S_CREDIT_CARD_DEBT",
+      "name": "信用卡债务",
+      "type": "monthly",
+      "duration": null,
+      "desc": "信用卡最低还款与利息每月扣减，且提高债务相关抽牌概率。",
+      "monthly_effect": {
+        "money": -180
+      },
+      "tags": [
+        "debt"
+      ]
+    },
+    {
+      "id": "S_HIGH_INTEREST_LOAN",
+      "name": "高利率借贷",
+      "type": "monthly",
+      "duration": null,
+      "desc": "高利率借贷每月扣减更重，并让金钱恢复更难（正向金钱收益打折）。",
+      "monthly_effect": {
+        "money": -420
+      },
+      "tags": [
+        "debt",
+        "high_interest"
+      ]
+    },
+    {
+      "id": "S_MEDICAL_DEBT",
+      "name": "医疗账单分期",
+      "type": "monthly",
+      "duration": null,
+      "desc": "医疗账单分期每月扣减，压力上升。",
+      "monthly_effect": {
+        "money": -260,
+        "stress": 2
+      },
+      "tags": [
+        "debt",
+        "health"
+      ]
+    },
+    {
+      "id": "S_OVERDRAFT",
+      "name": "透支与罚金",
+      "type": "timed",
+      "duration": 2,
+      "desc": "账户透支导致罚金与手续费，持续数月。",
+      "monthly_effect": {
+        "money": -95,
+        "stress": 1
+      },
+      "stacking": "extend",
+      "tags": [
+        "debt"
+      ]
+    },
+    {
+      "id": "S_LAYOFF",
+      "name": "失业中",
+      "type": "monthly",
+      "duration": null,
+      "desc": "失业中：压力上升，并提高求职/借贷事件概率。",
+      "monthly_effect": {
+        "stress": 3
+      },
+      "tags": [
+        "job"
+      ]
+    },
+    {
+      "id": "S_NEW_JOB",
+      "name": "新工作适应期",
+      "type": "timed",
+      "duration": 3,
+      "desc": "新工作适应期：收入更稳定但压力上升，三个月后消失。",
+      "monthly_effect": {
+        "money": 700,
+        "stress": 2
+      },
+      "stacking": "refresh",
+      "tags": [
+        "job"
+      ]
+    },
+    {
+      "id": "S_OVERTIME",
+      "name": "加班季",
+      "type": "timed",
+      "duration": 2,
+      "desc": "加班季：收入增加但健康下降、压力上升。",
+      "monthly_effect": {
+        "money": 420,
+        "health": -2,
+        "stress": 3
+      },
+      "stacking": "extend",
+      "tags": [
+        "job",
+        "health"
+      ]
+    },
+    {
+      "id": "S_SIDE_GIG",
+      "name": "副业进行中",
+      "type": "timed",
+      "duration": 4,
+      "desc": "副业进行中：每月小额收入，压力略升。",
+      "monthly_effect": {
+        "money": 240,
+        "stress": 1
+      },
+      "stacking": "refresh",
+      "tags": [
+        "job"
+      ]
+    },
+    {
+      "id": "S_PAYCHECK",
+      "name": "稳定工资",
+      "type": "monthly",
+      "duration": null,
+      "desc": "基础工资（默认）。若处于失业中则本月不发。",
+      "monthly_effect": {
+        "money": 1500,
+        "stress": 1
+      },
+      "tags": [
+        "job",
+        "money"
+      ]
+    },
+    {
+      "id": "S_INJURED",
+      "name": "受伤恢复期",
+      "type": "timed",
+      "duration": 3,
+      "desc": "受伤恢复期：每月健康下降、压力上升。",
+      "monthly_effect": {
+        "health": -3,
+        "stress": 2
+      },
+      "stacking": "refresh",
+      "tags": [
+        "health"
+      ]
+    },
+    {
+      "id": "S_CHRONIC_PAIN",
+      "name": "慢性疼痛",
+      "type": "monthly",
+      "duration": null,
+      "desc": "慢性疼痛：每月健康下降、压力上升。",
+      "monthly_effect": {
+        "health": -2,
+        "stress": 2
+      },
+      "tags": [
+        "health"
+      ]
+    },
+    {
+      "id": "S_SLEEP_DEPRIVED",
+      "name": "睡眠不足",
+      "type": "timed",
+      "duration": 2,
+      "desc": "睡眠不足：每月健康下降、压力上升。",
+      "monthly_effect": {
+        "health": -2,
+        "stress": 3
+      },
+      "stacking": "extend",
+      "tags": [
+        "health"
+      ]
+    },
+    {
+      "id": "S_UNINSURED",
+      "name": "无保险",
+      "type": "monthly",
+      "duration": null,
+      "desc": "无保险：医疗事件更危险（更可能引发债务与压力）。",
+      "monthly_effect": {
+        "stress": 1
+      },
+      "tags": [
+        "health",
+        "debt"
+      ]
+    },
+    {
+      "id": "S_THERAPY",
+      "name": "心理咨询中",
+      "type": "timed",
+      "duration": 6,
+      "desc": "心理咨询中：压力下降，关系缓慢恢复，但扣钱。",
+      "monthly_effect": {
+        "money": -160,
+        "stress": -3,
+        "family": 1,
+        "friendship": 1
+      },
+      "stacking": "refresh",
+      "tags": [
+        "health",
+        "social"
+      ]
+    },
+    {
+      "id": "S_GYM_HABIT",
+      "name": "健身习惯",
+      "type": "timed",
+      "duration": 6,
+      "desc": "健身习惯：健康上升、压力下降，但扣钱。",
+      "monthly_effect": {
+        "money": -60,
+        "health": 3,
+        "stress": -2
+      },
+      "stacking": "refresh",
+      "tags": [
+        "health"
+      ]
+    },
+    {
+      "id": "S_SMOKING",
+      "name": "烟瘾",
+      "type": "monthly",
+      "duration": null,
+      "desc": "烟瘾：每月扣钱、健康下降。",
+      "monthly_effect": {
+        "money": -80,
+        "health": -1
+      },
+      "tags": [
+        "health"
+      ]
+    },
+    {
+      "id": "S_HEALTH_SCARE",
+      "name": "健康惊吓",
+      "type": "timed",
+      "duration": 2,
+      "desc": "健康惊吓：每月压力上升，促使你考虑体检/保险。",
+      "monthly_effect": {
+        "stress": 3
+      },
+      "stacking": "extend",
+      "tags": [
+        "health"
+      ]
+    },
+    {
+      "id": "S_FAMILY_CRISIS",
+      "name": "家庭危机",
+      "type": "timed",
+      "duration": 3,
+      "desc": "家庭危机：每月家庭下降、压力上升。",
+      "monthly_effect": {
+        "family": -4,
+        "stress": 3
+      },
+      "stacking": "extend",
+      "tags": [
+        "social"
+      ]
+    },
+    {
+      "id": "S_PARENTING_BURN",
+      "name": "育儿爆炸期",
+      "type": "timed",
+      "duration": 2,
+      "desc": "育儿爆炸期：每月压力上升、友情下降。",
+      "monthly_effect": {
+        "stress": 4,
+        "friendship": -2
+      },
+      "stacking": "extend",
+      "tags": [
+        "social"
+      ]
+    },
+    {
+      "id": "S_BEST_FRIEND_SUPPORT",
+      "name": "挚友支持",
+      "type": "timed",
+      "duration": 3,
+      "desc": "挚友支持：每月压力下降、友情上升。",
+      "monthly_effect": {
+        "stress": -2,
+        "friendship": 3
+      },
+      "stacking": "refresh",
+      "tags": [
+        "social"
+      ]
+    },
+    {
+      "id": "S_SUPPORTIVE_PARTNER",
+      "name": "伴侣支持",
+      "type": "timed",
+      "duration": 4,
+      "desc": "伴侣支持：每月家庭上升、压力下降。",
+      "monthly_effect": {
+        "family": 3,
+        "stress": -1
+      },
+      "stacking": "refresh",
+      "tags": [
+        "social"
+      ]
+    },
+    {
+      "id": "S_SOCIAL_ISOLATION",
+      "name": "社交断联",
+      "type": "timed",
+      "duration": 3,
+      "desc": "社交断联：每月友情下降、压力上升。",
+      "monthly_effect": {
+        "friendship": -4,
+        "stress": 2
+      },
+      "stacking": "extend",
+      "tags": [
+        "social"
+      ]
+    },
+    {
+      "id": "S_CAR_BROKEN",
+      "name": "车坏了",
+      "type": "timed",
+      "duration": 2,
+      "desc": "车坏了：每月额外开销与时间损失。",
+      "monthly_effect": {
+        "money": -220,
+        "stress": 2
+      },
+      "stacking": "extend",
+      "tags": [
+        "car"
+      ]
+    },
+    {
+      "id": "S_TRAFFIC_TICKET",
+      "name": "交通罚单未缴",
+      "type": "timed",
+      "duration": 2,
+      "desc": "交通罚单未缴：每月压力上升、逾期加罚金。",
+      "monthly_effect": {
+        "money": -40,
+        "stress": 1
+      },
+      "stacking": "extend",
+      "tags": [
+        "car",
+        "admin"
+      ]
+    },
+    {
+      "id": "S_TAX_DUE",
+      "name": "税务待缴",
+      "type": "timed",
+      "duration": 1,
+      "desc": "税务待缴：本月需要补缴税款，否则引发罚金/催收。",
+      "monthly_effect": {},
+      "stacking": "refresh",
+      "tags": [
+        "admin"
+      ]
+    },
+    {
+      "id": "S_COLLECTIONS_NOTICE",
+      "name": "催收通知",
+      "type": "timed",
+      "duration": 2,
+      "desc": "催收通知：每月压力上升。",
+      "monthly_effect": {
+        "stress": 2
+      },
+      "stacking": "extend",
+      "tags": [
+        "debt",
+        "admin"
+      ]
+    },
+    {
+      "id": "S_LEGAL_TROUBLE",
+      "name": "法律纠纷",
+      "type": "timed",
+      "duration": 3,
+      "desc": "法律纠纷：每月扣钱、压力上升。",
+      "monthly_effect": {
+        "money": -300,
+        "stress": 3
+      },
+      "stacking": "extend",
+      "tags": [
+        "admin"
+      ]
+    },
+    {
+      "id": "S_IMMIGRATION_ISSUE",
+      "name": "身份文件问题",
+      "type": "timed",
+      "duration": 3,
+      "desc": "身份文件问题：每月压力上升，并提高行政/法律事件概率。",
+      "monthly_effect": {
+        "stress": 3
+      },
+      "stacking": "extend",
+      "tags": [
+        "admin"
+      ]
+    },
+    {
+      "id": "S_WINDFALL_BUFFER",
+      "name": "小额缓冲",
+      "type": "timed",
+      "duration": 2,
+      "desc": "手头有点余粮：压力略降，坏事概率略减。",
+      "monthly_effect": {
+        "stress": -1
+      },
+      "stacking": "refresh",
+      "tags": [
+        "money"
+      ]
+    }
+  ]
+}

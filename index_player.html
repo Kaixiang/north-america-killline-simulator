@@ -1,0 +1,1088 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>北美斩杀线模拟器 — 玩家版</title>
+  <style>
+    :root{
+      --bg:#0b0f14; --panel:#0f1620; --panel2:#0c1320; --bd:#1f2a37;
+      --text:#e6edf3; --muted:#9fb0c0;
+      --good:#22c55e; --mid:#f59e0b; --bad:#ef4444;
+      --accent:#60a5fa;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+    *{ box-sizing:border-box; }
+    body{ margin:0; background:var(--bg); color:var(--text); overflow-x:hidden; }
+    header{
+      position:sticky; top:0; z-index:10;
+      padding:14px 16px; border-bottom:1px solid var(--bd);
+      background: rgba(11,15,20,.92); backdrop-filter: blur(8px);
+      display:flex; gap:12px; align-items:center; justify-content:space-between; flex-wrap:wrap;
+    }
+    .title{ font-weight:750; letter-spacing:.2px; }
+    .sub{ font-size:12px; color:var(--muted); line-height:1.35; }
+    .wrap{ display:grid; grid-template-columns: 360px 1fr; gap:12px; padding:12px; }
+    @media (max-width: 980px){ .wrap{ grid-template-columns:1fr; } }
+    .panel{ background:var(--panel); border:1px solid var(--bd); border-radius:16px; padding:12px; box-shadow: 0 10px 24px rgba(0,0,0,.22); }
+    .row{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+    .btn{
+      border:1px solid #2b3a4b; background:#111a25; color:var(--text);
+      padding:9px 11px; border-radius:12px; cursor:pointer; font-size:12px;
+      transition: transform .08s ease, border-color .15s ease, background .15s ease;
+      user-select:none;
+    }
+    .btn:hover{ border-color:#3a4f66; transform: translateY(-1px); }
+    .btn:active{ transform: translateY(0px) scale(.98); }
+    .btn.primary{ background:#152235; border-color:#3b82f6; }
+    .btn.danger{ background:#2a1416; border-color:#ef4444; }
+    .btn:disabled{ opacity:.55; cursor:not-allowed; transform:none; }
+    input[type=file]{ color:var(--muted); font-size:12px; max-width: 160px; }
+    .pill{ border:1px solid #2b3a4b; background:#0c1320; color:#c7d2de; padding:2px 8px; border-radius:999px; font-size:12px; }
+    .hr{ height:1px; background:var(--bd); margin:10px 0; }
+
+    /* status lights */
+    .lights{ display:grid; grid-template-columns: 1fr 1fr; gap:10px; margin-top:10px; }
+    .light{
+      border:1px solid #233044; background:var(--panel2); border-radius:14px; padding:10px;
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+    }
+    .light .k{ font-size:12px; color:var(--muted); }
+    .dot{ width:12px; height:12px; border-radius:999px; background: #334155; box-shadow: 0 0 0 3px rgba(255,255,255,.04) inset; }
+    .dot.good{ background: var(--good); box-shadow: 0 0 16px rgba(34,197,94,.35); }
+    .dot.mid{ background: var(--mid); box-shadow: 0 0 16px rgba(245,158,11,.35); }
+    .dot.bad{ background: var(--bad); box-shadow: 0 0 16px rgba(239,68,68,.35); }
+    .moneyBox{
+      border:1px solid #233044; background:linear-gradient(180deg,#0c1320,#0f1620);
+      border-radius:16px; padding:12px;
+      display:flex; align-items:flex-end; justify-content:space-between; gap:10px;
+    }
+    .moneyBox .label{ font-size:12px; color:var(--muted); }
+    .moneyBox .val{ font-size:26px; font-weight:800; letter-spacing:.2px; }
+    .mono{ font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace; font-variant-numeric: tabular-nums; font-feature-settings:"tnum"; }
+
+    /* states list */
+    .states{ display:flex; flex-direction:column; gap:8px; margin-top:10px; }
+    .stateChip{
+      border:1px solid #223245; background:#0c1320; border-radius:14px; padding:10px;
+      display:flex; gap:10px; align-items:flex-start;
+      opacity:1; transform: translateY(0);
+      transition: opacity .35s ease, transform .35s ease, border-color .15s ease;
+    }
+    .stateChip:hover{ border-color:#3a4f66; }
+    .stateChip.fadeIn{ animation: fadeIn .38s ease both; }
+    .stateChip.fadeOut{ opacity:0; transform: translateY(8px); }
+    .sIcon{ font-size:18px; width:24px; text-align:center; margin-top:1px; }
+    .sText .name{ font-weight:700; font-size:12px; }
+    .sText .desc{ font-size:12px; color:var(--muted); line-height:1.35; margin-top:2px; }
+
+    @keyframes fadeIn{
+      from{ opacity:0; transform: translateY(10px); }
+      to{ opacity:1; transform: translateY(0); }
+    }
+
+    /* card */
+    .stage{ position:relative; min-height: 520px; }
+    .card{
+      border:1px solid #233044; background: radial-gradient(1200px 600px at 40% -10%, rgba(96,165,250,.18), transparent 55%),
+                                 linear-gradient(180deg,#0c1320,#0f1620);
+      border-radius:18px; padding:16px;
+      box-shadow: 0 18px 44px rgba(0,0,0,.35);
+      transform-origin: 50% 80%;
+      animation: cardIn .35s ease both;
+    }
+    .card.out{ animation: cardOut .32s ease both; }
+    @keyframes cardIn{
+      from{ opacity:0; transform: translateY(14px) scale(.985) rotate(-.6deg); }
+      to{ opacity:1; transform: translateY(0) scale(1) rotate(0deg); }
+    }
+    @keyframes cardOut{
+      from{ opacity:1; transform: translateY(0) scale(1); }
+      to{ opacity:0; transform: translateY(-10px) scale(.985); }
+    }
+    .cardHeader{ display:flex; align-items:flex-start; justify-content:space-between; gap:12px; }
+    .cardTitle{ font-size:18px; font-weight:850; letter-spacing:.15px; margin:0; }
+    .meta{ display:flex; gap:8px; align-items:center; flex-wrap:wrap; justify-content:flex-end; }
+    .meta .pill{ opacity:.9; }
+    .cardText{ margin-top:10px; font-size:14px; color:#c7d2de; line-height:1.55; white-space:pre-wrap; }
+
+    .choices{ display:flex; flex-direction:column; gap:10px; margin-top:14px; }
+    .choice{
+      border:1px solid #223245; background: rgba(12,19,32,.6);
+      border-radius:16px; padding:12px 12px;
+      cursor:pointer;
+      transition: transform .10s ease, border-color .15s ease, background .15s ease, opacity .25s ease;
+      position:relative;
+      overflow:hidden;
+    }
+    .choice:hover{ border-color:#3a4f66; transform: translateY(-1px); }
+    .choice:active{ transform: translateY(0) scale(.99); }
+    .choice .t{ font-weight:750; font-size:14px; }
+    .choice .hint{ font-size:12px; color:var(--muted); margin-top:6px; line-height:1.35; }
+    .choice.chosen{
+      border-color: var(--accent);
+      background: rgba(96,165,250,.12);
+      animation: chosenPulse .28s ease both;
+    }
+    @keyframes chosenPulse{
+      0%{ transform: translateY(-1px) scale(1.01); }
+      100%{ transform: translateY(0) scale(1); }
+    }
+    .choice.vanish{
+      opacity:0; transform: translateX(30px) scale(.98);
+      filter: blur(1px);
+    }
+    .choice.lock{ pointer-events:none; }
+
+    /* feedback */
+    .toast{
+      position:absolute; left:50%; top:18px; transform:translateX(-50%);
+      padding:10px 12px; border-radius:14px;
+      border:1px solid #2b3a4b; background: rgba(12,19,32,.92);
+      color:#e6edf3; font-size:12px; line-height:1.35;
+      box-shadow: 0 14px 34px rgba(0,0,0,.35);
+      opacity:0; pointer-events:none;
+    }
+    .toast.show{ animation: toastInOut 1.25s ease both; }
+    @keyframes toastInOut{
+      0%{ opacity:0; transform: translateX(-50%) translateY(-6px); }
+      15%{ opacity:1; transform: translateX(-50%) translateY(0); }
+      85%{ opacity:1; transform: translateX(-50%) translateY(0); }
+      100%{ opacity:0; transform: translateX(-50%) translateY(-6px); }
+    }
+
+    .shake{ animation: shake .22s ease both; }
+    @keyframes shake{
+      0%{ transform: translateX(0); }
+      25%{ transform: translateX(-6px); }
+      50%{ transform: translateX(6px); }
+      75%{ transform: translateX(-4px); }
+      100%{ transform: translateX(0); }
+    }
+    .flashRed{ box-shadow: 0 0 0 0 rgba(239,68,68,0); animation: flashRed .38s ease both; }
+    @keyframes flashRed{
+      0%{ box-shadow: 0 0 0 0 rgba(239,68,68,0); }
+      30%{ box-shadow: 0 0 0 8px rgba(239,68,68,.10); }
+      100%{ box-shadow: 0 0 0 0 rgba(239,68,68,0); }
+    }
+    .flashGreen{ box-shadow: 0 0 0 0 rgba(34,197,94,0); animation: flashGreen .38s ease both; }
+    @keyframes flashGreen{
+      0%{ box-shadow: 0 0 0 0 rgba(34,197,94,0); }
+      30%{ box-shadow: 0 0 0 8px rgba(34,197,94,.10); }
+      100%{ box-shadow: 0 0 0 0 rgba(34,197,94,0); }
+    }
+
+    /* end screen */
+    .overlay{
+      position:fixed; inset:0; background: rgba(3,6,10,.72);
+      display:none; align-items:center; justify-content:center;
+      padding:16px; z-index:50;
+    }
+    .overlay.show{ display:flex; }
+    .modal{
+      width:min(920px, 100%); max-height: 92vh; overflow:auto;
+      background: linear-gradient(180deg,#0c1320,#0f1620);
+      border:1px solid #233044; border-radius:18px; padding:16px;
+      box-shadow: 0 22px 60px rgba(0,0,0,.55);
+      animation: cardIn .28s ease both;
+    }
+    .modal h2{ margin:0; font-size:18px; }
+    .modal .lead{ margin-top:8px; color:#c7d2de; line-height:1.55; white-space:pre-wrap; }
+    .grid2{ display:grid; grid-template-columns: 1fr 1fr; gap:12px; margin-top:12px; }
+    @media (max-width: 900px){ .grid2{ grid-template-columns:1fr; } }
+    .mini{
+      border:1px solid #223245; background:#0c1320; border-radius:16px; padding:12px;
+    }
+    .mini .t{ font-weight:800; font-size:12px; color:#c7d2de; }
+    .mini ul{ margin:8px 0 0; padding-left: 18px; color:var(--muted); font-size:12px; line-height:1.5; }
+  </style>
+</head>
+<body>
+<header>
+  <div>
+    <div class="title">北美斩杀线模拟器 — 玩家版</div>
+    <div class="sub">你每次只能抽到一张牌。你做的选择不可逆。命运会记账，但它不会把账本给你看。</div>
+  </div>
+  <div class="row">
+    <input id="fileEvents" type="file" accept=".json" />
+    <input id="fileStates" type="file" accept=".json" />
+    <input id="fileConfig" type="file" accept=".json" />
+    <button class="btn" id="btnLoad">加载</button>
+    <button class="btn primary" id="btnNew" disabled>开始人生</button>
+    <button class="btn danger" id="btnReset" disabled>重置</button>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="panel">
+    <div class="moneyBox" id="moneyBox">
+      <div>
+        <div class="label">现金流</div>
+        <div class="sub">你只知道这个。其他都得靠感觉。</div>
+      </div>
+      <div class="val mono" id="moneyVal">—</div>
+    </div>
+
+    <div class="lights">
+      <div class="light"><div class="k">健康</div><div class="dot" id="dotHealth"></div></div>
+      <div class="light"><div class="k">压力</div><div class="dot" id="dotStress"></div></div>
+      <div class="light"><div class="k">家庭</div><div class="dot" id="dotFamily"></div></div>
+      <div class="light"><div class="k">友情</div><div class="dot" id="dotFriend"></div></div>
+    </div>
+
+    <div class="hr"></div>
+
+    <div class="row" style="justify-content:space-between">
+      <div class="pill">状态</div>
+      <div class="sub" id="progressText">—</div>
+    </div>
+    <div class="states" id="stateList"></div>
+
+    <div class="hr"></div>
+    <div class="sub">
+      小提示：当你看到一堆状态开始排队，就像你手机里同时响起的推送… 通常不是什么好事。
+    </div>
+  </div>
+
+  <div class="panel stage" id="stage">
+    <div class="toast" id="toast"></div>
+    <div id="cardHost"></div>
+  </div>
+</div>
+
+<div class="overlay" id="overlay">
+  <div class="modal">
+    <div class="row" style="justify-content:space-between">
+      <h2 id="endTitle">—</h2>
+      <button class="btn primary" id="btnAgain">再来一局</button>
+    </div>
+    <div class="lead" id="endBody"></div>
+
+    <div class="grid2">
+      <div class="mini">
+        <div class="t">你这一局的关键词</div>
+        <ul id="endBullets"></ul>
+      </div>
+      <div class="mini">
+        <div class="t">命运的旁白</div>
+        <ul id="endNarrator"></ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ====== Core helpers & engine (same numbers, hidden UI) ====== */
+const clamp=(v,lo,hi)=>Math.max(lo,Math.min(hi,v));
+const fmtMoney=(n)=>{ const sign=n<0?"-":""; const x=Math.abs(Math.round(n)); return sign + x.toString().replace(/\\B(?=(\\d{3})+(?!\\d))/g,","); };
+const pickWeighted=(items,weights)=>{ let total=0; for(const w of weights) total+=w; let r=Math.random()*total, acc=0; for(let i=0;i<items.length;i++){ acc+=weights[i]; if(r<=acc) return items[i]; } return items[items.length-1]; };
+const deepCopy=(x)=>JSON.parse(JSON.stringify(x));
+
+let EVENTS=null, STATES=null, CONFIG=null;
+let pools=null, stateIndex=null, eventIndex=null;
+
+const TAGS=["job","debt","housing","health","social","admin","car","money"];
+const STATE_TAG_MULT={
+  "S_LAYOFF": {"job": 1.6, "debt": 1.35, "money": 0.9, "social": 0.95},
+  "S_RENT_ARREARS": {"housing": 1.7, "debt": 1.25, "job": 1.1},
+  "S_HIGH_INTEREST_LOAN": {"debt": 1.55, "money": 0.85},
+  "S_CREDIT_CARD_DEBT": {"debt": 1.25, "money": 0.92},
+  "S_INJURED": {"health": 1.55, "job": 0.95},
+  "S_HEALTH_SCARE": {"health": 1.35, "admin": 1.1},
+  "S_IMMIGRATION_ISSUE": {"admin": 1.55, "job": 1.1},
+  "S_CAR_BROKEN": {"car": 1.8, "job": 1.05},
+  "S_SOCIAL_ISOLATION": {"social": 1.45, "health": 1.1},
+  "S_WINDFALL_BUFFER": {"debt": 0.88, "housing": 0.92, "money": 1.12},
+  "S_RENT_DUE": {"housing": 2.2},
+  "S_TAX_DUE": {"admin": 2.0},
+  "S_TRAFFIC_TICKET": {"car": 1.6, "admin": 1.15},
+  "S_COLLECTIONS_NOTICE": {"debt": 1.4, "admin": 1.2},
+};
+
+const STATE_ICON={
+  "S_RENT_DUE":"🏠","S_RENT_ARREARS":"🚪","S_CREDIT_CARD_DEBT":"💳","S_HIGH_INTEREST_LOAN":"🦈",
+  "S_MEDICAL_DEBT":"🏥","S_OVERDRAFT":"🏦","S_LAYOFF":"📉","S_NEW_JOB":"🆕","S_OVERTIME":"⏱️",
+  "S_SIDE_GIG":"🛵","S_PAYCHECK":"💵","S_INJURED":"🩹","S_CHRONIC_PAIN":"🦴","S_SLEEP_DEPRIVED":"😴",
+  "S_UNINSURED":"🧾","S_THERAPY":"🛋️","S_GYM_HABIT":"🏋️","S_SMOKING":"🚬","S_HEALTH_SCARE":"🚑",
+  "S_FAMILY_CRISIS":"👪","S_PARENTING_BURN":"🧸","S_BEST_FRIEND_SUPPORT":"🤝","S_SUPPORTIVE_PARTNER":"💞",
+  "S_SOCIAL_ISOLATION":"🕳️","S_CAR_BROKEN":"🚗","S_TRAFFIC_TICKET":"🚓","S_TAX_DUE":"🧾",
+  "S_COLLECTIONS_NOTICE":"📬","S_LEGAL_TROUBLE":"⚖️","S_IMMIGRATION_ISSUE":"🛂","S_WINDFALL_BUFFER":"🎁",
+};
+
+function rebuildPools(){ pools={}; for(const t of TAGS) pools[t]=[]; eventIndex={}; for(const ev of EVENTS){ pools[ev.primary_tag].push(ev); eventIndex[ev.id]=ev; } }
+function buildStateIndex(){ stateIndex={}; for(const s of STATES) stateIndex[s.id]=s; }
+
+function costFactor(month){ const infl=(CONFIG.economy?.inflation_per_year ?? 0); return Math.pow(1+infl, month/12.0); }
+function wageFactor(month){ const wg=(CONFIG.economy?.wage_growth_per_year ?? 0); return Math.pow(1+wg, month/12.0); }
+function effectiveGain(baseGain, statValue){
+  if (baseGain<=0) return baseGain;
+  const alpha=CONFIG.recovery.alpha, floor=CONFIG.recovery.soft_floor;
+  const penalty=Math.max(0, floor-statValue);
+  return baseGain*Math.exp(-alpha*penalty);
+}
+function applyEffects(stats, eff){
+  for(const [k,dv] of Object.entries(eff)){
+    if(!(k in stats)) continue;
+    stats[k]+=dv;
+    if(["health","stress","family","friendship"].includes(k)) stats[k]=Math.round(clamp(stats[k],0,100));
+  }
+}
+function addState(active, sid){
+  const sdef=stateIndex[sid]; if(!sdef) return;
+  if (sdef.type==="counter"){ if(!active[sid]) active[sid]={remaining:null}; return; }
+  const dur=(sdef.duration ?? null);
+  if (dur===null){ if(!active[sid]) active[sid]={remaining:null}; return; }
+  if(active[sid]){
+    const behavior=sdef.stacking ?? "refresh";
+    if(behavior==="extend" && active[sid].remaining!=null) active[sid].remaining += dur;
+    else active[sid].remaining = dur;
+  } else active[sid]={remaining:dur};
+}
+function removeState(active, sid){ delete active[sid]; }
+
+function monthlyPassive(stats){
+  const mp=CONFIG.recovery.monthly_passive;
+  const baseH=mp.health_base_regen*(1.0-stats.stress/140.0);
+  const dh=effectiveGain(baseH, stats.health);
+  const baseS=mp.stress_base_decay*(0.6+stats.health/140.0+stats.friendship/250.0);
+  const ds=-baseS;
+  const baseR=mp.relationship_base_regen*(1.0-stats.stress/140.0);
+  const dr=effectiveGain(baseR, stats.family);
+  const df=effectiveGain(baseR, stats.friendship);
+  applyEffects(stats,{health:Math.round(dh), stress:Math.round(ds), family:Math.round(dr), friendship:Math.round(df)});
+}
+function applyStateMonthly(stats, active, counters, month){
+  const cf=costFactor(month), wf=wageFactor(month);
+  for(const sid of Object.keys(active)){
+    const sdef=stateIndex[sid]; if(!sdef) continue;
+    if (sid==="S_PAYCHECK" && active["S_LAYOFF"]) {
+      // no paycheck
+    } else {
+      const eff=sdef.monthly_effect ?? {};
+      const eff2={};
+      for(const [k,v] of Object.entries(eff)){
+        if(["health","family","friendship"].includes(k) && v>0) eff2[k]=Math.round(effectiveGain(v, stats[k]));
+        else if (k==="money" && v>0 && active["S_HIGH_INTEREST_LOAN"]) eff2[k]=Math.round(v*0.85);
+        else eff2[k]=v;
+      }
+      if ("money" in eff2){
+        let m=eff2.money;
+        if(m>0) m=m*CONFIG.balance.pos_money_mult*wf;
+        else m=m*CONFIG.balance.neg_money_mult*cf;
+        eff2.money=Math.round(m);
+      }
+      if ("stress" in eff2) eff2.stress=Math.round(eff2.stress*CONFIG.balance.stress_mult);
+      applyEffects(stats, eff2);
+    }
+    if (sdef.type==="counter"){
+      if (sid==="S_RENT_ARREARS") counters.rent_arrears_months=(counters.rent_arrears_months ?? 0)+1;
+      continue;
+    }
+    if (active[sid].remaining!=null){
+      active[sid].remaining -= 1;
+      if (active[sid].remaining <= 0) delete active[sid];
+    }
+  }
+}
+function tagWeights(active){
+  const w={}; for(const t of TAGS) w[t]=1.0;
+  for(const sid of Object.keys(active)){
+    const mods=STATE_TAG_MULT[sid]; if(!mods) continue;
+    for(const [t,m] of Object.entries(mods)){ if (t in w) w[t]*=m; }
+  }
+  for(const t of TAGS) w[t]=clamp(w[t],0.75,1.55);
+  return w;
+}
+function drawEvent(){
+  const tw=tagWeights(game.active);
+  const tags=Object.keys(tw);
+  const tag=pickWeighted(tags, tags.map(t=>tw[t]));
+  const pool=pools[tag];
+
+  const beta=CONFIG.draw.anti_repeat_beta;
+  const recentWin=CONFIG.draw.recent_window;
+  const recentPenalty=CONFIG.draw.recent_penalty;
+  const recentSet=new Set(game.recent.slice(Math.max(0, game.recent.length-recentWin)));
+
+  const cand=[], ws=[];
+  for(const ev of pool){
+    const seen=game.seenCounts[ev.id] ?? 0;
+    let w=(ev.base_weight ?? 1.0)/Math.pow(1.0+seen,beta);
+    if(recentSet.has(ev.id)) w*=recentPenalty;
+    cand.push(ev); ws.push(w);
+  }
+  return pickWeighted(cand, ws);
+}
+function strikesNow(){
+  let s=0;
+  if (game.stats.money < CONFIG.thresholds.money_hard) s++;
+  if (game.active["S_RENT_ARREARS"] && (game.counters.rent_arrears_months ?? 0) >= CONFIG.thresholds.eviction_months) s++;
+  if (game.stats.health <= 0) s++;
+  if (game.stats.stress >= 100) s++;
+  if (game.stats.family <= 0) s++;
+  if (game.stats.friendship <= 0) s++;
+  return s;
+}
+function monthEndRent(){
+  const rent=Math.round(CONFIG.economy.rent*costFactor(game.month));
+  if (game.active["S_RENT_DUE"]){
+    if (game.stats.money >= rent){
+      applyEffects(game.stats, {money:-rent, stress:-1});
+      removeState(game.active, "S_RENT_DUE");
+      game.highlights.push({k:"rent_paid", m:game.month});
+    } else {
+      removeState(game.active, "S_RENT_DUE");
+      addState(game.active, "S_RENT_ARREARS");
+      game.highlights.push({k:"rent_missed", m:game.month});
+    }
+  }
+  addState(game.active, "S_RENT_DUE");
+}
+
+function applyChoice(ev, ch){
+  const eff=deepCopy(ch.effects ?? {});
+  const cf=costFactor(game.month);
+  const wf=wageFactor(game.month);
+
+  if (ch.action==="PAY_RENT"){
+    const rent=Math.round(CONFIG.economy.rent*cf);
+    eff.money=(eff.money ?? 0) - rent;
+  }
+  for(const k of ["health","family","friendship"]){
+    if (k in eff && eff[k] > 0) eff[k]=Math.round(effectiveGain(eff[k], game.stats[k]));
+  }
+  if ("money" in eff){
+    let m=eff.money;
+    if (m>0){
+      m=m*CONFIG.balance.pos_money_mult*wf;
+      if (game.active["S_HIGH_INTEREST_LOAN"]) m*=0.85;
+    } else {
+      m=m*CONFIG.balance.neg_money_mult*cf;
+    }
+    eff.money=Math.round(m);
+  }
+  if ("stress" in eff) eff.stress=Math.round(eff.stress*CONFIG.balance.stress_mult);
+
+  // track for ending
+  game.tagCounts[ev.primary_tag]=(game.tagCounts[ev.primary_tag] ?? 0)+1;
+  game.choiceTexts.push({ev:ev.title, ch:ch.desc, tag:ev.primary_tag, id:ev.id});
+
+  // apply
+  applyEffects(game.stats, eff);
+
+  const added=[];
+  for(const sid of (ch.add_states ?? [])){ addState(game.active, sid); added.push(sid); }
+  const removed=[];
+  for(const sid of (ch.remove_states ?? [])){
+    removeState(game.active, sid); removed.push(sid);
+    if (sid==="S_RENT_ARREARS") game.counters.rent_arrears_months=0;
+  }
+
+  // update seen
+  game.seenCounts[ev.id]=(game.seenCounts[ev.id] ?? 0)+1;
+  game.seenSet.add(ev.id);
+  game.recent.push(ev.id);
+  if (game.recent.length>60) game.recent=game.recent.slice(-60);
+
+  game.turnInMonth += 1;
+
+  return { eff, added, removed };
+}
+
+function startMonthIfNeeded(){
+  if (game.turnInMonth===0){
+    monthlyPassive(game.stats);
+    applyStateMonthly(game.stats, game.active, game.counters, game.month);
+  }
+}
+function endMonthIfNeeded(){
+  if (game.turnInMonth >= CONFIG.turns_per_month){
+    monthEndRent();
+    game.month += 1;
+    game.turnInMonth = 0;
+    if (game.month >= CONFIG.max_months){
+      game.ended=true; game.win=true;
+      return "WIN";
+    }
+  }
+  return null;
+}
+
+/* ====== Player-facing UI ====== */
+const elMoney=document.getElementById("moneyVal");
+const dotHealth=document.getElementById("dotHealth");
+const dotStress=document.getElementById("dotStress");
+const dotFamily=document.getElementById("dotFamily");
+const dotFriend=document.getElementById("dotFriend");
+const stateList=document.getElementById("stateList");
+const cardHost=document.getElementById("cardHost");
+const stage=document.getElementById("stage");
+const toast=document.getElementById("toast");
+const progressText=document.getElementById("progressText");
+
+function tierForPositiveStat(v){
+  if (v >= 70) return "good";
+  if (v >= 40) return "mid";
+  return "bad";
+}
+function tierForStress(v){
+  if (v <= 35) return "good";
+  if (v <= 70) return "mid";
+  return "bad";
+}
+function setDot(dot, tier){
+  dot.className = "dot " + tier;
+}
+function updateDashboard(){
+  elMoney.textContent = fmtMoney(game.stats.money);
+
+  setDot(dotHealth, tierForPositiveStat(game.stats.health));
+  setDot(dotStress, tierForStress(game.stats.stress));
+  setDot(dotFamily, tierForPositiveStat(game.stats.family));
+  setDot(dotFriend, tierForPositiveStat(game.stats.friendship));
+
+  progressText.textContent = `第 ${game.month+1} 个月 · 第 ${game.turnInMonth+1}/${CONFIG.turns_per_month} 次抉择`;
+
+  renderStates();
+}
+function stateKeySet(){ return new Set(Object.keys(game.active)); }
+
+function renderStates(){
+  const current = stateKeySet();
+  const prev = game.uiPrevStates ?? new Set();
+  game.uiPrevStates = new Set(current);
+
+  // remove vanished
+  for (const chip of Array.from(stateList.querySelectorAll(".stateChip"))){
+    const sid = chip.getAttribute("data-sid");
+    if (!current.has(sid)){
+      chip.classList.add("fadeOut");
+      setTimeout(()=>chip.remove(), 360);
+    }
+  }
+  // add new
+  for (const sid of current){
+    if (prev.has(sid)) continue;
+    const def = stateIndex[sid];
+    const icon = STATE_ICON[sid] ?? "🧩";
+    const chip = document.createElement("div");
+    chip.className = "stateChip fadeIn";
+    chip.setAttribute("data-sid", sid);
+    chip.innerHTML = `
+      <div class="sIcon">${icon}</div>
+      <div class="sText">
+        <div class="name">${def?.name ?? sid}</div>
+        <div class="desc">${def?.desc ?? ""}</div>
+      </div>
+    `;
+    stateList.prepend(chip);
+  }
+
+  if (!Object.keys(game.active).length && !stateList.children.length){
+    stateList.innerHTML = `<div class="sub">暂无状态。此刻你甚至有点不习惯。</div>`;
+  }
+}
+
+function showToast(msg){
+  toast.textContent = msg;
+  toast.classList.remove("show");
+  void toast.offsetWidth;
+  toast.classList.add("show");
+}
+
+function vibeFromDelta(eff){
+  // We don't show numbers. We infer "feelings" from deltas.
+  let score = 0;
+  const m = eff.money ?? 0;
+  const h = eff.health ?? 0;
+  const s = eff.stress ?? 0;
+  const f = eff.family ?? 0;
+  const fr = eff.friendship ?? 0;
+
+  score += Math.sign(m) * Math.min(3, Math.abs(m)/600);
+  score += Math.sign(h) * Math.min(2, Math.abs(h)/10);
+  score += -Math.sign(s) * Math.min(2, Math.abs(s)/10);
+  score += Math.sign(f) * Math.min(1.5, Math.abs(f)/10);
+  score += Math.sign(fr) * Math.min(1.5, Math.abs(fr)/10);
+
+  if (score >= 3) return {msg:"你感觉世界突然对你友善了一点。", kind:"good"};
+  if (score >= 1.2) return {msg:"你松了一口气，但不敢太早庆祝。", kind:"good"};
+  if (score <= -3) return {msg:"你心里一沉，像是把未来提前透支了。", kind:"bad"};
+  if (score <= -1.2) return {msg:"你开始怀疑自己是不是选错了。", kind:"bad"};
+  return {msg:"这次看起来平平无奇，但人生的坑通常都这么开始。", kind:"mid"};
+}
+
+function renderCard(ev){
+  cardHost.innerHTML = "";
+  const card = document.createElement("div");
+  card.className = "card";
+  card.setAttribute("data-eid", ev.id);
+  card.innerHTML = `
+    <div class="cardHeader">
+      <h3 class="cardTitle">${ev.title}</h3>
+      <div class="meta">
+        <span class="pill">命运发牌</span>
+        <span class="pill">${game.month+1}月</span>
+      </div>
+    </div>
+    <div class="cardText">${ev.text}</div>
+    <div class="choices"></div>
+  `;
+  const choicesEl = card.querySelector(".choices");
+  ev.choices.forEach((ch, idx)=>{
+    const c = document.createElement("div");
+    c.className = "choice";
+    c.innerHTML = `
+      <div class="t">${idx+1}. ${ch.desc}</div>
+      <div class="hint">点击即生效。其他可能性会消失。</div>
+    `;
+    c.onclick = ()=>choose(card, ev, ch, c);
+    choicesEl.appendChild(c);
+  });
+
+  cardHost.appendChild(card);
+}
+
+let inputLocked = false;
+
+function choose(cardEl, ev, ch, chosenEl){
+  if (inputLocked || game.ended) return;
+  inputLocked = true;
+
+  // UI: chosen pulse, others vanish
+  const all = Array.from(cardEl.querySelectorAll(".choice"));
+  for (const el of all){
+    el.classList.add("lock");
+    if (el === chosenEl) el.classList.add("chosen");
+    else el.classList.add("vanish");
+  }
+
+  // Apply after a short "decision" beat
+  setTimeout(()=>{
+    startMonthIfNeeded();
+
+    const beforeMoney = game.stats.money;
+    const beforeStates = new Set(Object.keys(game.active));
+    const {eff, added, removed} = applyChoice(ev, ch);
+
+    // vibey feedback + punch
+    const vibe = vibeFromDelta(eff);
+    showToast(vibe.msg);
+
+    const deltaMoney = game.stats.money - beforeMoney;
+    if (vibe.kind === "bad"){
+      stage.classList.remove("shake","flashRed");
+      void stage.offsetWidth;
+      stage.classList.add("shake","flashRed");
+    } else if (vibe.kind === "good"){
+      stage.classList.remove("flashGreen");
+      void stage.offsetWidth;
+      stage.classList.add("flashGreen");
+    }
+
+    // Also note "new/removed state" explicitly (without numbers)
+    if (added.length){
+      game.highlights.push({k:"state_add", m:game.month, s: added[0]});
+    }
+    if (removed.length){
+      game.highlights.push({k:"state_remove", m:game.month, s: removed[0]});
+    }
+    if (deltaMoney <= -1500) game.highlights.push({k:"big_spend", m:game.month, ev:ev.id});
+    if (deltaMoney >= 1500) game.highlights.push({k:"big_gain", m:game.month, ev:ev.id});
+
+    // update dashboard (will animate state diff)
+    updateDashboard();
+
+    // check lose/win
+    const strikes = strikesNow();
+    if (strikes >= CONFIG.thresholds.collections_strikes){
+      game.ended = true; game.win = false;
+      // animate card out then end
+      cardEl.classList.add("out");
+      setTimeout(()=>showEnding(), 260);
+      return;
+    }
+    const endSignal = endMonthIfNeeded();
+    updateDashboard();
+
+    cardEl.classList.add("out");
+    setTimeout(()=>{
+      if (game.ended){
+        showEnding();
+      } else {
+        drawAndRenderNext();
+        inputLocked = false;
+      }
+    }, 260);
+  }, 260);
+}
+
+function drawAndRenderNext(){
+  const ev = drawEvent();
+  game.lastEventId = ev.id;
+  renderCard(ev);
+}
+
+function resetUI(){
+  cardHost.innerHTML="";
+  stateList.innerHTML="";
+  hideOverlay();
+}
+
+function newGame(){
+  game = {
+    month: 0,
+    turnInMonth: 0,
+    stats: {
+      money: CONFIG.attrs.money.start,
+      health: CONFIG.attrs.health.start,
+      stress: CONFIG.attrs.stress.start,
+      family: CONFIG.attrs.family.start,
+      friendship: CONFIG.attrs.friendship.start,
+    },
+    active: {},
+    counters: { rent_arrears_months: 0 },
+    recent: [],
+    seenCounts: {},
+    seenSet: new Set(),
+    ended: false,
+    win: false,
+    uiPrevStates: new Set(),
+    tagCounts: {},
+    choiceTexts: [],
+    highlights: [],
+    lastEventId: null
+  };
+
+  addState(game.active, "S_RENT_DUE");
+  addState(game.active, "S_PAYCHECK");
+
+  updateDashboard();
+  inputLocked = false;
+  drawAndRenderNext();
+}
+
+/* ====== Endings ====== */
+const ENDINGS = [
+  {
+    id:"WIN_FRUGAL_SENSEI",
+    title:"结局：省钱宗师",
+    when:(ctx)=>ctx.win && ctx.money>=35000 && ctx.debtLevel<=1 && ctx.stressTier!=="bad",
+    body:(ctx)=>`你居然把十年过成了一套可复用的预算模板。\n\n你不是没遇到坑，只是你每次都在坑边上停住了半秒，然后把手机锁屏。\n\n在别人用“买买买”对抗焦虑的时候，你用“算算算”对抗命运。很烦，但有效。`
+  },
+  {
+    id:"WIN_SURVIVOR",
+    title:"结局：硬撑冠军",
+    when:(ctx)=>ctx.win && ctx.stressTier==="bad",
+    body:(ctx)=>`你通关了，但你也把自己活成了“可以再撑一会儿”的形状。\n\n钱是没少攒，可你每次笑都像在给自己打气。\n\n恭喜你赢了游戏。也提醒你，现实里可以偶尔把难度调低一点。`
+  },
+  {
+    id:"WIN_COMMUNITY",
+    title:"结局：人情外挂",
+    when:(ctx)=>ctx.win && ctx.socialSupport>=3,
+    body:(ctx)=>`你活到了最后，不是因为你从不摔跤，而是每次摔下去都有手把你拎起来。\n\n朋友、伴侣、家人像隐藏 buff，一开始看不见，关键时刻全都亮了。\n\n你学会了一个北美生存技巧：别只存钱，也存人。`
+  },
+  {
+    id:"WIN_LUCKY_BREAK",
+    title:"结局：幸运反弹",
+    when:(ctx)=>ctx.win && ctx.bigGains>=2,
+    body:(ctx)=>`你的人生像股票：波动很大，但最后收盘居然是绿的。\n\n你确实有过几次“天降缓冲垫”，但更重要的是你没把缓冲垫当弹床。\n\n你知道该在好运来的时候少说两句，多做两件事。`
+  },
+
+  // Loss endings
+  {
+    id:"LOSE_EVICTION",
+    title:"结局：房东的最后通牒",
+    when:(ctx)=>!ctx.win && ctx.evicted,
+    body:(ctx)=>`你不是输给了某一张牌，而是输给了“这月先拖一下”的连击。\n\n房租这件事很现实：它不会吓你，它只是把你请出去。\n\n你离开的时候还在想，下次一定先把住处稳住。——可惜，下次要先有住处。`
+  },
+  {
+    id:"LOSE_COLLECTIONS",
+    title:"结局：催收交响乐",
+    when:(ctx)=>!ctx.win && ctx.moneyBelowHard,
+    body:(ctx)=>`某一天你发现手机来电像雨点，短信像雨点，邮箱也是雨点。\n\n你开始学会一个新技能：看到未知号码就心跳加速。\n\n这不是你不努力，只是你努力的方向叫“补洞”，而洞的名字叫利息。`
+  },
+  {
+    id:"LOSE_STRESS",
+    title:"结局：精神电量耗尽",
+    when:(ctx)=>!ctx.win && ctx.stressZeroed,
+    body:(ctx)=>`你倒下的那一刻并不戏剧化。\n\n只是你突然不想再解释、不想再努力、不想再“没事”。\n\n你终于承认了：压力不是用意志解决的，它需要出口、需要支持、也需要休息。`
+  },
+  {
+    id:"LOSE_HEALTH",
+    title:"结局：身体先投票",
+    when:(ctx)=>!ctx.win && ctx.healthZeroed,
+    body:(ctx)=>`你一直以为自己还能扛，直到身体用最简单的方式让你停下来。\n\n它没有跟你商量。\n\n现实就是这样：你可以不照顾健康，但健康会照顾你的时间表。`
+  },
+  {
+    id:"LOSE_RELATIONSHIPS",
+    title:"结局：人都散了",
+    when:(ctx)=>!ctx.win && (ctx.familyZeroed || ctx.friendZeroed),
+    body:(ctx)=>`你不是突然变孤独的。\n\n是一堆“小事”堆成了“算了”，一堆“下次”变成了“再也没有”。\n\n你很努力在活着，可有人只是想跟你一起生活。`
+  },
+  {
+    id:"LOSE_IMMIGRATION",
+    title:"结局：文件夹里的噩梦",
+    when:(ctx)=>!ctx.win && ctx.hasImmigration,
+    body:(ctx)=>`你的人生被夹在两页纸之间。\n\n你以为只要努力工作就能往前走，结果发现还要努力解释“你为什么在这里”。\n\n在那一天，你明白了：制度不是针对你，但它也不会为你停一下。`
+  },
+  {
+    id:"LOSE_LEGAL",
+    title:"结局：律师函的味道",
+    when:(ctx)=>!ctx.win && ctx.hasLegal,
+    body:(ctx)=>`你的人生突然多了一个“请勿回复”的章节。\n\n你开始学会看懂条款，也学会把情绪放在证据后面。\n\n你不一定是错的，但你发现“对”有时候也很贵。`
+  },
+  {
+    id:"LOSE_CAR",
+    title:"结局：车坏了，工作也跟着坏了",
+    when:(ctx)=>!ctx.win && ctx.hasCarBroken && ctx.jobPressureHigh,
+    body:(ctx)=>`你低估了一个北美真理：车不是交通工具，是生存许可证。\n\n当它罢工的时候，迟到、请假、扣钱会像多米诺骨牌一样推倒你。\n\n你最后的感想是：以后买车要顺便买一份“心态”。`
+  },
+  {
+    id:"LOSE_DEBT_SPIRAL",
+    title:"结局：利息的旋转木马",
+    when:(ctx)=>!ctx.win && ctx.debtLevel>=3,
+    body:(ctx)=>`你坐上了债务的旋转木马，刚开始还觉得挺梦幻。\n\n后来你发现它不下车：每一圈都是“最低还款”，每一圈都更贵。\n\n你终于懂了：债务不是钱的问题，是时间被抵押的问题。`
+  },
+
+  // Mixed / neutral / comedic
+  {
+    id:"MIX_BROKE_BUT_ALIVE",
+    title:"结局：穷但活着",
+    when:(ctx)=>ctx.win && ctx.money<5000,
+    body:(ctx)=>`你通关了，但钱包像刚经历了一场大迁徙。\n\n你没赢得富有，你赢得了生存。\n\n如果人生有成就系统，你点亮了“还能再撑一会儿”。`
+  },
+  {
+    id:"MIX_SOLO",
+    title:"结局：单机模式通关",
+    when:(ctx)=>ctx.win && ctx.socialSupport==0,
+    body:(ctx)=>`你独自走到了最后。\n\n效率很高，情绪很少，社交基本靠“已读”。\n\n你赢得了掌控感，也失去了一些可以一起吐槽的人。`
+  },
+  {
+    id:"MIX_ADMIN_HELL",
+    title:"结局：行政地狱旅游团",
+    when:(ctx)=>ctx.win && ctx.adminHeavy>=6,
+    body:(ctx)=>`你的人生像一个表格：每一列都要填，每一格都要证明。\n\n你通关的方式不是勇敢，是熟练。\n\n你已经可以闭着眼把所有文件命名成“FINAL_FINAL_v7”。`
+  },
+  {
+    id:"MIX_HEALTHY_POOR",
+    title:"结局：健康富翁",
+    when:(ctx)=>ctx.win && ctx.healthTier==="good" && ctx.money<12000,
+    body:(ctx)=>`你没有很有钱，但你很有精神。\n\n你把健康当成第一资产，结果发现它确实能让其他资产慢慢回来。\n\n你可能不会立刻翻身，但你至少不会被生活一脚踹倒。`
+  },
+  {
+    id:"MIX_STRESSY_RICH",
+    title:"结局：富但不快乐",
+    when:(ctx)=>ctx.win && ctx.money>=40000 && ctx.stressTier!=="good",
+    body:(ctx)=>`钱是够的，但你总觉得差一点点。\n\n你把安全感存进账户，却发现焦虑不支持转账。\n\n你学会了：富不是终点，放松也要练习。`
+  },
+  {
+    id:"LOSE_GENERIC",
+    title:"结局：被生活按了暂停",
+    when:(ctx)=>!ctx.win,
+    body:(ctx)=>`你没走到最后，但这不代表你不行。\n\n只是这一局你抽到的牌更像“现实主义”，而你需要一点“系统性缓冲”。\n\n下次你会更早修补关键短板：住处、现金流、以及那条叫做“别硬扛”的底线。`
+  },
+  {
+    id:"WIN_GENERIC",
+    title:"结局：活到最后的人",
+    when:(ctx)=>ctx.win,
+    body:(ctx)=>`你活到了最后。\n\n不是所有选择都完美，但你每次都在崩之前，把自己往回拉了一点。\n\n你学会了一个朴素的道理：人生不是不犯错，是犯错后还能继续。`
+  },
+];
+
+function summarizeRun(){
+  const money = game.stats.money;
+  const win = game.win;
+
+  // tiers
+  const healthTier = tierForPositiveStat(game.stats.health);
+  const stressTier = tierForStress(game.stats.stress);
+  const familyTier = tierForPositiveStat(game.stats.family);
+  const friendTier = tierForPositiveStat(game.stats.friendship);
+
+  // flags
+  const has = (sid)=>!!game.active[sid] || game.choiceTexts.some(x=>x.id && (x.added||[]));
+  const debtStates = ["S_CREDIT_CARD_DEBT","S_HIGH_INTEREST_LOAN","S_MEDICAL_DEBT","S_OVERDRAFT","S_COLLECTIONS_NOTICE"];
+  const debtLevel = debtStates.reduce((a,sid)=>a + (game.active[sid] ? 1:0), 0);
+  const socialSupport = (game.active["S_BEST_FRIEND_SUPPORT"]?1:0) + (game.active["S_SUPPORTIVE_PARTNER"]?1:0) + (game.stats.friendship>=70?1:0) + (game.stats.family>=70?1:0);
+  const adminHeavy = (game.tagCounts.admin ?? 0);
+  const bigGains = game.highlights.filter(h=>h.k==="big_gain").length;
+  const bigSpends = game.highlights.filter(h=>h.k==="big_spend").length;
+
+  const evicted = !!game.active["S_RENT_ARREARS"] && (game.counters.rent_arrears_months ?? 0) >= CONFIG.thresholds.eviction_months;
+  const moneyBelowHard = game.stats.money < CONFIG.thresholds.money_hard;
+  const stressZeroed = game.stats.stress >= 100;
+  const healthZeroed = game.stats.health <= 0;
+  const familyZeroed = game.stats.family <= 0;
+  const friendZeroed = game.stats.friendship <= 0;
+
+  const hasImmigration = !!game.active["S_IMMIGRATION_ISSUE"];
+  const hasLegal = !!game.active["S_LEGAL_TROUBLE"];
+  const hasCarBroken = !!game.active["S_CAR_BROKEN"];
+  const jobPressureHigh = (game.tagCounts.job ?? 0) >= 10;
+
+  return {
+    win, money, healthTier, stressTier, familyTier, friendTier,
+    debtLevel, socialSupport, adminHeavy, bigGains, bigSpends,
+    evicted, moneyBelowHard, stressZeroed, healthZeroed, familyZeroed, friendZeroed,
+    hasImmigration, hasLegal, hasCarBroken, jobPressureHigh,
+    monthsSurvived: game.month,
+  };
+}
+
+function pickEnding(ctx){
+  for (const e of ENDINGS){
+    if (e.when(ctx)) return e;
+  }
+  // fallback
+  return ctx.win ? ENDINGS.find(x=>x.id==="WIN_GENERIC") : ENDINGS.find(x=>x.id==="LOSE_GENERIC");
+}
+
+function topTags(){
+  const arr = Object.entries(game.tagCounts).sort((a,b)=>b[1]-a[1]);
+  return arr.slice(0,3).map(([k,v])=>k);
+}
+function topStates(){
+  // approximate: frequency of being present at end + mentions in highlights
+  const count={};
+  for (const sid of Object.keys(game.active)) count[sid]=(count[sid]??0)+3;
+  for (const h of game.highlights){
+    if (h.s) count[h.s]=(count[h.s]??0)+1;
+  }
+  return Object.entries(count).sort((a,b)=>b[1]-a[1]).slice(0,3).map(([sid])=>sid);
+}
+
+function showEnding(){
+  const ctx = summarizeRun();
+  const e = pickEnding(ctx);
+
+  const endTitle = document.getElementById("endTitle");
+  const endBody = document.getElementById("endBody");
+  const endBullets = document.getElementById("endBullets");
+  const endNarrator = document.getElementById("endNarrator");
+
+  endTitle.textContent = e.title;
+  const moneyLine = `（最终现金：${fmtMoney(ctx.money)} · 存活：${ctx.monthsSurvived} 个月）`;
+  endBody.textContent = e.body(ctx) + "\n\n" + moneyLine;
+
+  const tags = topTags();
+  const states = topStates().map(sid => (STATE_ICON[sid] ?? "🧩") + " " + (stateIndex[sid]?.name ?? sid));
+  const mood = `你的状态灯：健康=${ctx.healthTier} · 压力=${ctx.stressTier} · 家庭=${ctx.familyTier} · 友情=${ctx.friendTier}`;
+  const key = [
+    `你最常遇到的场景：${tags.length ? tags.join(" / ") : "（没统计到，说明你真的很会躲）"}`,
+    `你背过的“人生包袱”：${states.length ? states.join(" · ") : "几乎没有（这很少见）"}`,
+    `你对现金流的态度：${ctx.money>=30000 ? "谨慎+有纪律" : ctx.money>=12000 ? "能稳住大盘" : ctx.money>=0 ? "月光但有韧性" : "靠勇气和侥幸"}`,
+    mood
+  ];
+
+  endBullets.innerHTML = key.map(x=>`<li>${x}</li>`).join("");
+
+  // narrator: humorous meta based on highlights
+  const narr = [];
+  const missed = game.highlights.some(h=>h.k==="rent_missed");
+  const paid = game.highlights.filter(h=>h.k==="rent_paid").length;
+  if (missed) narr.push("命运：你对房租的态度像对闹钟，按掉不代表它不存在。");
+  else narr.push("命运：你至少对房租很诚实，这是很多人做不到的。");
+  if (ctx.debtLevel>=2) narr.push("命运：你不是怕债，你只是对利息没概念。现在有了。");
+  if (ctx.socialSupport>=3) narr.push("命运：你的人际关系像保险，贵的时候你嫌它烦，出事时你爱它。");
+  if (ctx.adminHeavy>=8) narr.push("命运：你的故事里最大的反派不是人，是“需要补充材料”。");
+  if (ctx.bigGains>=2) narr.push("命运：好运不是奖励，是测试你会不会飘。你…大体通过了。");
+  if (ctx.bigSpends>=2) narr.push("命运：你每次大额支出前都像在说‘就这一次’，但命运听多了。");
+  narr.push("命运：人生没有最优解，只有你愿意承担的后果。你已经做得很像一个成年人了。");
+
+  endNarrator.innerHTML = narr.slice(0,5).map(x=>`<li>${x}</li>`).join("");
+
+  showOverlay();
+}
+
+const overlay = document.getElementById("overlay");
+function showOverlay(){ overlay.classList.add("show"); }
+function hideOverlay(){ overlay.classList.remove("show"); }
+
+document.getElementById("btnAgain").onclick = ()=>{ hideOverlay(); resetUI(); newGame(); };
+
+/* ====== Loading ====== */
+async function readJsonFromFileInput(inputEl){
+  return new Promise((resolve,reject)=>{
+    const f=inputEl.files?.[0]; if(!f) return resolve(null);
+    const fr=new FileReader();
+    fr.onload=()=>{ try{ resolve(JSON.parse(fr.result)); } catch(e){ reject(e); } };
+    fr.onerror=reject;
+    fr.readAsText(f,"utf-8");
+  });
+}
+async function tryFetchJson(path){
+  try{ const r=await fetch(path,{cache:"no-store"}); if(!r.ok) return null; return await r.json(); }
+  catch(e){ return null; }
+}
+async function loadData(){
+  const fe=document.getElementById("fileEvents");
+  const fs=document.getElementById("fileStates");
+  const fc=document.getElementById("fileConfig");
+
+  let je=await readJsonFromFileInput(fe);
+  let js=await readJsonFromFileInput(fs);
+  let jc=await readJsonFromFileInput(fc);
+
+  if(!je) je=await tryFetchJson("./events.json");
+  if(!js) js=await tryFetchJson("./states.json");
+  if(!jc) jc=await tryFetchJson("./config.json");
+
+  if(!je||!js||!jc){
+    alert("加载失败：请用文件选择器选择 events/states/config，或用本地服务器打开并把三个 json 放同目录。");
+    return;
+  }
+  EVENTS = je.events ?? je;
+  STATES = js.states ?? js;
+  CONFIG = (jc.config ?? jc);
+
+  if(!CONFIG.economy) CONFIG.economy = {};
+  if(!("base_paycheck" in CONFIG.economy)){
+    const pay = (STATES.find(s=>s.id==="S_PAYCHECK")?.monthly_effect?.money) ?? 0;
+    CONFIG.economy.base_paycheck = pay;
+  }
+
+  rebuildPools();
+  buildStateIndex();
+
+  if(stateIndex["S_PAYCHECK"]){
+    stateIndex["S_PAYCHECK"].monthly_effect = stateIndex["S_PAYCHECK"].monthly_effect || {};
+    stateIndex["S_PAYCHECK"].monthly_effect.money = CONFIG.economy.base_paycheck;
+  }
+
+  document.getElementById("btnNew").disabled=false;
+  document.getElementById("btnReset").disabled=false;
+  showToast(`加载完成：事件 ${EVENTS.length} 张，状态 ${STATES.length} 个。开始吧。`);
+}
+
+document.getElementById("btnLoad").onclick = loadData;
+document.getElementById("btnNew").onclick = ()=>{ resetUI(); newGame(); };
+document.getElementById("btnReset").onclick = ()=>{ resetUI(); game=null; document.getElementById("moneyVal").textContent="—"; document.getElementById("progressText").textContent="—"; hideOverlay(); };
+
+/* auto load if server mode */
+(async ()=>{
+  const je=await tryFetchJson("./events.json");
+  const js=await tryFetchJson("./states.json");
+  const jc=await tryFetchJson("./config.json");
+  if(je&&js&&jc){
+    EVENTS=je.events ?? je;
+    STATES=js.states ?? js;
+    CONFIG=(jc.config ?? jc);
+    if(!CONFIG.economy) CONFIG.economy = {};
+    if(!("base_paycheck" in CONFIG.economy)){
+      const pay = (STATES.find(s=>s.id==="S_PAYCHECK")?.monthly_effect?.money) ?? 0;
+      CONFIG.economy.base_paycheck = pay;
+    }
+    rebuildPools(); buildStateIndex();
+    if(stateIndex["S_PAYCHECK"]){
+      stateIndex["S_PAYCHECK"].monthly_effect = stateIndex["S_PAYCHECK"].monthly_effect || {};
+      stateIndex["S_PAYCHECK"].monthly_effect.money = CONFIG.economy.base_paycheck;
+    }
+    document.getElementById("btnNew").disabled=false;
+    document.getElementById("btnReset").disabled=false;
+    showToast("已自动加载数据。点击「开始人生」。");
+  }
+})();
+</script>
+</body>
+</html>

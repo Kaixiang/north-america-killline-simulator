@@ -1,0 +1,821 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>北美斩杀线模拟器 v2.0 — 单页 Demo</title>
+  <style>
+    :root { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji"; }
+    body { margin: 0; background: #0b0f14; color: #e6edf3; }
+    header { padding: 14px 16px; border-bottom: 1px solid #1f2a37; position: sticky; top: 0; background: rgba(11,15,20,.92); backdrop-filter: blur(8px); z-index: 10; }
+    h1 { margin: 0; font-size: 16px; font-weight: 650; letter-spacing: .2px; }
+    .sub { margin-top: 6px; color: #9fb0c0; font-size: 12px; line-height: 1.35; }
+    .wrap { display: grid; grid-template-columns: 360px 1fr; gap: 12px; padding: 12px; }
+    @media (max-width: 980px){ .wrap { grid-template-columns: 1fr; } }
+    .card { background: #0f1620; border: 1px solid #1f2a37; border-radius: 14px; padding: 12px; box-shadow: 0 10px 24px rgba(0,0,0,.22); }
+    .row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+    .btn { border: 1px solid #2b3a4b; background: #111a25; color: #e6edf3; padding: 8px 10px; border-radius: 10px; cursor: pointer; font-size: 12px; }
+    .btn:hover { border-color: #3a4f66; }
+    .btn.primary { background: #152235; border-color: #3b82f6; }
+    .btn.danger { background: #2a1416; border-color: #ef4444; }
+    .btn:disabled { opacity: .55; cursor: not-allowed; }
+    .pill { padding: 2px 8px; border-radius: 999px; font-size: 12px; border: 1px solid #2b3a4b; color: #c7d2de; background: #0c1320; }
+    .k { color:#9fb0c0; font-size: 12px; }
+    .v { font-weight: 650; }
+    .stat { display: grid; grid-template-columns: 1fr auto; gap: 6px; align-items: center; margin: 8px 0; }
+    .bar { height: 10px; border-radius: 8px; background: #0b0f14; border: 1px solid #223245; overflow: hidden; }
+    .fill { height: 100%; width: 50%; background: #2b90ff; }
+    .money { font-feature-settings: "tnum"; font-variant-numeric: tabular-nums; }
+    .small { font-size: 12px; color: #9fb0c0; line-height: 1.4; }
+    .grid2 { display:grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    @media (max-width: 980px){ .grid2{ grid-template-columns: 1fr; } }
+    .cards { display:grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    @media (max-width: 1200px){ .cards{ grid-template-columns: 1fr; } }
+    .event { border: 1px solid #233044; border-radius: 14px; padding: 12px; background: #0c1320; }
+    .event h3 { margin: 0 0 6px; font-size: 14px; }
+    .event p { margin: 0; color: #b9c6d3; font-size: 12px; line-height: 1.5; white-space: pre-wrap; }
+    .choice { margin-top: 10px; padding: 10px; border-radius: 12px; border: 1px solid #223245; background: #0f1620; cursor: pointer; }
+    .choice:hover { border-color: #3a4f66; }
+    .choice .desc { font-size: 13px; font-weight: 600; margin-bottom: 6px; }
+    .choice .eff { font-size: 12px; color: #9fb0c0; }
+    .choice .eff b { color: #e6edf3; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace; }
+    .log { max-height: 420px; overflow: auto; padding-right: 6px; }
+    .log .line { padding: 8px 10px; border-bottom: 1px dashed #223245; }
+    .log .line:last-child { border-bottom: 0; }
+    .muted { color: #8aa0b3; }
+    .warn { color: #fecaca; }
+    .ok { color: #bbf7d0; }
+    .hr { height:1px; background:#1f2a37; margin: 10px 0; }
+    input[type=file]{ color:#9fb0c0; font-size: 12px; }
+    details summary{ cursor:pointer; color:#c7d2de; }
+    code { background:#0b0f14; border:1px solid #223245; border-radius: 8px; padding: 2px 6px; }
+  </style>
+</head>
+<body>
+<header>
+  <h1>北美斩杀线模拟器 v2.0 — 单页 Demo</h1>
+  <div class="sub">
+    玩法：每月 4 次发牌。你选择一张牌的一个选项，立刻改变属性/状态；月底结算房租；状态会每月触发效果。<br/>
+    斩杀线：当多个坏阈值同时触发（strikes≥阈值）即 Game Over；坚持到 120 个月通关。抽牌包含 anti-repeat 机制以提升体验覆盖。
+  </div>
+</header>
+
+<div class="wrap">
+  <!-- left -->
+  <div class="card">
+    <div class="row">
+      <span class="pill">数据</span>
+      <input id="fileEvents" type="file" accept=".json" />
+      <input id="fileStates" type="file" accept=".json" />
+      <input id="fileConfig" type="file" accept=".json" />
+      <button class="btn" id="btnLoad">加载文件</button>
+    </div>
+    <div class="small" style="margin-top:8px">
+      推荐：在同目录放 <code>events.json</code> / <code>states.json</code> / <code>config.json</code> 后，用任意本地服务器打开（避免浏览器阻止 file:// fetch）。<br/>
+      你也可以直接用上面三个文件选择器加载。
+      <details style="margin-top:8px">
+        <summary>如何启动本地服务器</summary>
+        <div class="small" style="margin-top:6px">
+          在文件所在目录运行：<br/>
+          <span class="mono">python -m http.server 8000</span><br/>
+          然后打开：<span class="mono">http://localhost:8000/index.html</span>
+        </div>
+      </details>
+    </div>
+
+    <div class="hr"></div>
+
+    <div class="row" style="justify-content: space-between;">
+      <div>
+        <div class="k">进度</div>
+        <div class="v"><span id="monthLabel">未开始</span></div>
+      </div>
+      <div class="row">
+        <button class="btn primary" id="btnNew" disabled>新开局</button>
+        <button class="btn" id="btnNext" disabled>下一张牌</button>
+        <button class="btn" id="btnAuto" disabled>自动随机 x20</button>
+        <button class="btn danger" id="btnReset" disabled>重置</button>
+      </div>
+    </div>
+
+    <div class="hr"></div>
+
+    <div>
+      <div class="row" style="justify-content:space-between">
+        <span class="pill">属性</span>
+        <span class="small muted">money 可为负；其他 0–100</span>
+      </div>
+
+      <div class="stat">
+        <div class="k">金钱 <span class="mono muted">(money)</span></div>
+        <div class="v money mono" id="moneyVal">—</div>
+      </div>
+
+      <div class="stat">
+        <div class="k">健康 <span class="mono muted">(health)</span></div>
+        <div class="v mono" id="healthVal">—</div>
+        <div class="bar"><div class="fill" id="healthBar"></div></div>
+      </div>
+
+      <div class="stat">
+        <div class="k">压力 <span class="mono muted">(stress)</span></div>
+        <div class="v mono" id="stressVal">—</div>
+        <div class="bar"><div class="fill" id="stressBar"></div></div>
+      </div>
+
+      <div class="stat">
+        <div class="k">家庭 <span class="mono muted">(family)</span></div>
+        <div class="v mono" id="familyVal">—</div>
+        <div class="bar"><div class="fill" id="familyBar"></div></div>
+      </div>
+
+      <div class="stat">
+        <div class="k">友情 <span class="mono muted">(friendship)</span></div>
+        <div class="v mono" id="friendVal">—</div>
+        <div class="bar"><div class="fill" id="friendBar"></div></div>
+      </div>
+
+      <div class="hr"></div>
+
+      <div class="row" style="justify-content:space-between">
+        <span class="pill">状态</span>
+        <span class="small muted" id="strikesLabel">strikes: —</span>
+      </div>
+      <div class="small" id="stateList">—</div>
+
+      <div class="hr"></div>
+
+      <div class="row" style="justify-content:space-between">
+        <span class="pill">设置</span>
+      </div>
+      <div class="small">
+        anti-repeat beta: <span class="mono" id="betaVal">—</span> · recent window: <span class="mono" id="recentWinVal">—</span> · recent penalty: <span class="mono" id="recentPenVal">—</span><br/>
+        rent base: <span class="mono" id="rentVal">—</span> · paycheck: <span class="mono" id="payVal">—</span><br/>
+        inflation/year: <span class="mono" id="inflVal">—</span> · wage growth/year: <span class="mono" id="wgVal">—</span><br/>
+        strikes to lose: <span class="mono" id="loseVal">—</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- right -->
+  <div class="card">
+    <div class="row" style="justify-content:space-between">
+      <span class="pill">本轮牌面</span>
+      <span class="small muted" id="deckHint">请先加载文件并新开局</span>
+    </div>
+
+    <div class="cards" id="cards"></div>
+
+    <div class="hr"></div>
+
+    <div class="row" style="justify-content:space-between">
+      <span class="pill">日志</span>
+      <span class="small muted" id="uniqLabel">已体验事件：—</span>
+    </div>
+    <div class="log" id="log"></div>
+  </div>
+</div>
+
+<script>
+/** ---------- Helpers ---------- **/
+const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
+const fmtMoney = (n) => {
+  const sign = n < 0 ? "-" : "";
+  const x = Math.abs(Math.round(n));
+  return sign + x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+};
+const pickWeighted = (items, weights) => {
+  let total = 0;
+  for (const w of weights) total += w;
+  let r = Math.random() * total;
+  let acc = 0;
+  for (let i = 0; i < items.length; i++) {
+    acc += weights[i];
+    if (r <= acc) return items[i];
+  }
+  return items[items.length - 1];
+};
+const deepCopy = (x) => JSON.parse(JSON.stringify(x));
+
+/** ---------- Game data ---------- **/
+let EVENTS = null;
+let STATES = null;
+let CONFIG = null;
+
+let pools = null;
+let stateIndex = null;
+
+// state -> tag multipliers (must match exported system)
+const STATE_TAG_MULT = {
+  "S_LAYOFF": {"job": 1.6, "debt": 1.35, "money": 0.9, "social": 0.95},
+  "S_RENT_ARREARS": {"housing": 1.7, "debt": 1.25, "job": 1.1},
+  "S_HIGH_INTEREST_LOAN": {"debt": 1.55, "money": 0.85},
+  "S_CREDIT_CARD_DEBT": {"debt": 1.25, "money": 0.92},
+  "S_INJURED": {"health": 1.55, "job": 0.95},
+  "S_HEALTH_SCARE": {"health": 1.35, "admin": 1.1},
+  "S_IMMIGRATION_ISSUE": {"admin": 1.55, "job": 1.1},
+  "S_CAR_BROKEN": {"car": 1.8, "job": 1.05},
+  "S_SOCIAL_ISOLATION": {"social": 1.45, "health": 1.1},
+  "S_WINDFALL_BUFFER": {"debt": 0.88, "housing": 0.92, "money": 1.12},
+  "S_RENT_DUE": {"housing": 2.2},
+  "S_TAX_DUE": {"admin": 2.0},
+  "S_TRAFFIC_TICKET": {"car": 1.6, "admin": 1.15},
+  "S_COLLECTIONS_NOTICE": {"debt": 1.4, "admin": 1.2},
+};
+
+const TAGS = ["job","debt","housing","health","social","admin","car","money"];
+
+/** ---------- Runtime state ---------- **/
+let game = null;
+
+function logLine(html){
+  const el = document.getElementById("log");
+  const div = document.createElement("div");
+  div.className = "line";
+  div.innerHTML = html;
+  el.prepend(div);
+}
+
+function rebuildPools(){
+  pools = {};
+  for (const t of TAGS) pools[t] = [];
+  for (const ev of EVENTS){
+    pools[ev.primary_tag].push(ev);
+  }
+}
+
+function buildStateIndex(){
+  stateIndex = {};
+  for (const s of STATES){
+    stateIndex[s.id] = s;
+  }
+}
+
+function costFactor(month){
+  const infl = (CONFIG.economy?.inflation_per_year ?? 0);
+  return Math.pow(1 + infl, month / 12.0);
+}
+function wageFactor(month){
+  const wg = (CONFIG.economy?.wage_growth_per_year ?? 0);
+  return Math.pow(1 + wg, month / 12.0);
+}
+
+function effectiveGain(baseGain, statValue){
+  if (baseGain <= 0) return baseGain;
+  const alpha = CONFIG.recovery.alpha;
+  const floor = CONFIG.recovery.soft_floor;
+  const penalty = Math.max(0, floor - statValue);
+  return baseGain * Math.exp(-alpha * penalty);
+}
+
+function applyEffects(stats, eff){
+  for (const [k, dv] of Object.entries(eff)){
+    if (!(k in stats)) continue;
+    stats[k] += dv;
+    if (["health","stress","family","friendship"].includes(k)){
+      stats[k] = Math.round(clamp(stats[k], 0, 100));
+    }
+  }
+}
+
+function addState(active, sid){
+  const sdef = stateIndex[sid];
+  if (!sdef) return;
+
+  if (sdef.type === "counter"){
+    if (!active[sid]) active[sid] = { remaining: null };
+    return;
+  }
+  const dur = sdef.duration ?? null;
+  if (dur === null){
+    if (!active[sid]) active[sid] = { remaining: null };
+    return;
+  }
+  if (active[sid]){
+    const behavior = sdef.stacking ?? "refresh";
+    if (behavior === "extend" && active[sid].remaining != null){
+      active[sid].remaining += dur;
+    } else {
+      active[sid].remaining = dur;
+    }
+  } else {
+    active[sid] = { remaining: dur };
+  }
+}
+
+function removeState(active, sid){
+  delete active[sid];
+}
+
+function monthlyPassive(stats){
+  const mp = CONFIG.recovery.monthly_passive;
+  const baseH = mp.health_base_regen * (1.0 - stats.stress / 140.0);
+  const dh = effectiveGain(baseH, stats.health);
+  const baseS = mp.stress_base_decay * (0.6 + stats.health / 140.0 + stats.friendship / 250.0);
+  const ds = -baseS;
+  const baseR = mp.relationship_base_regen * (1.0 - stats.stress / 140.0);
+  const dr = effectiveGain(baseR, stats.family);
+  const df = effectiveGain(baseR, stats.friendship);
+
+  applyEffects(stats, {
+    health: Math.round(dh),
+    stress: Math.round(ds),
+    family: Math.round(dr),
+    friendship: Math.round(df),
+  });
+}
+
+function applyStateMonthly(stats, active, counters, month){
+  const cf = costFactor(month);
+  const wf = wageFactor(month);
+
+  for (const sid of Object.keys(active)){
+    const sdef = stateIndex[sid];
+    if (!sdef) continue;
+
+    // paycheck suppressed when laid off
+    if (sid === "S_PAYCHECK" && active["S_LAYOFF"]) {
+      // do nothing
+    } else {
+      const eff = sdef.monthly_effect ?? {};
+      const eff2 = {};
+      for (const [k, v] of Object.entries(eff)){
+        if (["health","family","friendship"].includes(k) && v > 0){
+          eff2[k] = Math.round(effectiveGain(v, stats[k]));
+        } else if (k === "money" && v > 0 && active["S_HIGH_INTEREST_LOAN"]){
+          eff2[k] = Math.round(v * 0.85);
+        } else {
+          eff2[k] = v;
+        }
+      }
+
+      if ("money" in eff2){
+        let m = eff2.money;
+        if (m > 0) m = m * CONFIG.balance.pos_money_mult * wf;
+        else m = m * CONFIG.balance.neg_money_mult * cf;
+        eff2.money = Math.round(m);
+      }
+      if ("stress" in eff2){
+        eff2.stress = Math.round(eff2.stress * CONFIG.balance.stress_mult);
+      }
+      applyEffects(stats, eff2);
+    }
+
+    if (sdef.type === "counter"){
+      if (sid === "S_RENT_ARREARS"){
+        counters.rent_arrears_months = (counters.rent_arrears_months ?? 0) + 1;
+      }
+      continue;
+    }
+
+    if (active[sid].remaining != null){
+      active[sid].remaining -= 1;
+      if (active[sid].remaining <= 0){
+        delete active[sid];
+      }
+    }
+  }
+}
+
+function tagWeights(active){
+  const w = {};
+  for (const t of TAGS) w[t] = 1.0;
+
+  for (const sid of Object.keys(active)){
+    const mods = STATE_TAG_MULT[sid];
+    if (!mods) continue;
+    for (const [t, mult] of Object.entries(mods)){
+      if (t in w) w[t] *= mult;
+    }
+  }
+  // clamp to keep variety
+  for (const t of TAGS) w[t] = clamp(w[t], 0.75, 1.55);
+  return w;
+}
+
+function drawEvent(){
+  const tw = tagWeights(game.active);
+  const tags = Object.keys(tw);
+  const tag = pickWeighted(tags, tags.map(t => tw[t]));
+  const pool = pools[tag];
+
+  const beta = CONFIG.draw.anti_repeat_beta;
+  const recentWin = CONFIG.draw.recent_window;
+  const recentPenalty = CONFIG.draw.recent_penalty;
+
+  const recentSet = new Set(game.recent.slice(Math.max(0, game.recent.length - recentWin)));
+  const candidates = [];
+  const weights = [];
+
+  for (const ev of pool){
+    const seen = game.seenCounts[ev.id] ?? 0;
+    let w = (ev.base_weight ?? 1.0) / Math.pow(1.0 + seen, beta);
+    if (recentSet.has(ev.id)) w *= recentPenalty;
+    candidates.push(ev);
+    weights.push(w);
+  }
+  return pickWeighted(candidates, weights);
+}
+
+function strikesNow(){
+  let s = 0;
+  if (game.stats.money < CONFIG.thresholds.money_hard) s += 1;
+  if (game.active["S_RENT_ARREARS"] && (game.counters.rent_arrears_months ?? 0) >= CONFIG.thresholds.eviction_months) s += 1;
+  if (game.stats.health <= 0) s += 1;
+  if (game.stats.stress >= 100) s += 1;
+  if (game.stats.family <= 0) s += 1;
+  if (game.stats.friendship <= 0) s += 1;
+  return s;
+}
+
+function monthEndRent(){
+  const rent = Math.round(CONFIG.economy.rent * costFactor(game.month));
+  if (game.active["S_RENT_DUE"]){
+    if (game.stats.money >= rent){
+      applyEffects(game.stats, { money: -rent, stress: -1 });
+      removeState(game.active, "S_RENT_DUE");
+      logLine(`月底结算：已扣当月房租 <b class="mono">${fmtMoney(rent)}</b>。`);
+    } else {
+      removeState(game.active, "S_RENT_DUE");
+      addState(game.active, "S_RENT_ARREARS");
+      logLine(`<span class="warn">月底结算：钱不够交房租 → 进入“房租欠缴”。</span>`);
+    }
+  }
+  addState(game.active, "S_RENT_DUE");
+}
+
+function applyChoice(ev, ch){
+  const eff = deepCopy(ch.effects ?? {});
+  const cf = costFactor(game.month);
+  const wf = wageFactor(game.month);
+
+  // special dynamic rent payment
+  if (ch.action === "PAY_RENT"){
+    const rent = Math.round(CONFIG.economy.rent * cf);
+    eff.money = (eff.money ?? 0) - rent;
+  }
+
+  // nonlinear recovery for positive H/F/Friend
+  for (const k of ["health","family","friendship"]){
+    if (k in eff && eff[k] > 0){
+      eff[k] = Math.round(effectiveGain(eff[k], game.stats[k]));
+    }
+  }
+
+  if ("money" in eff){
+    let m = eff.money;
+    if (m > 0){
+      m = m * CONFIG.balance.pos_money_mult * wf;
+      if (game.active["S_HIGH_INTEREST_LOAN"]) m *= 0.85;
+    } else {
+      m = m * CONFIG.balance.neg_money_mult * cf;
+    }
+    eff.money = Math.round(m);
+  }
+
+  if ("stress" in eff){
+    eff.stress = Math.round(eff.stress * CONFIG.balance.stress_mult);
+  }
+
+  applyEffects(game.stats, eff);
+
+  for (const sid of (ch.add_states ?? [])) addState(game.active, sid);
+  for (const sid of (ch.remove_states ?? [])){
+    removeState(game.active, sid);
+    if (sid === "S_RENT_ARREARS") game.counters.rent_arrears_months = 0;
+  }
+
+  game.seenCounts[ev.id] = (game.seenCounts[ev.id] ?? 0) + 1;
+  game.seenSet.add(ev.id);
+  game.recent.push(ev.id);
+  if (game.recent.length > 40) game.recent = game.recent.slice(-40);
+
+  // advance turn
+  game.turnInMonth += 1;
+}
+
+function startMonthIfNeeded(){
+  if (game.turnInMonth === 0){
+    // monthly start
+    monthlyPassive(game.stats);
+    applyStateMonthly(game.stats, game.active, game.counters, game.month);
+    logLine(`<span class="muted">—— 月初结算完成（被动恢复 + 状态触发） ——</span>`);
+  }
+}
+
+function endMonthIfNeeded(){
+  if (game.turnInMonth >= CONFIG.turns_per_month){
+    monthEndRent();
+    game.month += 1;
+    game.turnInMonth = 0;
+
+    if (game.month >= CONFIG.max_months){
+      game.ended = true;
+      game.win = true;
+      logLine(`<span class="ok"><b>通关！</b>你撑到了第 ${CONFIG.max_months} 个月。</span>`);
+    }
+  }
+}
+
+function checkGameOver(){
+  const s = strikesNow();
+  document.getElementById("strikesLabel").textContent = `strikes: ${s}/${CONFIG.thresholds.collections_strikes}`;
+  if (!game.ended && s >= CONFIG.thresholds.collections_strikes){
+    game.ended = true;
+    game.win = false;
+    logLine(`<span class="warn"><b>Game Over</b>（strikes 达到阈值）</span>`);
+  }
+}
+
+function uiUpdate(){
+  document.getElementById("monthLabel").textContent =
+    game ? `第 ${game.month + 1} 个月 · 本月第 ${game.turnInMonth + 1}/${CONFIG.turns_per_month} 张牌` : "未开始";
+
+  const s = game?.stats;
+  if (!s) return;
+
+  document.getElementById("moneyVal").textContent = fmtMoney(s.money);
+  document.getElementById("healthVal").textContent = s.health;
+  document.getElementById("stressVal").textContent = s.stress;
+  document.getElementById("familyVal").textContent = s.family;
+  document.getElementById("friendVal").textContent = s.friendship;
+
+  document.getElementById("healthBar").style.width = `${clamp(s.health,0,100)}%`;
+  document.getElementById("stressBar").style.width = `${clamp(s.stress,0,100)}%`;
+  document.getElementById("familyBar").style.width = `${clamp(s.family,0,100)}%`;
+  document.getElementById("friendBar").style.width = `${clamp(s.friendship,0,100)}%`;
+
+  document.getElementById("uniqLabel").textContent = `已体验事件：${game.seenSet.size} / ${EVENTS.length}`;
+
+  // state list
+  const parts = [];
+  const keys = Object.keys(game.active);
+  keys.sort();
+  for (const sid of keys){
+    const def = stateIndex[sid];
+    const rem = game.active[sid].remaining;
+    const remTxt = rem == null ? "∞" : `${rem}m`;
+    const extra = (sid === "S_RENT_ARREARS") ? ` · 欠缴月数 ${game.counters.rent_arrears_months ?? 0}/${CONFIG.thresholds.eviction_months}` : "";
+    parts.push(`<div>• <b>${def?.name ?? sid}</b> <span class="muted mono">(${sid})</span> <span class="pill">${remTxt}</span>${extra}<div class="muted" style="margin:3px 0 8px">${def?.desc ?? ""}</div></div>`);
+  }
+  document.getElementById("stateList").innerHTML = parts.length ? parts.join("") : "—";
+
+  // config display
+  document.getElementById("betaVal").textContent = CONFIG.draw.anti_repeat_beta;
+  document.getElementById("recentWinVal").textContent = CONFIG.draw.recent_window;
+  document.getElementById("recentPenVal").textContent = CONFIG.draw.recent_penalty;
+  document.getElementById("rentVal").textContent = fmtMoney(CONFIG.economy.rent);
+  document.getElementById("payVal").textContent = fmtMoney(CONFIG.economy.base_paycheck ?? 0);
+  document.getElementById("inflVal").textContent = (CONFIG.economy.inflation_per_year ?? 0);
+  document.getElementById("wgVal").textContent = (CONFIG.economy.wage_growth_per_year ?? 0);
+  document.getElementById("loseVal").textContent = CONFIG.thresholds.collections_strikes;
+
+  // controls
+  const ended = game.ended;
+  document.getElementById("btnNext").disabled = ended;
+  document.getElementById("btnAuto").disabled = ended;
+}
+
+function renderCards(){
+  const box = document.getElementById("cards");
+  box.innerHTML = "";
+
+  if (!game || game.ended){
+    document.getElementById("deckHint").textContent = game?.ended ? "已结束（可重置/新开局）" : "请先加载文件并新开局";
+    return;
+  }
+
+  startMonthIfNeeded();
+
+  // draw 1 event at a time (like roguelike)
+  const ev = drawEvent();
+  document.getElementById("deckHint").textContent = `抽到：${ev.primary_tag} · ${ev.id}`;
+
+  const el = document.createElement("div");
+  el.className = "event";
+  el.innerHTML = `
+    <div class="row" style="justify-content:space-between">
+      <h3>${ev.title} <span class="pill mono">${ev.primary_tag}</span></h3>
+      <span class="small muted mono">${ev.id}</span>
+    </div>
+    <p>${ev.text}</p>
+  `;
+
+  // choices
+  for (let i = 0; i < ev.choices.length; i++){
+    const ch = ev.choices[i];
+    const eff = ch.effects ?? {};
+    const add = (ch.add_states ?? []).map(s => stateIndex[s]?.name ?? s);
+    const rem = (ch.remove_states ?? []).map(s => stateIndex[s]?.name ?? s);
+    const effParts = [];
+    for (const k of ["money","health","stress","family","friendship"]){
+      if (k in eff){
+        const v = eff[k];
+        const sign = v >= 0 ? "+" : "";
+        effParts.push(`<b>${k}</b> ${sign}${v}`);
+      }
+    }
+    if (ch.action === "PAY_RENT") effParts.push(`<b>money</b> -rent(动态)`);
+
+    const choiceEl = document.createElement("div");
+    choiceEl.className = "choice";
+    choiceEl.innerHTML = `
+      <div class="desc">${i+1}. ${ch.desc}</div>
+      <div class="eff">
+        ${effParts.length ? `即时：${effParts.join(" · ")}` : "即时：—"}
+        ${add.length ? `<br/>获得状态：<span class="mono">${add.join(", ")}</span>` : ""}
+        ${rem.length ? `<br/>移除状态：<span class="mono">${rem.join(", ")}</span>` : ""}
+      </div>
+    `;
+    choiceEl.onclick = () => {
+      applyChoice(ev, ch);
+      logLine(`<b>${ev.title}</b>：选择「${ch.desc}」`);
+      checkGameOver();
+      endMonthIfNeeded();
+      uiUpdate();
+      renderCards();
+    };
+    el.appendChild(choiceEl);
+  }
+
+  box.appendChild(el);
+
+  uiUpdate();
+  checkGameOver();
+}
+
+function newGame(){
+  game = {
+    month: 0,
+    turnInMonth: 0,
+    stats: {
+      money: CONFIG.attrs.money.start,
+      health: CONFIG.attrs.health.start,
+      stress: CONFIG.attrs.stress.start,
+      family: CONFIG.attrs.family.start,
+      friendship: CONFIG.attrs.friendship.start,
+    },
+    active: {},
+    counters: { rent_arrears_months: 0 },
+    recent: [],
+    seenCounts: {},
+    seenSet: new Set(),
+    ended: false,
+    win: false,
+  };
+
+  // baseline states
+  addState(game.active, "S_RENT_DUE");
+  addState(game.active, "S_PAYCHECK");
+
+  document.getElementById("log").innerHTML = "";
+  logLine(`<span class="ok">新开局：初始 money=${fmtMoney(game.stats.money)}，rent_base=${fmtMoney(CONFIG.economy.rent)}，paycheck=${fmtMoney(CONFIG.economy.base_paycheck ?? 0)}</span>`);
+  uiUpdate();
+  renderCards();
+}
+
+function resetAll(){
+  game = null;
+  document.getElementById("cards").innerHTML = "";
+  document.getElementById("deckHint").textContent = "请先加载文件并新开局";
+  document.getElementById("log").innerHTML = "";
+  document.getElementById("stateList").textContent = "—";
+  document.getElementById("monthLabel").textContent = "未开始";
+  document.getElementById("uniqLabel").textContent = "已体验事件：—";
+  ["moneyVal","healthVal","stressVal","familyVal","friendVal"].forEach(id => document.getElementById(id).textContent="—");
+  ["healthBar","stressBar","familyBar","friendBar"].forEach(id => document.getElementById(id).style.width="50%");
+}
+
+/** ---------- Loading ---------- **/
+async function readJsonFromFileInput(inputEl){
+  return new Promise((resolve, reject) => {
+    const f = inputEl.files?.[0];
+    if (!f) return resolve(null);
+    const fr = new FileReader();
+    fr.onload = () => {
+      try { resolve(JSON.parse(fr.result)); } catch(e){ reject(e); }
+    };
+    fr.onerror = reject;
+    fr.readAsText(f, "utf-8");
+  });
+}
+
+async function tryFetchJson(path){
+  try{
+    const r = await fetch(path, {cache:"no-store"});
+    if (!r.ok) return null;
+    return await r.json();
+  } catch (e){
+    return null;
+  }
+}
+
+async function loadData(){
+  // 1) file inputs first
+  const fe = document.getElementById("fileEvents");
+  const fs = document.getElementById("fileStates");
+  const fc = document.getElementById("fileConfig");
+
+  let je = await readJsonFromFileInput(fe);
+  let js = await readJsonFromFileInput(fs);
+  let jc = await readJsonFromFileInput(fc);
+
+  // 2) fallback to fetch from same directory
+  if (!je) je = await tryFetchJson("./events.json");
+  if (!js) js = await tryFetchJson("./states.json");
+  if (!jc) jc = await tryFetchJson("./config.json");
+
+  if (!je || !js || !jc){
+    alert("加载失败：请用文件选择器选择 events/states/config，或用本地服务器打开并把三个 json 放同目录。");
+    return;
+  }
+
+  EVENTS = je.events ?? je;
+  STATES = js.states ?? js;
+  CONFIG = (jc.config ?? jc);
+
+  // normalize: ensure paycheck in config & state
+  if (!CONFIG.economy) CONFIG.economy = {};
+  if (!("base_paycheck" in CONFIG.economy)){
+    // best-effort: read from state monthly_effect
+    const pay = (STATES.find(s => s.id === "S_PAYCHECK")?.monthly_effect?.money) ?? 0;
+    CONFIG.economy.base_paycheck = pay;
+  }
+
+  rebuildPools();
+  buildStateIndex();
+
+  // wire paycheck state to config value (so UI matches)
+  if (stateIndex["S_PAYCHECK"]){
+    stateIndex["S_PAYCHECK"].monthly_effect = stateIndex["S_PAYCHECK"].monthly_effect || {};
+    stateIndex["S_PAYCHECK"].monthly_effect.money = CONFIG.economy.base_paycheck;
+  }
+
+  // enable buttons
+  document.getElementById("btnNew").disabled = false;
+  document.getElementById("btnReset").disabled = false;
+  document.getElementById("btnNext").disabled = false;
+  document.getElementById("btnAuto").disabled = false;
+
+  logLine(`<span class="ok">数据已加载：events=${EVENTS.length}，states=${STATES.length}</span>`);
+  uiUpdate();
+}
+
+/** ---------- Controls ---------- **/
+document.getElementById("btnLoad").onclick = loadData;
+
+document.getElementById("btnNew").onclick = () => {
+  if (!EVENTS || !STATES || !CONFIG) return;
+  newGame();
+};
+
+document.getElementById("btnReset").onclick = () => resetAll();
+
+document.getElementById("btnNext").onclick = () => {
+  if (!game) return;
+  renderCards();
+};
+
+document.getElementById("btnAuto").onclick = async () => {
+  if (!game || game.ended) return;
+  const steps = 20;
+  for (let i=0;i<steps;i++){
+    if (game.ended) break;
+    startMonthIfNeeded();
+    const ev = drawEvent();
+    const ch = ev.choices[Math.floor(Math.random() * ev.choices.length)];
+    applyChoice(ev, ch);
+    logLine(`<span class="muted">[Auto] ${ev.title} → 「${ch.desc}」</span>`);
+    checkGameOver();
+    endMonthIfNeeded();
+  }
+  uiUpdate();
+  renderCards();
+};
+
+// Auto attempt to load via fetch if available (server mode)
+(async () => {
+  const je = await tryFetchJson("./events.json");
+  const js = await tryFetchJson("./states.json");
+  const jc = await tryFetchJson("./config.json");
+  if (je && js && jc){
+    EVENTS = je.events ?? je;
+    STATES = js.states ?? js;
+    CONFIG = (jc.config ?? jc);
+    rebuildPools(); buildStateIndex();
+    if (stateIndex["S_PAYCHECK"]){
+      stateIndex["S_PAYCHECK"].monthly_effect = stateIndex["S_PAYCHECK"].monthly_effect || {};
+      stateIndex["S_PAYCHECK"].monthly_effect.money = CONFIG.economy.base_paycheck ?? stateIndex["S_PAYCHECK"].monthly_effect.money;
+    }
+    document.getElementById("btnNew").disabled = false;
+    document.getElementById("btnReset").disabled = false;
+    document.getElementById("btnNext").disabled = false;
+    document.getElementById("btnAuto").disabled = false;
+    logLine(`<span class="ok">已自动从同目录加载 JSON（server mode）</span>`);
+    uiUpdate();
+  }
+})();
+</script>
+</body>
+</html>

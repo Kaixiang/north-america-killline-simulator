@@ -1,0 +1,8814 @@
+{
+  "version": "2.0",
+  "events": [
+    {
+      "id": "E_JOB_001",
+      "title": "职场小浪",
+      "text": "周一早会你被点名汇报，大家都在看你屏幕角落的电量。\n你突然意识到，很多选择其实都是在买时间。",
+      "primary_tag": "job",
+      "tags": [
+        "job"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "硬着头皮扛下来",
+          "effects": {
+            "money": 420,
+            "stress": 4,
+            "health": -2
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "争取资源/改期",
+          "effects": {
+            "stress": 2,
+            "family": 1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "开始看机会（更新简历/面试）",
+          "effects": {
+            "stress": 3,
+            "money": -80
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_JOB_002",
+      "title": "会议风暴",
+      "text": "隔壁组开始裁员谣言，你发现自己刷新邮件的频率越来越高。\n你突然意识到，很多选择其实都是在买时间。",
+      "primary_tag": "job",
+      "tags": [
+        "job"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "硬着头皮扛下来",
+          "effects": {
+            "money": 420,
+            "stress": 4,
+            "health": -2
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "争取资源/改期",
+          "effects": {
+            "stress": 2,
+            "family": 1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "开始看机会（更新简历/面试）",
+          "effects": {
+            "stress": 3,
+            "money": -80
+          },
+          "add_states": [
+            "S_LAYOFF"
+          ],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_JOB_003",
+      "title": "加班问卷",
+      "text": "主管突然说“我们需要一个owner”，你立刻想到的是睡眠而不是成长。\n你看了一眼银行App，数字像在眨眼。",
+      "primary_tag": "job",
+      "tags": [
+        "job"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "硬着头皮扛下来",
+          "effects": {
+            "money": 420,
+            "stress": 4,
+            "health": -2
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "争取资源/改期",
+          "effects": {
+            "stress": 1,
+            "friendship": 1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "开始看机会（更新简历/面试）",
+          "effects": {
+            "stress": 3,
+            "money": -80
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_JOB_004",
+      "title": "绩效季",
+      "text": "远程政策要收紧，通勤时间像突然多出来的一份兼职。\n你深呼吸了一下，试图把它当作普通的一天。",
+      "primary_tag": "job",
+      "tags": [
+        "job"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "硬着头皮扛下来",
+          "effects": {
+            "money": 420,
+            "stress": 4,
+            "health": -2
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "争取资源/改期",
+          "effects": {
+            "stress": 2,
+            "family": 1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "开始看机会（更新简历/面试）",
+          "effects": {
+            "stress": 3,
+            "money": -80
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_JOB_005",
+      "title": "转岗岔路",
+      "text": "你的同事把锅甩给你，但语气礼貌得让你更想反驳。\n你深呼吸了一下，试图把它当作普通的一天。",
+      "primary_tag": "job",
+      "tags": [
+        "job"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "硬着头皮扛下来",
+          "effects": {
+            "money": 420,
+            "stress": 4,
+            "health": -2
+          },
+          "add_states": [
+            "S_OVERTIME"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "争取资源/改期",
+          "effects": {
+            "stress": 2,
+            "family": 1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "开始看机会（更新简历/面试）",
+          "effects": {
+            "stress": 3,
+            "money": -80
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_JOB_006",
+      "title": "面试电话",
+      "text": "绩效反馈里出现“影响力”三个字，你听出了两层意思。\n你突然意识到，很多选择其实都是在买时间。",
+      "primary_tag": "job",
+      "tags": [
+        "job"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "硬着头皮扛下来",
+          "effects": {
+            "money": 420,
+            "stress": 4,
+            "health": -2
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "争取资源/改期",
+          "effects": {
+            "stress": 1,
+            "friendship": 1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "开始看机会（更新简历/面试）",
+          "effects": {
+            "stress": 3,
+            "money": -80
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_JOB_007",
+      "title": "轮值变更",
+      "text": "新项目deadline提前，你的胃像被人拧了一下。\n你想起上个月的教训，但这次又不完全一样。",
+      "primary_tag": "job",
+      "tags": [
+        "job"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "硬着头皮扛下来",
+          "effects": {
+            "money": 420,
+            "stress": 4,
+            "health": -2
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "争取资源/改期",
+          "effects": {
+            "stress": 2,
+            "family": 1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "开始看机会（更新简历/面试）",
+          "effects": {
+            "stress": 3,
+            "money": -80
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_JOB_008",
+      "title": "救火请求",
+      "text": "你被拉进一个‘紧急’群聊，消息像雨点一样砸下。\n你深呼吸了一下，试图把它当作普通的一天。",
+      "primary_tag": "job",
+      "tags": [
+        "job"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "硬着头皮扛下来",
+          "effects": {
+            "money": 420,
+            "stress": 4,
+            "health": -2
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "争取资源/改期",
+          "effects": {
+            "stress": 2,
+            "family": 1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "开始看机会（更新简历/面试）",
+          "effects": {
+            "stress": 3,
+            "money": -80
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_JOB_009",
+      "title": "组织调整",
+      "text": "HR发来‘组织调整’的邀请，你手指悬在‘接受’上。\n你深呼吸了一下，试图把它当作普通的一天。",
+      "primary_tag": "job",
+      "tags": [
+        "job"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "硬着头皮扛下来",
+          "effects": {
+            "money": 420,
+            "stress": 4,
+            "health": -2
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "争取资源/改期",
+          "effects": {
+            "stress": 1,
+            "friendship": 1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "开始看机会（更新简历/面试）",
+          "effects": {
+            "stress": 3,
+            "money": -200
+          },
+          "add_states": [
+            "S_LAYOFF"
+          ],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_JOB_010",
+      "title": "薪资真相",
+      "text": "你发现薪资在同级里偏低，心里那口气压了很久。\n你看了一眼银行App，数字像在眨眼。",
+      "primary_tag": "job",
+      "tags": [
+        "job"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "硬着头皮扛下来",
+          "effects": {
+            "money": 420,
+            "stress": 4,
+            "health": -2
+          },
+          "add_states": [
+            "S_OVERTIME"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "争取资源/改期",
+          "effects": {
+            "stress": 2,
+            "family": 1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "开始看机会（更新简历/面试）",
+          "effects": {
+            "stress": 3,
+            "money": -80
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_JOB_011",
+      "title": "新人带教",
+      "text": "有人问你要不要带新人，你想到的是时间而不是荣誉。\n你想起上个月的教训，但这次又不完全一样。",
+      "primary_tag": "job",
+      "tags": [
+        "job"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "硬着头皮扛下来",
+          "effects": {
+            "money": 420,
+            "stress": 4,
+            "health": -2
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "争取资源/改期",
+          "effects": {
+            "stress": 2,
+            "family": 1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "开始看机会（更新简历/面试）",
+          "effects": {
+            "stress": 3,
+            "money": -80
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_JOB_012",
+      "title": "降本增效",
+      "text": "老板说‘我们要降本增效’，你听到的是‘你要更累’。\n你想起上个月的教训，但这次又不完全一样。",
+      "primary_tag": "job",
+      "tags": [
+        "job"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "硬着头皮扛下来",
+          "effects": {
+            "money": 420,
+            "stress": 4,
+            "health": -2
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "争取资源/改期",
+          "effects": {
+            "stress": 1,
+            "friendship": 1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "开始看机会（更新简历/面试）",
+          "effects": {
+            "stress": 3,
+            "money": -80
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_JOB_013",
+      "title": "猎头私信",
+      "text": "你在LinkedIn上被猎头私信，标题写着‘机会’。\n你想起上个月的教训，但这次又不完全一样。",
+      "primary_tag": "job",
+      "tags": [
+        "job"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "硬着头皮扛下来",
+          "effects": {
+            "money": 420,
+            "stress": 4,
+            "health": -2
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "争取资源/改期",
+          "effects": {
+            "stress": 2,
+            "family": 1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "开始看机会（更新简历/面试）",
+          "effects": {
+            "stress": 3,
+            "money": -80
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_JOB_014",
+      "title": "夜间Oncall",
+      "text": "团队要改轮值，你突然多了每月两次的夜间oncall。\n你看了一眼银行App，数字像在眨眼。",
+      "primary_tag": "job",
+      "tags": [
+        "job"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "硬着头皮扛下来",
+          "effects": {
+            "money": 420,
+            "stress": 4,
+            "health": -2
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "争取资源/改期",
+          "effects": {
+            "stress": 2,
+            "family": 1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "开始看机会（更新简历/面试）",
+          "effects": {
+            "stress": 3,
+            "money": -80
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_JOB_015",
+      "title": "客户投诉",
+      "text": "客户抱怨升级后出错，所有目光都落在你身上。\n你突然意识到，很多选择其实都是在买时间。",
+      "primary_tag": "job",
+      "tags": [
+        "job"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "硬着头皮扛下来",
+          "effects": {
+            "money": 420,
+            "stress": 4,
+            "health": -2
+          },
+          "add_states": [
+            "S_OVERTIME"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "争取资源/改期",
+          "effects": {
+            "stress": 1,
+            "friendship": 1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "开始看机会（更新简历/面试）",
+          "effects": {
+            "stress": 3,
+            "money": -80
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_JOB_016",
+      "title": "请假难题",
+      "text": "你想请假，但日历上像找不到一块干净的白。\n你深呼吸了一下，试图把它当作普通的一天。",
+      "primary_tag": "job",
+      "tags": [
+        "job"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "硬着头皮扛下来",
+          "effects": {
+            "money": 420,
+            "stress": 4,
+            "health": -2
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "争取资源/改期",
+          "effects": {
+            "stress": 2,
+            "family": 1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "开始看机会（更新简历/面试）",
+          "effects": {
+            "stress": 3,
+            "money": -80
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_JOB_017",
+      "title": "补贴缩水",
+      "text": "公司补贴政策变动，小钱但很真实地刺痛。\n你深呼吸了一下，试图把它当作普通的一天。",
+      "primary_tag": "job",
+      "tags": [
+        "job"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "硬着头皮扛下来",
+          "effects": {
+            "money": 420,
+            "stress": 4,
+            "health": -2
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "争取资源/改期",
+          "effects": {
+            "stress": 2,
+            "family": 1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "开始看机会（更新简历/面试）",
+          "effects": {
+            "stress": 3,
+            "money": -80
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_JOB_018",
+      "title": "经验分享",
+      "text": "你被邀请去分享经验，听起来像加班的另一种说法。\n你想起上个月的教训，但这次又不完全一样。",
+      "primary_tag": "job",
+      "tags": [
+        "job"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "硬着头皮扛下来",
+          "effects": {
+            "money": 420,
+            "stress": 4,
+            "health": -2
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "争取资源/改期",
+          "effects": {
+            "stress": 1,
+            "friendship": 1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "开始看机会（更新简历/面试）",
+          "effects": {
+            "stress": 3,
+            "money": -80
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_JOB_019",
+      "title": "疲惫面试",
+      "text": "你接到一个面试电话，却是在你最疲惫的下午。\n你突然意识到，很多选择其实都是在买时间。",
+      "primary_tag": "job",
+      "tags": [
+        "job"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "硬着头皮扛下来",
+          "effects": {
+            "money": 420,
+            "stress": 4,
+            "health": -2
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "争取资源/改期",
+          "effects": {
+            "stress": 2,
+            "family": 1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "开始看机会（更新简历/面试）",
+          "effects": {
+            "stress": 3,
+            "money": -80
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_JOB_020",
+      "title": "任务堆叠",
+      "text": "同事离职带走一堆活，你的任务列表长得像债务。\n你看了一眼银行App，数字像在眨眼。",
+      "primary_tag": "job",
+      "tags": [
+        "job"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "硬着头皮扛下来",
+          "effects": {
+            "money": 420,
+            "stress": 4,
+            "health": -2
+          },
+          "add_states": [
+            "S_OVERTIME"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "争取资源/改期",
+          "effects": {
+            "stress": 2,
+            "family": 1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "开始看机会（更新简历/面试）",
+          "effects": {
+            "stress": 3,
+            "money": -200
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_JOB_021",
+      "title": "救火一周",
+      "text": "你被点名去救火，‘只要一周’听起来像谎言。\n你深呼吸了一下，试图把它当作普通的一天。",
+      "primary_tag": "job",
+      "tags": [
+        "job"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "硬着头皮扛下来",
+          "effects": {
+            "money": 420,
+            "stress": 4,
+            "health": -2
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "争取资源/改期",
+          "effects": {
+            "stress": 1,
+            "friendship": 1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "开始看机会（更新简历/面试）",
+          "effects": {
+            "stress": 3,
+            "money": -80
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_JOB_022",
+      "title": "副业念头",
+      "text": "你开始考虑副业，但每想到时间就皱眉。\n你深呼吸了一下，试图把它当作普通的一天。",
+      "primary_tag": "job",
+      "tags": [
+        "job"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "硬着头皮扛下来",
+          "effects": {
+            "money": 420,
+            "stress": 4,
+            "health": -2
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "争取资源/改期",
+          "effects": {
+            "stress": 2,
+            "family": 1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "开始看机会（更新简历/面试）",
+          "effects": {
+            "stress": 3,
+            "money": -80
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_JOB_023",
+      "title": "城市Offer",
+      "text": "你收到一封offer，但它在城市另一端。\n你想起上个月的教训，但这次又不完全一样。",
+      "primary_tag": "job",
+      "tags": [
+        "job"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "硬着头皮扛下来",
+          "effects": {
+            "money": 420,
+            "stress": 4,
+            "health": -2
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "争取资源/改期",
+          "effects": {
+            "stress": 2,
+            "family": 1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "开始看机会（更新简历/面试）",
+          "effects": {
+            "stress": 4,
+            "money": -80
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_JOB_024",
+      "title": "庆功夜",
+      "text": "团队庆功，但你只在意加班费有没有算。\n你想起上个月的教训，但这次又不完全一样。",
+      "primary_tag": "job",
+      "tags": [
+        "job"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "硬着头皮扛下来",
+          "effects": {
+            "money": 420,
+            "stress": 4,
+            "health": -2
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "争取资源/改期",
+          "effects": {
+            "stress": 1,
+            "friendship": 1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "开始看机会（更新简历/面试）",
+          "effects": {
+            "stress": 3,
+            "money": -80
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_JOB_025",
+      "title": "简历空白",
+      "text": "你突然意识到：你已经半年没认真更新简历了。\n你突然意识到，很多选择其实都是在买时间。",
+      "primary_tag": "job",
+      "tags": [
+        "job"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "硬着头皮扛下来",
+          "effects": {
+            "money": 420,
+            "stress": 4,
+            "health": -2
+          },
+          "add_states": [
+            "S_OVERTIME"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "争取资源/改期",
+          "effects": {
+            "stress": 2,
+            "family": 1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "开始看机会（更新简历/面试）",
+          "effects": {
+            "stress": 3,
+            "money": -80
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_DEBT_001",
+      "title": "账单到期",
+      "text": "信用卡账单像一封冷静的告密信，把你所有冲动消费都摆出来。\n你看了一眼银行App，数字像在眨眼。",
+      "primary_tag": "debt",
+      "tags": [
+        "debt"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "只付最低（先活着）",
+          "effects": {
+            "money": -180,
+            "stress": 2
+          },
+          "add_states": [
+            "S_CREDIT_CARD_DEBT"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "多还一点（勒紧）",
+          "effects": {
+            "money": -420,
+            "stress": 1
+          },
+          "add_states": [],
+          "remove_states": [
+            "S_CREDIT_CARD_DEBT"
+          ]
+        },
+        {
+          "desc": "拖延/忽略（赌运气）",
+          "effects": {
+            "stress": 4
+          },
+          "add_states": [
+            "S_COLLECTIONS_NOTICE",
+            "S_CREDIT_CARD_DEBT"
+          ],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_DEBT_002",
+      "title": "最低还款",
+      "text": "你收到一条‘最低还款已到期’的提醒，语气像在敲门。\n你深呼吸了一下，试图把它当作普通的一天。",
+      "primary_tag": "debt",
+      "tags": [
+        "debt"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "只付最低（先活着）",
+          "effects": {
+            "money": -180,
+            "stress": 2
+          },
+          "add_states": [
+            "S_CREDIT_CARD_DEBT"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "多还一点（勒紧）",
+          "effects": {
+            "money": -420,
+            "stress": 1
+          },
+          "add_states": [],
+          "remove_states": [
+            "S_CREDIT_CARD_DEBT"
+          ]
+        },
+        {
+          "desc": "拖延/忽略（赌运气）",
+          "effects": {
+            "stress": 4
+          },
+          "add_states": [
+            "S_COLLECTIONS_NOTICE",
+            "S_CREDIT_CARD_DEBT"
+          ],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_DEBT_003",
+      "title": "透支费用",
+      "text": "银行发来‘透支费用调整’，你感觉自己又被收了一次税。\n你深呼吸了一下，试图把它当作普通的一天。",
+      "primary_tag": "debt",
+      "tags": [
+        "debt"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "只付最低（先活着）",
+          "effects": {
+            "money": -180,
+            "stress": 2
+          },
+          "add_states": [
+            "S_CREDIT_CARD_DEBT"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "多还一点（勒紧）",
+          "effects": {
+            "money": -420,
+            "stress": 1
+          },
+          "add_states": [],
+          "remove_states": [
+            "S_CREDIT_CARD_DEBT"
+          ]
+        },
+        {
+          "desc": "拖延/忽略（赌运气）",
+          "effects": {
+            "stress": 4
+          },
+          "add_states": [
+            "S_COLLECTIONS_NOTICE",
+            "S_CREDIT_CARD_DEBT"
+          ],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_DEBT_004",
+      "title": "订阅陷阱",
+      "text": "你误点了订阅试用，退款流程像迷宫。\n你看了一眼银行App，数字像在眨眼。",
+      "primary_tag": "debt",
+      "tags": [
+        "debt"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "只付最低（先活着）",
+          "effects": {
+            "money": -180,
+            "stress": 2
+          },
+          "add_states": [
+            "S_CREDIT_CARD_DEBT"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "多还一点（勒紧）",
+          "effects": {
+            "money": -420,
+            "stress": 1
+          },
+          "add_states": [],
+          "remove_states": [
+            "S_CREDIT_CARD_DEBT"
+          ]
+        },
+        {
+          "desc": "拖延/忽略（赌运气）",
+          "effects": {
+            "stress": 4
+          },
+          "add_states": [
+            "S_COLLECTIONS_NOTICE",
+            "S_CREDIT_CARD_DEBT"
+          ],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_DEBT_005",
+      "title": "余额凝视",
+      "text": "你在ATM前看到余额，突然有点想笑又笑不出来。\n你深呼吸了一下，试图把它当作普通的一天。",
+      "primary_tag": "debt",
+      "tags": [
+        "debt"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "只付最低（先活着）",
+          "effects": {
+            "money": -180,
+            "stress": 2
+          },
+          "add_states": [
+            "S_CREDIT_CARD_DEBT"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "多还一点（勒紧）",
+          "effects": {
+            "money": -420,
+            "stress": 1
+          },
+          "add_states": [],
+          "remove_states": [
+            "S_CREDIT_CARD_DEBT"
+          ]
+        },
+        {
+          "desc": "拖延/忽略（赌运气）",
+          "effects": {
+            "stress": 4
+          },
+          "add_states": [
+            "S_COLLECTIONS_NOTICE",
+            "S_CREDIT_CARD_DEBT"
+          ],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_DEBT_006",
+      "title": "催收午休",
+      "text": "催收电话在午休响起，你假装没听见，但它一直响。\n你深呼吸了一下，试图把它当作普通的一天。",
+      "primary_tag": "debt",
+      "tags": [
+        "debt"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "只付最低（先活着）",
+          "effects": {
+            "money": -180,
+            "stress": 2
+          },
+          "add_states": [
+            "S_CREDIT_CARD_DEBT"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "多还一点（勒紧）",
+          "effects": {
+            "money": -420,
+            "stress": 1
+          },
+          "add_states": [],
+          "remove_states": [
+            "S_CREDIT_CARD_DEBT"
+          ]
+        },
+        {
+          "desc": "拖延/忽略（赌运气）",
+          "effects": {
+            "stress": 4
+          },
+          "add_states": [
+            "S_COLLECTIONS_NOTICE",
+            "S_CREDIT_CARD_DEBT"
+          ],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_DEBT_007",
+      "title": "利息微涨",
+      "text": "你发现利息比上个月多了一点点，像温水里的盐。\n你看了一眼银行App，数字像在眨眼。",
+      "primary_tag": "debt",
+      "tags": [
+        "debt"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "只付最低（先活着）",
+          "effects": {
+            "money": -180,
+            "stress": 2
+          },
+          "add_states": [
+            "S_CREDIT_CARD_DEBT"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "多还一点（勒紧）",
+          "effects": {
+            "money": -420,
+            "stress": 1
+          },
+          "add_states": [
+            "S_WINDFALL_BUFFER"
+          ],
+          "remove_states": [
+            "S_CREDIT_CARD_DEBT"
+          ]
+        },
+        {
+          "desc": "拖延/忽略（赌运气）",
+          "effects": {
+            "stress": 4
+          },
+          "add_states": [
+            "S_COLLECTIONS_NOTICE",
+            "S_CREDIT_CARD_DEBT"
+          ],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_DEBT_008",
+      "title": "逾期罚金",
+      "text": "你忘了交某个小账单，晚了三天，罚金比账单还让人生气。\n你深呼吸了一下，试图把它当作普通的一天。",
+      "primary_tag": "debt",
+      "tags": [
+        "debt"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "只付最低（先活着）",
+          "effects": {
+            "money": -180,
+            "stress": 2
+          },
+          "add_states": [
+            "S_CREDIT_CARD_DEBT"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "多还一点（勒紧）",
+          "effects": {
+            "money": -420,
+            "stress": 1
+          },
+          "add_states": [],
+          "remove_states": [
+            "S_CREDIT_CARD_DEBT"
+          ]
+        },
+        {
+          "desc": "拖延/忽略（赌运气）",
+          "effects": {
+            "stress": 4
+          },
+          "add_states": [
+            "S_COLLECTIONS_NOTICE",
+            "S_CREDIT_CARD_DEBT"
+          ],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_DEBT_009",
+      "title": "人情借贷",
+      "text": "朋友说可以借你钱，但你知道那是另一种负担。\n你看了一眼银行App，数字像在眨眼。",
+      "primary_tag": "debt",
+      "tags": [
+        "debt"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "只付最低（先活着）",
+          "effects": {
+            "money": -180,
+            "stress": 2
+          },
+          "add_states": [
+            "S_CREDIT_CARD_DEBT"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "多还一点（勒紧）",
+          "effects": {
+            "money": -420,
+            "stress": 1
+          },
+          "add_states": [],
+          "remove_states": [
+            "S_CREDIT_CARD_DEBT"
+          ]
+        },
+        {
+          "desc": "拖延/忽略（赌运气）",
+          "effects": {
+            "stress": 4
+          },
+          "add_states": [
+            "S_COLLECTIONS_NOTICE",
+            "S_CREDIT_CARD_DEBT"
+          ],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_DEBT_010",
+      "title": "分期诱惑",
+      "text": "你刷到‘分期免息’，越看越觉得像陷阱。\n你想起上个月的教训，但这次又不完全一样。",
+      "primary_tag": "debt",
+      "tags": [
+        "debt"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "只付最低（先活着）",
+          "effects": {
+            "money": -180,
+            "stress": 2
+          },
+          "add_states": [
+            "S_CREDIT_CARD_DEBT"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "多还一点（勒紧）",
+          "effects": {
+            "money": -420,
+            "stress": 1
+          },
+          "add_states": [],
+          "remove_states": [
+            "S_CREDIT_CARD_DEBT"
+          ]
+        },
+        {
+          "desc": "拖延/忽略（赌运气）",
+          "effects": {
+            "stress": 4
+          },
+          "add_states": [
+            "S_COLLECTIONS_NOTICE",
+            "S_CREDIT_CARD_DEBT"
+          ],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_DEBT_011",
+      "title": "信用分下滑",
+      "text": "你的信用分掉了几分，你没做什么，但世界就是变难了。\n你想起上个月的教训，但这次又不完全一样。",
+      "primary_tag": "debt",
+      "tags": [
+        "debt"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "只付最低（先活着）",
+          "effects": {
+            "money": -180,
+            "stress": 2
+          },
+          "add_states": [
+            "S_CREDIT_CARD_DEBT"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "多还一点（勒紧）",
+          "effects": {
+            "money": -420,
+            "stress": 1
+          },
+          "add_states": [],
+          "remove_states": [
+            "S_CREDIT_CARD_DEBT"
+          ]
+        },
+        {
+          "desc": "拖延/忽略（赌运气）",
+          "effects": {
+            "stress": 4
+          },
+          "add_states": [
+            "S_COLLECTIONS_NOTICE",
+            "S_CREDIT_CARD_DEBT"
+          ],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_DEBT_012",
+      "title": "预批额度",
+      "text": "你看到‘预批额度’，像看到一扇写着‘不要进’的门。\n你深呼吸了一下，试图把它当作普通的一天。",
+      "primary_tag": "debt",
+      "tags": [
+        "debt"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "只付最低（先活着）",
+          "effects": {
+            "money": -180,
+            "stress": 2
+          },
+          "add_states": [
+            "S_CREDIT_CARD_DEBT"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "借一笔周转（甜蜜陷阱）",
+          "effects": {
+            "money": 700,
+            "stress": 2
+          },
+          "add_states": [
+            "S_HIGH_INTEREST_LOAN"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "拖延/忽略（赌运气）",
+          "effects": {
+            "stress": 4
+          },
+          "add_states": [
+            "S_COLLECTIONS_NOTICE",
+            "S_CREDIT_CARD_DEBT"
+          ],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_DEBT_013",
+      "title": "债务合并",
+      "text": "你想把债务合并，但申请表让你怀疑自己是否存在。\n你突然意识到，很多选择其实都是在买时间。",
+      "primary_tag": "debt",
+      "tags": [
+        "debt"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "只付最低（先活着）",
+          "effects": {
+            "money": -180,
+            "stress": 2
+          },
+          "add_states": [
+            "S_CREDIT_CARD_DEBT"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "多还一点（勒紧）",
+          "effects": {
+            "money": -420,
+            "stress": 1
+          },
+          "add_states": [],
+          "remove_states": [
+            "S_CREDIT_CARD_DEBT"
+          ]
+        },
+        {
+          "desc": "拖延/忽略（赌运气）",
+          "effects": {
+            "stress": 4
+          },
+          "add_states": [
+            "S_COLLECTIONS_NOTICE",
+            "S_CREDIT_CARD_DEBT"
+          ],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_DEBT_014",
+      "title": "医疗解释单",
+      "text": "你收到医疗账单解释单，字很多，钱更多。\n你突然意识到，很多选择其实都是在买时间。",
+      "primary_tag": "debt",
+      "tags": [
+        "debt"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "只付最低（先活着）",
+          "effects": {
+            "money": -260,
+            "stress": 3
+          },
+          "add_states": [
+            "S_MEDICAL_DEBT"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "多还一点（勒紧）",
+          "effects": {
+            "money": -420,
+            "stress": 1
+          },
+          "add_states": [
+            "S_WINDFALL_BUFFER"
+          ],
+          "remove_states": [
+            "S_CREDIT_CARD_DEBT"
+          ]
+        },
+        {
+          "desc": "拖延/忽略（赌运气）",
+          "effects": {
+            "stress": 4
+          },
+          "add_states": [
+            "S_COLLECTIONS_NOTICE",
+            "S_CREDIT_CARD_DEBT"
+          ],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_DEBT_015",
+      "title": "车险涨价",
+      "text": "你发现车险自动扣款涨价，你不记得同意过。\n你突然意识到，很多选择其实都是在买时间。",
+      "primary_tag": "debt",
+      "tags": [
+        "debt"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "只付最低（先活着）",
+          "effects": {
+            "money": -180,
+            "stress": 2
+          },
+          "add_states": [
+            "S_CREDIT_CARD_DEBT"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "多还一点（勒紧）",
+          "effects": {
+            "money": -420,
+            "stress": 1
+          },
+          "add_states": [],
+          "remove_states": [
+            "S_CREDIT_CARD_DEBT"
+          ]
+        },
+        {
+          "desc": "拖延/忽略（赌运气）",
+          "effects": {
+            "stress": 4
+          },
+          "add_states": [
+            "S_COLLECTIONS_NOTICE",
+            "S_CREDIT_CARD_DEBT"
+          ],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_DEBT_016",
+      "title": "固定支出表",
+      "text": "你算了一下本月固定支出，感觉自己像在给生活打工。\n你深呼吸了一下，试图把它当作普通的一天。",
+      "primary_tag": "debt",
+      "tags": [
+        "debt"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "只付最低（先活着）",
+          "effects": {
+            "money": -180,
+            "stress": 2
+          },
+          "add_states": [
+            "S_CREDIT_CARD_DEBT"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "多还一点（勒紧）",
+          "effects": {
+            "money": -420,
+            "stress": 1
+          },
+          "add_states": [],
+          "remove_states": [
+            "S_CREDIT_CARD_DEBT"
+          ]
+        },
+        {
+          "desc": "拖延/忽略（赌运气）",
+          "effects": {
+            "stress": 4
+          },
+          "add_states": [
+            "S_COLLECTIONS_NOTICE",
+            "S_CREDIT_CARD_DEBT"
+          ],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_DEBT_017",
+      "title": "诈骗短信",
+      "text": "你被诈骗短信盯上，对方比你更了解你的焦虑。\n你想起上个月的教训，但这次又不完全一样。",
+      "primary_tag": "debt",
+      "tags": [
+        "debt"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "只付最低（先活着）",
+          "effects": {
+            "money": -180,
+            "stress": 2
+          },
+          "add_states": [
+            "S_CREDIT_CARD_DEBT"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "多还一点（勒紧）",
+          "effects": {
+            "money": -420,
+            "stress": 1
+          },
+          "add_states": [],
+          "remove_states": [
+            "S_CREDIT_CARD_DEBT"
+          ]
+        },
+        {
+          "desc": "拖延/忽略（赌运气）",
+          "effects": {
+            "stress": 4
+          },
+          "add_states": [
+            "S_COLLECTIONS_NOTICE",
+            "S_CREDIT_CARD_DEBT"
+          ],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_DEBT_018",
+      "title": "随礼焦虑",
+      "text": "你朋友的婚礼要随礼，你在红包数额上纠结到失眠。\n你看了一眼银行App，数字像在眨眼。",
+      "primary_tag": "debt",
+      "tags": [
+        "debt"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "只付最低（先活着）",
+          "effects": {
+            "money": -180,
+            "stress": 2
+          },
+          "add_states": [
+            "S_CREDIT_CARD_DEBT"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "多还一点（勒紧）",
+          "effects": {
+            "money": -420,
+            "stress": 1
+          },
+          "add_states": [],
+          "remove_states": [
+            "S_CREDIT_CARD_DEBT"
+          ]
+        },
+        {
+          "desc": "拖延/忽略（赌运气）",
+          "effects": {
+            "stress": 4
+          },
+          "add_states": [
+            "S_COLLECTIONS_NOTICE",
+            "S_CREDIT_CARD_DEBT"
+          ],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_DEBT_019",
+      "title": "二手出清",
+      "text": "你想卖掉一些东西，但拍照上架也需要精力。\n你想起上个月的教训，但这次又不完全一样。",
+      "primary_tag": "debt",
+      "tags": [
+        "debt"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "只付最低（先活着）",
+          "effects": {
+            "money": -180,
+            "stress": 2
+          },
+          "add_states": [
+            "S_CREDIT_CARD_DEBT"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "多还一点（勒紧）",
+          "effects": {
+            "money": -420,
+            "stress": 1
+          },
+          "add_states": [],
+          "remove_states": [
+            "S_CREDIT_CARD_DEBT"
+          ]
+        },
+        {
+          "desc": "拖延/忽略（赌运气）",
+          "effects": {
+            "stress": 4
+          },
+          "add_states": [
+            "S_COLLECTIONS_NOTICE",
+            "S_CREDIT_CARD_DEBT"
+          ],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_DEBT_020",
+      "title": "税季回忆",
+      "text": "你突然想起税季要来了，胃里一沉。\n你想起上个月的教训，但这次又不完全一样。",
+      "primary_tag": "debt",
+      "tags": [
+        "debt"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "只付最低（先活着）",
+          "effects": {
+            "money": -180,
+            "stress": 2
+          },
+          "add_states": [
+            "S_CREDIT_CARD_DEBT"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "多还一点（勒紧）",
+          "effects": {
+            "money": -420,
+            "stress": 1
+          },
+          "add_states": [],
+          "remove_states": [
+            "S_CREDIT_CARD_DEBT"
+          ]
+        },
+        {
+          "desc": "拖延/忽略（赌运气）",
+          "effects": {
+            "stress": 4
+          },
+          "add_states": [
+            "S_COLLECTIONS_NOTICE",
+            "S_CREDIT_CARD_DEBT"
+          ],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_DEBT_021",
+      "title": "BNPL温柔刀",
+      "text": "你看到‘Buy now pay later’，像看到更温柔的刀。\n你看了一眼银行App，数字像在眨眼。",
+      "primary_tag": "debt",
+      "tags": [
+        "debt"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "只付最低（先活着）",
+          "effects": {
+            "money": -180,
+            "stress": 2
+          },
+          "add_states": [
+            "S_CREDIT_CARD_DEBT"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "借一笔周转（甜蜜陷阱）",
+          "effects": {
+            "money": 700,
+            "stress": 2
+          },
+          "add_states": [
+            "S_HIGH_INTEREST_LOAN"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "拖延/忽略（赌运气）",
+          "effects": {
+            "stress": 4
+          },
+          "add_states": [
+            "S_COLLECTIONS_NOTICE",
+            "S_CREDIT_CARD_DEBT"
+          ],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_DEBT_022",
+      "title": "室友欠款",
+      "text": "你的室友欠你钱，说下周还，你已经听过三次。\n你突然意识到，很多选择其实都是在买时间。",
+      "primary_tag": "debt",
+      "tags": [
+        "debt"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "只付最低（先活着）",
+          "effects": {
+            "money": -180,
+            "stress": 2
+          },
+          "add_states": [
+            "S_CREDIT_CARD_DEBT"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "多还一点（勒紧）",
+          "effects": {
+            "money": -420,
+            "stress": 1
+          },
+          "add_states": [],
+          "remove_states": [
+            "S_CREDIT_CARD_DEBT"
+          ]
+        },
+        {
+          "desc": "拖延/忽略（赌运气）",
+          "effects": {
+            "stress": 4
+          },
+          "add_states": [
+            "S_COLLECTIONS_NOTICE",
+            "S_CREDIT_CARD_DEBT"
+          ],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_DEBT_023",
+      "title": "陌生扣款",
+      "text": "你账上出现一笔陌生扣款，你心跳加速。\n你看了一眼银行App，数字像在眨眼。",
+      "primary_tag": "debt",
+      "tags": [
+        "debt"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "只付最低（先活着）",
+          "effects": {
+            "money": -180,
+            "stress": 2
+          },
+          "add_states": [
+            "S_CREDIT_CARD_DEBT"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "多还一点（勒紧）",
+          "effects": {
+            "money": -420,
+            "stress": 1
+          },
+          "add_states": [],
+          "remove_states": [
+            "S_CREDIT_CARD_DEBT"
+          ]
+        },
+        {
+          "desc": "拖延/忽略（赌运气）",
+          "effects": {
+            "stress": 4
+          },
+          "add_states": [
+            "S_COLLECTIONS_NOTICE",
+            "S_CREDIT_CARD_DEBT"
+          ],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_DEBT_024",
+      "title": "财务清理",
+      "text": "你决定今天做一次‘财务清理’，但打开App就疲惫。\n你突然意识到，很多选择其实都是在买时间。",
+      "primary_tag": "debt",
+      "tags": [
+        "debt"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "只付最低（先活着）",
+          "effects": {
+            "money": -180,
+            "stress": 2
+          },
+          "add_states": [
+            "S_CREDIT_CARD_DEBT"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "多还一点（勒紧）",
+          "effects": {
+            "money": -420,
+            "stress": 1
+          },
+          "add_states": [],
+          "remove_states": [
+            "S_CREDIT_CARD_DEBT"
+          ]
+        },
+        {
+          "desc": "拖延/忽略（赌运气）",
+          "effects": {
+            "stress": 4
+          },
+          "add_states": [
+            "S_COLLECTIONS_NOTICE",
+            "S_CREDIT_CARD_DEBT"
+          ],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_DEBT_025",
+      "title": "最后通知",
+      "text": "你收到一封‘最后通知’，你知道它不是最后。\n你深呼吸了一下，试图把它当作普通的一天。",
+      "primary_tag": "debt",
+      "tags": [
+        "debt"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "只付最低（先活着）",
+          "effects": {
+            "money": -180,
+            "stress": 2
+          },
+          "add_states": [
+            "S_CREDIT_CARD_DEBT"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "多还一点（勒紧）",
+          "effects": {
+            "money": -420,
+            "stress": 1
+          },
+          "add_states": [],
+          "remove_states": [
+            "S_CREDIT_CARD_DEBT"
+          ]
+        },
+        {
+          "desc": "拖延/忽略（赌运气）",
+          "effects": {
+            "stress": 4
+          },
+          "add_states": [
+            "S_COLLECTIONS_NOTICE",
+            "S_CREDIT_CARD_DEBT"
+          ],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_HOUSE_001",
+      "title": "续租涨幅",
+      "text": "房东发来续租条款，涨幅写得很轻描淡写。\n你突然意识到，很多选择其实都是在买时间。",
+      "primary_tag": "housing",
+      "tags": [
+        "housing"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "按时交房租/补缴",
+          "effects": {
+            "stress": -2
+          },
+          "add_states": [],
+          "remove_states": [
+            "S_RENT_ARREARS",
+            "S_RENT_DUE"
+          ],
+          "action": "PAY_RENT"
+        },
+        {
+          "desc": "先拖着（下周再说）",
+          "effects": {
+            "stress": 2
+          },
+          "add_states": [
+            "S_RENT_DUE"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "找办法周转/室友谈判",
+          "effects": {
+            "money": -260,
+            "stress": 4,
+            "friendship": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_HOUSE_002",
+      "title": "水管渗漏",
+      "text": "你发现水管渗漏，滴答声像在数钱。\n你突然意识到，很多选择其实都是在买时间。",
+      "primary_tag": "housing",
+      "tags": [
+        "housing"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "按时交房租/补缴",
+          "effects": {
+            "stress": -2
+          },
+          "add_states": [],
+          "remove_states": [
+            "S_RENT_ARREARS",
+            "S_RENT_DUE"
+          ],
+          "action": "PAY_RENT"
+        },
+        {
+          "desc": "先拖着（下周再说）",
+          "effects": {
+            "stress": 2
+          },
+          "add_states": [
+            "S_RENT_DUE"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "找办法周转/室友谈判",
+          "effects": {
+            "money": -180,
+            "stress": 3,
+            "friendship": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_HOUSE_003",
+      "title": "走廊纸箱",
+      "text": "隔壁搬走了，走廊里只剩纸箱味道。\n你看了一眼银行App，数字像在眨眼。",
+      "primary_tag": "housing",
+      "tags": [
+        "housing"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "按时交房租/补缴",
+          "effects": {
+            "stress": -2
+          },
+          "add_states": [],
+          "remove_states": [
+            "S_RENT_ARREARS",
+            "S_RENT_DUE"
+          ],
+          "action": "PAY_RENT"
+        },
+        {
+          "desc": "先拖着（下周再说）",
+          "effects": {
+            "stress": 2
+          },
+          "add_states": [
+            "S_RENT_DUE"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "找办法周转/室友谈判",
+          "effects": {
+            "money": -180,
+            "stress": 3,
+            "friendship": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_HOUSE_004",
+      "title": "室友退租",
+      "text": "室友突然说要提前退租，你脑子里只剩两个字：押金。\n你突然意识到，很多选择其实都是在买时间。",
+      "primary_tag": "housing",
+      "tags": [
+        "housing"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "按时交房租/补缴",
+          "effects": {
+            "stress": -2
+          },
+          "add_states": [],
+          "remove_states": [
+            "S_RENT_ARREARS",
+            "S_RENT_DUE"
+          ],
+          "action": "PAY_RENT"
+        },
+        {
+          "desc": "先拖着（下周再说）",
+          "effects": {
+            "stress": 2
+          },
+          "add_states": [
+            "S_RENT_DUE"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "找办法周转/室友谈判",
+          "effects": {
+            "money": -180,
+            "stress": 3,
+            "friendship": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_HOUSE_005",
+      "title": "维修延后",
+      "text": "维修工说最早下周来，你看着湿墙发呆。\n你突然意识到，很多选择其实都是在买时间。",
+      "primary_tag": "housing",
+      "tags": [
+        "housing"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "按时交房租/补缴",
+          "effects": {
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": [
+            "S_RENT_ARREARS",
+            "S_RENT_DUE"
+          ],
+          "action": "PAY_RENT"
+        },
+        {
+          "desc": "先拖着（下周再说）",
+          "effects": {
+            "stress": 2
+          },
+          "add_states": [
+            "S_RENT_DUE"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "找办法周转/室友谈判",
+          "effects": {
+            "money": -180,
+            "stress": 3,
+            "friendship": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_HOUSE_006",
+      "title": "例行检查",
+      "text": "房东要做例行检查，你开始收拾得像在准备答辩。\n你突然意识到，很多选择其实都是在买时间。",
+      "primary_tag": "housing",
+      "tags": [
+        "housing"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "按时交房租/补缴",
+          "effects": {
+            "stress": -2
+          },
+          "add_states": [],
+          "remove_states": [
+            "S_RENT_ARREARS",
+            "S_RENT_DUE"
+          ],
+          "action": "PAY_RENT"
+        },
+        {
+          "desc": "先拖着（下周再说）",
+          "effects": {
+            "stress": 2
+          },
+          "add_states": [
+            "S_RENT_DUE"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "找办法周转/室友谈判",
+          "effects": {
+            "money": -180,
+            "stress": 3,
+            "friendship": -1
+          },
+          "add_states": [
+            "S_OVERDRAFT"
+          ],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_HOUSE_007",
+      "title": "停车收费",
+      "text": "小区公告说停车位要收费，你感觉生活又加了一层。\n你突然意识到，很多选择其实都是在买时间。",
+      "primary_tag": "housing",
+      "tags": [
+        "housing"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "按时交房租/补缴",
+          "effects": {
+            "stress": -2
+          },
+          "add_states": [],
+          "remove_states": [
+            "S_RENT_ARREARS",
+            "S_RENT_DUE"
+          ],
+          "action": "PAY_RENT"
+        },
+        {
+          "desc": "先拖着（下周再说）",
+          "effects": {
+            "stress": 2
+          },
+          "add_states": [
+            "S_RENT_DUE"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "找办法周转/室友谈判",
+          "effects": {
+            "money": -180,
+            "stress": 3,
+            "friendship": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_HOUSE_008",
+      "title": "房租提醒",
+      "text": "你收到‘房租待缴’提醒，像闹钟一样准时烦人。\n你看了一眼银行App，数字像在眨眼。",
+      "primary_tag": "housing",
+      "tags": [
+        "housing"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "按时交房租/补缴",
+          "effects": {
+            "stress": -2
+          },
+          "add_states": [],
+          "remove_states": [
+            "S_RENT_ARREARS",
+            "S_RENT_DUE"
+          ],
+          "action": "PAY_RENT"
+        },
+        {
+          "desc": "先拖着（下周再说）",
+          "effects": {
+            "stress": 2
+          },
+          "add_states": [
+            "S_RENT_DUE"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "找办法周转/室友谈判",
+          "effects": {
+            "money": -180,
+            "stress": 3,
+            "friendship": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_HOUSE_009",
+      "title": "楼上吵闹",
+      "text": "楼上深夜吵闹，你一边生气一边算搬家成本。\n你想起上个月的教训，但这次又不完全一样。",
+      "primary_tag": "housing",
+      "tags": [
+        "housing"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "按时交房租/补缴",
+          "effects": {
+            "stress": -2
+          },
+          "add_states": [],
+          "remove_states": [
+            "S_RENT_ARREARS",
+            "S_RENT_DUE"
+          ],
+          "action": "PAY_RENT"
+        },
+        {
+          "desc": "先拖着（下周再说）",
+          "effects": {
+            "stress": 2
+          },
+          "add_states": [
+            "S_RENT_DUE"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "找办法周转/室友谈判",
+          "effects": {
+            "money": -180,
+            "stress": 3,
+            "friendship": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_HOUSE_010",
+      "title": "暖气罢工",
+      "text": "你发现暖气坏了，天冷的时候更容易崩溃。\n你想起上个月的教训，但这次又不完全一样。",
+      "primary_tag": "housing",
+      "tags": [
+        "housing"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "按时交房租/补缴",
+          "effects": {
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": [
+            "S_RENT_ARREARS",
+            "S_RENT_DUE"
+          ],
+          "action": "PAY_RENT"
+        },
+        {
+          "desc": "先拖着（下周再说）",
+          "effects": {
+            "stress": 2
+          },
+          "add_states": [
+            "S_RENT_DUE"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "找办法周转/室友谈判",
+          "effects": {
+            "money": -180,
+            "stress": 3,
+            "friendship": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_HOUSE_011",
+      "title": "租房保险",
+      "text": "租房保险到期，你犹豫要不要续。\n你突然意识到，很多选择其实都是在买时间。",
+      "primary_tag": "housing",
+      "tags": [
+        "housing"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "按时交房租/补缴",
+          "effects": {
+            "stress": -2
+          },
+          "add_states": [],
+          "remove_states": [
+            "S_RENT_ARREARS",
+            "S_RENT_DUE"
+          ],
+          "action": "PAY_RENT"
+        },
+        {
+          "desc": "先拖着（下周再说）",
+          "effects": {
+            "stress": 2
+          },
+          "add_states": [
+            "S_RENT_DUE"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "找办法周转/室友谈判",
+          "effects": {
+            "money": -180,
+            "stress": 3,
+            "friendship": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_HOUSE_012",
+      "title": "搬家念头",
+      "text": "你想到搬家，但想到押金、搬运、请假，又放弃。\n你看了一眼银行App，数字像在眨眼。",
+      "primary_tag": "housing",
+      "tags": [
+        "housing"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "按时交房租/补缴",
+          "effects": {
+            "stress": -2
+          },
+          "add_states": [],
+          "remove_states": [
+            "S_RENT_ARREARS",
+            "S_RENT_DUE"
+          ],
+          "action": "PAY_RENT"
+        },
+        {
+          "desc": "先拖着（下周再说）",
+          "effects": {
+            "stress": 2
+          },
+          "add_states": [
+            "S_RENT_DUE"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "找办法周转/室友谈判",
+          "effects": {
+            "money": -180,
+            "stress": 3,
+            "friendship": -1
+          },
+          "add_states": [
+            "S_OVERDRAFT"
+          ],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_HOUSE_013",
+      "title": "噪音投诉",
+      "text": "邻居投诉你噪音，其实只是你在走路。\n你深呼吸了一下，试图把它当作普通的一天。",
+      "primary_tag": "housing",
+      "tags": [
+        "housing"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "按时交房租/补缴",
+          "effects": {
+            "stress": -2
+          },
+          "add_states": [],
+          "remove_states": [
+            "S_RENT_ARREARS",
+            "S_RENT_DUE"
+          ],
+          "action": "PAY_RENT"
+        },
+        {
+          "desc": "先拖着（下周再说）",
+          "effects": {
+            "stress": 2
+          },
+          "add_states": [
+            "S_RENT_DUE"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "找办法周转/室友谈判",
+          "effects": {
+            "money": -180,
+            "stress": 3,
+            "friendship": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_HOUSE_014",
+      "title": "换地毯",
+      "text": "房东说要换地毯，听起来像要你出钱。\n你突然意识到，很多选择其实都是在买时间。",
+      "primary_tag": "housing",
+      "tags": [
+        "housing"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "按时交房租/补缴",
+          "effects": {
+            "stress": -2
+          },
+          "add_states": [],
+          "remove_states": [
+            "S_RENT_ARREARS",
+            "S_RENT_DUE"
+          ],
+          "action": "PAY_RENT"
+        },
+        {
+          "desc": "先拖着（下周再说）",
+          "effects": {
+            "stress": 2
+          },
+          "add_states": [
+            "S_RENT_DUE"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "找办法周转/室友谈判",
+          "effects": {
+            "money": -180,
+            "stress": 3,
+            "friendship": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_HOUSE_015",
+      "title": "逾期邮件",
+      "text": "你收到一封‘租金逾期’的自动邮件，语气像系统在判你。\n你深呼吸了一下，试图把它当作普通的一天。",
+      "primary_tag": "housing",
+      "tags": [
+        "housing"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "按时交房租/补缴",
+          "effects": {
+            "stress": -2
+          },
+          "add_states": [],
+          "remove_states": [
+            "S_RENT_ARREARS",
+            "S_RENT_DUE"
+          ],
+          "action": "PAY_RENT"
+        },
+        {
+          "desc": "先拖着（下周再说）",
+          "effects": {
+            "stress": 2
+          },
+          "add_states": [
+            "S_RENT_DUE"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "找办法周转/室友谈判",
+          "effects": {
+            "money": -180,
+            "stress": 3,
+            "friendship": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_HOUSE_016",
+      "title": "合同罚则",
+      "text": "你发现合同里有一条你以前没注意过的罚则。\n你看了一眼银行App，数字像在眨眼。",
+      "primary_tag": "housing",
+      "tags": [
+        "housing"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "按时交房租/补缴",
+          "effects": {
+            "stress": -2
+          },
+          "add_states": [],
+          "remove_states": [
+            "S_RENT_ARREARS",
+            "S_RENT_DUE"
+          ],
+          "action": "PAY_RENT"
+        },
+        {
+          "desc": "先拖着（下周再说）",
+          "effects": {
+            "stress": 2
+          },
+          "add_states": [
+            "S_RENT_DUE"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "找办法周转/室友谈判",
+          "effects": {
+            "money": -180,
+            "stress": 3,
+            "friendship": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_HOUSE_017",
+      "title": "突然停电",
+      "text": "家里突然停电，冰箱里的食物开始倒计时。\n你深呼吸了一下，试图把它当作普通的一天。",
+      "primary_tag": "housing",
+      "tags": [
+        "housing"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "按时交房租/补缴",
+          "effects": {
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": [
+            "S_RENT_ARREARS",
+            "S_RENT_DUE"
+          ],
+          "action": "PAY_RENT"
+        },
+        {
+          "desc": "先拖着（下周再说）",
+          "effects": {
+            "stress": 2
+          },
+          "add_states": [
+            "S_RENT_DUE"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "找办法周转/室友谈判",
+          "effects": {
+            "money": -180,
+            "stress": 3,
+            "friendship": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_HOUSE_018",
+      "title": "水电暴涨",
+      "text": "你的水电费突然暴涨，你怀疑自己是不是在养一只看不见的怪物。\n你深呼吸了一下，试图把它当作普通的一天。",
+      "primary_tag": "housing",
+      "tags": [
+        "housing"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "按时交房租/补缴",
+          "effects": {
+            "stress": -2
+          },
+          "add_states": [],
+          "remove_states": [
+            "S_RENT_ARREARS",
+            "S_RENT_DUE"
+          ],
+          "action": "PAY_RENT"
+        },
+        {
+          "desc": "先拖着（下周再说）",
+          "effects": {
+            "stress": 2
+          },
+          "add_states": [
+            "S_RENT_DUE"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "找办法周转/室友谈判",
+          "effects": {
+            "money": -180,
+            "stress": 3,
+            "friendship": -1
+          },
+          "add_states": [
+            "S_OVERDRAFT"
+          ],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_HOUSE_019",
+      "title": "收入证明",
+      "text": "你被要求提供收入证明，你想起自己不稳定的月结。\n你深呼吸了一下，试图把它当作普通的一天。",
+      "primary_tag": "housing",
+      "tags": [
+        "housing"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "按时交房租/补缴",
+          "effects": {
+            "stress": -2
+          },
+          "add_states": [],
+          "remove_states": [
+            "S_RENT_ARREARS",
+            "S_RENT_DUE"
+          ],
+          "action": "PAY_RENT"
+        },
+        {
+          "desc": "先拖着（下周再说）",
+          "effects": {
+            "stress": 2
+          },
+          "add_states": [
+            "S_RENT_DUE"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "找办法周转/室友谈判",
+          "effects": {
+            "money": -180,
+            "stress": 3,
+            "friendship": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_HOUSE_020",
+      "title": "留宿入侵",
+      "text": "室友带人留宿，家里像被占领。\n你看了一眼银行App，数字像在眨眼。",
+      "primary_tag": "housing",
+      "tags": [
+        "housing"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "按时交房租/补缴",
+          "effects": {
+            "stress": -2
+          },
+          "add_states": [],
+          "remove_states": [
+            "S_RENT_ARREARS",
+            "S_RENT_DUE"
+          ],
+          "action": "PAY_RENT"
+        },
+        {
+          "desc": "先拖着（下周再说）",
+          "effects": {
+            "stress": 2
+          },
+          "add_states": [
+            "S_RENT_DUE"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "找办法周转/室友谈判",
+          "effects": {
+            "money": -180,
+            "stress": 3,
+            "friendship": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_HOUSE_021",
+      "title": "阳台霉点",
+      "text": "你在阳台上发现霉点，像看到健康值在掉。\n你想起上个月的教训，但这次又不完全一样。",
+      "primary_tag": "housing",
+      "tags": [
+        "housing"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "按时交房租/补缴",
+          "effects": {
+            "stress": -2
+          },
+          "add_states": [],
+          "remove_states": [
+            "S_RENT_ARREARS",
+            "S_RENT_DUE"
+          ],
+          "action": "PAY_RENT"
+        },
+        {
+          "desc": "先拖着（下周再说）",
+          "effects": {
+            "stress": 2
+          },
+          "add_states": [
+            "S_RENT_DUE"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "找办法周转/室友谈判",
+          "effects": {
+            "money": -180,
+            "stress": 3,
+            "friendship": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_HOUSE_022",
+      "title": "房东卖房",
+      "text": "房东说要卖房，你突然被迫参与别人的人生决策。\n你深呼吸了一下，试图把它当作普通的一天。",
+      "primary_tag": "housing",
+      "tags": [
+        "housing"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "按时交房租/补缴",
+          "effects": {
+            "stress": -2
+          },
+          "add_states": [],
+          "remove_states": [
+            "S_RENT_ARREARS",
+            "S_RENT_DUE"
+          ],
+          "action": "PAY_RENT"
+        },
+        {
+          "desc": "先拖着（下周再说）",
+          "effects": {
+            "stress": 2
+          },
+          "add_states": [
+            "S_RENT_DUE"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "找办法周转/室友谈判",
+          "effects": {
+            "money": -180,
+            "stress": 3,
+            "friendship": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_HOUSE_023",
+      "title": "垃圾罚单",
+      "text": "你错过了垃圾回收日，小区罚单来得很快。\n你看了一眼银行App，数字像在眨眼。",
+      "primary_tag": "housing",
+      "tags": [
+        "housing"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "按时交房租/补缴",
+          "effects": {
+            "stress": -2
+          },
+          "add_states": [],
+          "remove_states": [
+            "S_RENT_ARREARS",
+            "S_RENT_DUE"
+          ],
+          "action": "PAY_RENT"
+        },
+        {
+          "desc": "先拖着（下周再说）",
+          "effects": {
+            "stress": 2
+          },
+          "add_states": [
+            "S_RENT_DUE"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "找办法周转/室友谈判",
+          "effects": {
+            "money": -180,
+            "stress": 3,
+            "friendship": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_HOUSE_024",
+      "title": "更远通勤",
+      "text": "你考虑换到更远的地方，通勤又像新的债务。\n你看了一眼银行App，数字像在眨眼。",
+      "primary_tag": "housing",
+      "tags": [
+        "housing"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "按时交房租/补缴",
+          "effects": {
+            "stress": -2
+          },
+          "add_states": [],
+          "remove_states": [
+            "S_RENT_ARREARS",
+            "S_RENT_DUE"
+          ],
+          "action": "PAY_RENT"
+        },
+        {
+          "desc": "先拖着（下周再说）",
+          "effects": {
+            "stress": 2
+          },
+          "add_states": [
+            "S_RENT_DUE"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "找办法周转/室友谈判",
+          "effects": {
+            "money": -260,
+            "stress": 4,
+            "friendship": -1
+          },
+          "add_states": [
+            "S_OVERDRAFT"
+          ],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_HOUSE_025",
+      "title": "划不掉的待办",
+      "text": "你把‘交房租’写进待办，但它像永远划不掉。\n你突然意识到，很多选择其实都是在买时间。",
+      "primary_tag": "housing",
+      "tags": [
+        "housing"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "按时交房租/补缴",
+          "effects": {
+            "stress": -2
+          },
+          "add_states": [],
+          "remove_states": [
+            "S_RENT_ARREARS",
+            "S_RENT_DUE"
+          ],
+          "action": "PAY_RENT"
+        },
+        {
+          "desc": "先拖着（下周再说）",
+          "effects": {
+            "stress": 2
+          },
+          "add_states": [
+            "S_RENT_DUE"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "找办法周转/室友谈判",
+          "effects": {
+            "money": -180,
+            "stress": 3,
+            "friendship": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_HEALTH_001",
+      "title": "嗓子刺痛",
+      "text": "你醒来嗓子刺痛，像昨晚吞了砂纸。\n你看了一眼银行App，数字像在眨眼。",
+      "primary_tag": "health",
+      "tags": [
+        "health"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "硬抗继续工作",
+          "effects": {
+            "health": -3,
+            "stress": 3
+          },
+          "add_states": [
+            "S_SLEEP_DEPRIVED"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "休息/轻度自救",
+          "effects": {
+            "health": 3,
+            "money": -120,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "去看医生/检查",
+          "effects": {
+            "health": 2,
+            "money": -260,
+            "stress": 1
+          },
+          "add_states": [
+            "S_MEDICAL_DEBT"
+          ],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_HEALTH_002",
+      "title": "膝盖抗议",
+      "text": "膝盖在下楼梯时抗议，你突然意识到自己不再无敌。\n你看了一眼银行App，数字像在眨眼。",
+      "primary_tag": "health",
+      "tags": [
+        "health"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "硬抗继续工作",
+          "effects": {
+            "health": -3,
+            "stress": 3
+          },
+          "add_states": [
+            "S_SLEEP_DEPRIVED"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "休息/轻度自救",
+          "effects": {
+            "health": 3,
+            "money": -120,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "去看医生/检查",
+          "effects": {
+            "health": 2,
+            "money": -260,
+            "stress": 1
+          },
+          "add_states": [
+            "S_MEDICAL_DEBT"
+          ],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_HEALTH_003",
+      "title": "体检科普",
+      "text": "你刷到一条体检科普，越看越像在对号入座。\n你看了一眼银行App，数字像在眨眼。",
+      "primary_tag": "health",
+      "tags": [
+        "health"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "硬抗继续工作",
+          "effects": {
+            "health": -3,
+            "stress": 3
+          },
+          "add_states": [
+            "S_SLEEP_DEPRIVED"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "休息/轻度自救",
+          "effects": {
+            "health": 3,
+            "money": -120,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "去看医生/检查",
+          "effects": {
+            "health": 2,
+            "money": -260,
+            "stress": 1
+          },
+          "add_states": [
+            "S_MEDICAL_DEBT"
+          ],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_HEALTH_004",
+      "title": "胸口闷气",
+      "text": "你胸口一阵闷，你开始搜索但又不敢看结果。\n你看了一眼银行App，数字像在眨眼。",
+      "primary_tag": "health",
+      "tags": [
+        "health"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "硬抗继续工作",
+          "effects": {
+            "health": -3,
+            "stress": 3
+          },
+          "add_states": [
+            "S_SLEEP_DEPRIVED"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "休息/轻度自救",
+          "effects": {
+            "health": 3,
+            "money": -120,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "去看医生/检查",
+          "effects": {
+            "health": 2,
+            "money": -260,
+            "stress": 1
+          },
+          "add_states": [
+            "S_MEDICAL_DEBT"
+          ],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_HEALTH_005",
+      "title": "咖啡反噬",
+      "text": "你熬夜后心跳加快，咖啡不再是朋友。\n你想起上个月的教训，但这次又不完全一样。",
+      "primary_tag": "health",
+      "tags": [
+        "health"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "硬抗继续工作",
+          "effects": {
+            "health": -3,
+            "stress": 3
+          },
+          "add_states": [
+            "S_SLEEP_DEPRIVED"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "休息/轻度自救",
+          "effects": {
+            "health": 3,
+            "money": -120,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "去看医生/检查",
+          "effects": {
+            "health": 2,
+            "money": -260,
+            "stress": 1
+          },
+          "add_states": [
+            "S_MEDICAL_DEBT"
+          ],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_HEALTH_006",
+      "title": "牙痛失眠",
+      "text": "你牙痛到无法专注，任何声音都像放大。\n你想起上个月的教训，但这次又不完全一样。",
+      "primary_tag": "health",
+      "tags": [
+        "health"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "硬抗继续工作",
+          "effects": {
+            "health": -3,
+            "stress": 3
+          },
+          "add_states": [
+            "S_SLEEP_DEPRIVED"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "休息/轻度自救",
+          "effects": {
+            "health": 3,
+            "money": -120,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "做治疗（贵但解决）",
+          "effects": {
+            "money": -900,
+            "health": 5,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_HEALTH_007",
+      "title": "运动拉伤",
+      "text": "你运动时拉伤，疼痛提醒你‘别逞强’。\n你看了一眼银行App，数字像在眨眼。",
+      "primary_tag": "health",
+      "tags": [
+        "health"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "硬抗继续工作",
+          "effects": {
+            "health": -3,
+            "stress": 3
+          },
+          "add_states": [
+            "S_SLEEP_DEPRIVED"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "休息/轻度自救",
+          "effects": {
+            "health": 3,
+            "money": -120,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "去看医生/检查",
+          "effects": {
+            "health": 2,
+            "money": -260,
+            "stress": 1
+          },
+          "add_states": [
+            "S_MEDICAL_DEBT"
+          ],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_HEALTH_008",
+      "title": "过敏燃烧",
+      "text": "你被过敏折磨，眼睛像在燃烧。\n你深呼吸了一下，试图把它当作普通的一天。",
+      "primary_tag": "health",
+      "tags": [
+        "health"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "硬抗继续工作",
+          "effects": {
+            "health": -3,
+            "stress": 3
+          },
+          "add_states": [
+            "S_SLEEP_DEPRIVED"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "休息/轻度自救",
+          "effects": {
+            "health": 3,
+            "money": -120,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "去看医生/检查",
+          "effects": {
+            "health": 2,
+            "money": -260,
+            "stress": 1
+          },
+          "add_states": [
+            "S_MEDICAL_DEBT"
+          ],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_HEALTH_009",
+      "title": "浅眠夜",
+      "text": "你发现睡眠越来越浅，梦也越来越累。\n你想起上个月的教训，但这次又不完全一样。",
+      "primary_tag": "health",
+      "tags": [
+        "health"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "硬抗继续工作",
+          "effects": {
+            "health": -3,
+            "stress": 3
+          },
+          "add_states": [
+            "S_SLEEP_DEPRIVED"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "休息/轻度自救",
+          "effects": {
+            "health": 3,
+            "money": -120,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "去看医生/检查",
+          "effects": {
+            "health": 2,
+            "money": -260,
+            "stress": 1
+          },
+          "add_states": [
+            "S_MEDICAL_DEBT"
+          ],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_HEALTH_010",
+      "title": "胃里阴影",
+      "text": "你胃不舒服，但你也说不清是食物还是焦虑。\n你深呼吸了一下，试图把它当作普通的一天。",
+      "primary_tag": "health",
+      "tags": [
+        "health"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "硬抗继续工作",
+          "effects": {
+            "health": -3,
+            "stress": 3
+          },
+          "add_states": [
+            "S_SLEEP_DEPRIVED"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "休息/轻度自救",
+          "effects": {
+            "health": 3,
+            "money": -120,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "去看医生/检查",
+          "effects": {
+            "health": 2,
+            "money": -260,
+            "stress": 1
+          },
+          "add_states": [
+            "S_MEDICAL_DEBT"
+          ],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_HEALTH_011",
+      "title": "体重波动",
+      "text": "你体重突然波动，你开始怀疑生活的每一口。\n你看了一眼银行App，数字像在眨眼。",
+      "primary_tag": "health",
+      "tags": [
+        "health"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "硬抗继续工作",
+          "effects": {
+            "health": -3,
+            "stress": 3
+          },
+          "add_states": [
+            "S_SLEEP_DEPRIVED"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "休息/轻度自救",
+          "effects": {
+            "health": 3,
+            "money": -120,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "去看医生/检查",
+          "effects": {
+            "health": 2,
+            "money": -260,
+            "stress": 1
+          },
+          "add_states": [
+            "S_MEDICAL_DEBT"
+          ],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_HEALTH_012",
+      "title": "干涩双眼",
+      "text": "你眼睛干涩到发疼，屏幕像在反噬。\n你想起上个月的教训，但这次又不完全一样。",
+      "primary_tag": "health",
+      "tags": [
+        "health"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "硬抗继续工作",
+          "effects": {
+            "health": -3,
+            "stress": 3
+          },
+          "add_states": [
+            "S_SLEEP_DEPRIVED"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "休息/轻度自救",
+          "effects": {
+            "health": 3,
+            "money": -120,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "去看医生/检查",
+          "effects": {
+            "health": 2,
+            "money": -260,
+            "stress": 1
+          },
+          "add_states": [
+            "S_MEDICAL_DEBT"
+          ],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_HEALTH_013",
+      "title": "整日头痛",
+      "text": "你头痛一整天，像被无形的手拧着。\n你看了一眼银行App，数字像在眨眼。",
+      "primary_tag": "health",
+      "tags": [
+        "health"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "硬抗继续工作",
+          "effects": {
+            "health": -3,
+            "stress": 3
+          },
+          "add_states": [
+            "S_SLEEP_DEPRIVED"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "休息/轻度自救",
+          "effects": {
+            "health": 3,
+            "money": -120,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "去看医生/检查",
+          "effects": {
+            "health": 2,
+            "money": -260,
+            "stress": 1
+          },
+          "add_states": [
+            "S_MEDICAL_DEBT"
+          ],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_HEALTH_014",
+      "title": "戒断反扑",
+      "text": "你决定戒烟/戒糖，但身体比你更会反抗。\n你看了一眼银行App，数字像在眨眼。",
+      "primary_tag": "health",
+      "tags": [
+        "health"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "硬抗继续工作",
+          "effects": {
+            "health": -3,
+            "stress": 3
+          },
+          "add_states": [
+            "S_SLEEP_DEPRIVED"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "休息/轻度自救",
+          "effects": {
+            "health": 3,
+            "money": -120,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "去看医生/检查",
+          "effects": {
+            "health": 2,
+            "money": -260,
+            "stress": 1
+          },
+          "add_states": [
+            "S_MEDICAL_DEBT"
+          ],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_HEALTH_015",
+      "title": "咨询犹豫",
+      "text": "你想预约心理咨询，但又担心花钱和时间。\n你突然意识到，很多选择其实都是在买时间。",
+      "primary_tag": "health",
+      "tags": [
+        "health"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "硬抗继续工作",
+          "effects": {
+            "health": -3,
+            "stress": 3
+          },
+          "add_states": [
+            "S_SLEEP_DEPRIVED"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "预约心理咨询",
+          "effects": {
+            "money": -160,
+            "stress": -2
+          },
+          "add_states": [
+            "S_THERAPY"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "去看医生/检查",
+          "effects": {
+            "health": 2,
+            "money": -260,
+            "stress": 1
+          },
+          "add_states": [
+            "S_MEDICAL_DEBT"
+          ],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_HEALTH_016",
+      "title": "健身折扣",
+      "text": "你看到健身房会员折扣，像看到一条更健康的路。\n你突然意识到，很多选择其实都是在买时间。",
+      "primary_tag": "health",
+      "tags": [
+        "health"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "硬抗继续工作",
+          "effects": {
+            "health": -3,
+            "stress": 3
+          },
+          "add_states": [
+            "S_SLEEP_DEPRIVED"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "办会员（建立习惯）",
+          "effects": {
+            "money": -60,
+            "stress": -1
+          },
+          "add_states": [
+            "S_GYM_HABIT"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "去看医生/检查",
+          "effects": {
+            "health": 2,
+            "money": -260,
+            "stress": 1
+          },
+          "add_states": [
+            "S_MEDICAL_DEBT"
+          ],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_HEALTH_017",
+      "title": "摔倒一跤",
+      "text": "你不小心摔了一跤，骨头没断，但信心碎了一点。\n你突然意识到，很多选择其实都是在买时间。",
+      "primary_tag": "health",
+      "tags": [
+        "health"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "硬抗继续工作",
+          "effects": {
+            "health": -5,
+            "stress": 3
+          },
+          "add_states": [
+            "S_INJURED"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "休息/轻度自救",
+          "effects": {
+            "health": 3,
+            "money": -120,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "去看医生/检查",
+          "effects": {
+            "health": 2,
+            "money": -260,
+            "stress": 1
+          },
+          "add_states": [
+            "S_MEDICAL_DEBT"
+          ],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_HEALTH_018",
+      "title": "无名疲惫",
+      "text": "你突然觉得自己很累，连解释都懒得解释。\n你想起上个月的教训，但这次又不完全一样。",
+      "primary_tag": "health",
+      "tags": [
+        "health"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "硬抗继续工作",
+          "effects": {
+            "health": -3,
+            "stress": 3
+          },
+          "add_states": [
+            "S_SLEEP_DEPRIVED"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "休息/轻度自救",
+          "effects": {
+            "health": 3,
+            "money": -120,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "去看医生/检查",
+          "effects": {
+            "health": 2,
+            "money": -260,
+            "stress": 1
+          },
+          "add_states": [
+            "S_MEDICAL_DEBT"
+          ],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_HEALTH_019",
+      "title": "切到手",
+      "text": "你做饭时切到手，血让你短暂清醒。\n你深呼吸了一下，试图把它当作普通的一天。",
+      "primary_tag": "health",
+      "tags": [
+        "health"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "硬抗继续工作",
+          "effects": {
+            "health": -3,
+            "stress": 3
+          },
+          "add_states": [
+            "S_SLEEP_DEPRIVED"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "休息/轻度自救",
+          "effects": {
+            "health": 3,
+            "money": -120,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "去看医生/检查",
+          "effects": {
+            "health": 2,
+            "money": -260,
+            "stress": 1
+          },
+          "add_states": [
+            "S_MEDICAL_DEBT"
+          ],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_HEALTH_020",
+      "title": "抽血时刻",
+      "text": "你去体检抽血，针头进入那瞬间你心里一空。\n你深呼吸了一下，试图把它当作普通的一天。",
+      "primary_tag": "health",
+      "tags": [
+        "health"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "硬抗继续工作",
+          "effects": {
+            "health": -3,
+            "stress": 3
+          },
+          "add_states": [
+            "S_SLEEP_DEPRIVED"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "休息/轻度自救",
+          "effects": {
+            "health": 3,
+            "money": -120,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "去看医生/检查",
+          "effects": {
+            "health": 2,
+            "money": -260,
+            "stress": 1
+          },
+          "add_states": [
+            "S_MEDICAL_DEBT"
+          ],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_HEALTH_021",
+      "title": "进一步检查",
+      "text": "你被医生建议做进一步检查，‘以防万一’四个字很重。\n你深呼吸了一下，试图把它当作普通的一天。",
+      "primary_tag": "health",
+      "tags": [
+        "health"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "硬抗继续工作",
+          "effects": {
+            "health": -3,
+            "stress": 3
+          },
+          "add_states": [
+            "S_SLEEP_DEPRIVED"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "休息/轻度自救",
+          "effects": {
+            "health": 3,
+            "money": -120,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "去看医生/检查",
+          "effects": {
+            "health": 2,
+            "money": -260,
+            "stress": 1
+          },
+          "add_states": [
+            "S_MEDICAL_DEBT"
+          ],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_HEALTH_022",
+      "title": "跳过药物",
+      "text": "你为了省钱跳过药，但症状更明显了。\n你想起上个月的教训，但这次又不完全一样。",
+      "primary_tag": "health",
+      "tags": [
+        "health"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "硬抗继续工作",
+          "effects": {
+            "health": -3,
+            "stress": 3
+          },
+          "add_states": [
+            "S_SLEEP_DEPRIVED"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "休息/轻度自救",
+          "effects": {
+            "health": 3,
+            "money": -120,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "去看医生/检查",
+          "effects": {
+            "health": 2,
+            "money": -260,
+            "stress": 1
+          },
+          "add_states": [
+            "S_MEDICAL_DEBT"
+          ],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_HEALTH_023",
+      "title": "冥想失败",
+      "text": "你尝试冥想，但脑子像被广告占满。\n你看了一眼银行App，数字像在眨眼。",
+      "primary_tag": "health",
+      "tags": [
+        "health"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "硬抗继续工作",
+          "effects": {
+            "health": -3,
+            "stress": 3
+          },
+          "add_states": [
+            "S_SLEEP_DEPRIVED"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "休息/轻度自救",
+          "effects": {
+            "health": 3,
+            "money": -120,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "去看医生/检查",
+          "effects": {
+            "health": 2,
+            "money": -260,
+            "stress": 1
+          },
+          "add_states": [
+            "S_MEDICAL_DEBT"
+          ],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_HEALTH_024",
+      "title": "周末噩梦",
+      "text": "你决定周末好好睡，但被噩梦追着跑。\n你想起上个月的教训，但这次又不完全一样。",
+      "primary_tag": "health",
+      "tags": [
+        "health"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "硬抗继续工作",
+          "effects": {
+            "health": -3,
+            "stress": 3
+          },
+          "add_states": [
+            "S_SLEEP_DEPRIVED"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "休息/轻度自救",
+          "effects": {
+            "health": 3,
+            "money": -120,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "去看医生/检查",
+          "effects": {
+            "health": 2,
+            "money": -260,
+            "stress": 1
+          },
+          "add_states": [
+            "S_MEDICAL_DEBT"
+          ],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_HEALTH_025",
+      "title": "保险念头",
+      "text": "你开始认真想：保险是不是该买了。\n你深呼吸了一下，试图把它当作普通的一天。",
+      "primary_tag": "health",
+      "tags": [
+        "health"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "硬抗继续工作",
+          "effects": {
+            "health": -3,
+            "stress": 3
+          },
+          "add_states": [
+            "S_SLEEP_DEPRIVED"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "休息/轻度自救",
+          "effects": {
+            "health": 3,
+            "money": -120,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "去看医生/检查",
+          "effects": {
+            "health": 2,
+            "money": -260,
+            "stress": 1
+          },
+          "add_states": [
+            "S_MEDICAL_DEBT"
+          ],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_SOC_001",
+      "title": "玩笑过头",
+      "text": "家里一句玩笑开过头，空气突然变薄。\n你深呼吸了一下，试图把它当作普通的一天。",
+      "primary_tag": "social",
+      "tags": [
+        "social"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "主动沟通/修复关系",
+          "effects": {
+            "family": 3,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "回避/冷处理",
+          "effects": {
+            "stress": 2,
+            "family": -2,
+            "friendship": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "用钱或时间解决（请客/外包/陪伴）",
+          "effects": {
+            "money": -120,
+            "family": 2,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_SOC_002",
+      "title": "群聊约饭",
+      "text": "朋友在群里约饭，你既想去又怕花钱。\n你突然意识到，很多选择其实都是在买时间。",
+      "primary_tag": "social",
+      "tags": [
+        "social"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "主动沟通/修复关系",
+          "effects": {
+            "friendship": 3,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "回避/冷处理",
+          "effects": {
+            "stress": 2,
+            "family": -2,
+            "friendship": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "用钱或时间解决（请客/外包/陪伴）",
+          "effects": {
+            "money": -120,
+            "family": 2,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_SOC_003",
+      "title": "学校通知",
+      "text": "孩子学校发来通知，字不多，但意味着时间。\n你想起上个月的教训，但这次又不完全一样。",
+      "primary_tag": "social",
+      "tags": [
+        "social"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "主动沟通/修复关系",
+          "effects": {
+            "family": 3,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "回避/冷处理",
+          "effects": {
+            "stress": 2,
+            "family": -2,
+            "friendship": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "用钱或时间解决（请客/外包/陪伴）",
+          "effects": {
+            "money": -90,
+            "friendship": 2,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_SOC_004",
+      "title": "不在场",
+      "text": "伴侣抱怨你不在场，你一边内疚一边疲惫。\n你深呼吸了一下，试图把它当作普通的一天。",
+      "primary_tag": "social",
+      "tags": [
+        "social"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "主动沟通/修复关系",
+          "effects": {
+            "friendship": 3,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "回避/冷处理",
+          "effects": {
+            "stress": 2,
+            "family": -2,
+            "friendship": -1
+          },
+          "add_states": [
+            "S_SOCIAL_ISOLATION"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "用钱或时间解决（请客/外包/陪伴）",
+          "effects": {
+            "money": -120,
+            "family": 2,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_SOC_005",
+      "title": "生日错过",
+      "text": "你错过朋友生日，想补救但又怕尴尬。\n你突然意识到，很多选择其实都是在买时间。",
+      "primary_tag": "social",
+      "tags": [
+        "social"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "主动沟通/修复关系",
+          "effects": {
+            "family": 3,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "回避/冷处理",
+          "effects": {
+            "stress": 2,
+            "family": -2,
+            "friendship": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "用钱或时间解决（请客/外包/陪伴）",
+          "effects": {
+            "money": -120,
+            "family": 2,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_SOC_006",
+      "title": "玻璃隔离",
+      "text": "你被拉去参加聚会，大家聊得热闹，你却感觉隔着玻璃。\n你突然意识到，很多选择其实都是在买时间。",
+      "primary_tag": "social",
+      "tags": [
+        "social"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "主动沟通/修复关系",
+          "effects": {
+            "friendship": 3,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "回避/冷处理",
+          "effects": {
+            "stress": 2,
+            "family": -2,
+            "friendship": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "用钱或时间解决（请客/外包/陪伴）",
+          "effects": {
+            "money": -90,
+            "friendship": 2,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_SOC_007",
+      "title": "父母来电",
+      "text": "父母打来电话问近况，你下意识说‘挺好的’。\n你想起上个月的教训，但这次又不完全一样。",
+      "primary_tag": "social",
+      "tags": [
+        "social"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "主动沟通/修复关系",
+          "effects": {
+            "family": 3,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "回避/冷处理",
+          "effects": {
+            "stress": 2,
+            "family": -2,
+            "friendship": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "用钱或时间解决（请客/外包/陪伴）",
+          "effects": {
+            "money": -120,
+            "family": 2,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_SOC_008",
+      "title": "突然倾诉",
+      "text": "朋友突然倾诉，你想帮但你也快撑不住。\n你突然意识到，很多选择其实都是在买时间。",
+      "primary_tag": "social",
+      "tags": [
+        "social"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "主动沟通/修复关系",
+          "effects": {
+            "friendship": 3,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "回避/冷处理",
+          "effects": {
+            "stress": 2,
+            "family": -2,
+            "friendship": -1
+          },
+          "add_states": [
+            "S_SOCIAL_ISOLATION"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "用钱或时间解决（请客/外包/陪伴）",
+          "effects": {
+            "money": -120,
+            "family": 2,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_SOC_009",
+      "title": "聚餐审判",
+      "text": "家庭聚餐变成小型审判，你一句话都想得很久。\n你想起上个月的教训，但这次又不完全一样。",
+      "primary_tag": "social",
+      "tags": [
+        "social"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "主动沟通/修复关系",
+          "effects": {
+            "family": 3,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "回避/冷处理",
+          "effects": {
+            "stress": 2,
+            "family": -2,
+            "friendship": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "用钱或时间解决（请客/外包/陪伴）",
+          "effects": {
+            "money": -90,
+            "friendship": 2,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_SOC_010",
+      "title": "断网三天",
+      "text": "你决定关掉社交软件三天，结果更孤独。\n你深呼吸了一下，试图把它当作普通的一天。",
+      "primary_tag": "social",
+      "tags": [
+        "social"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "主动沟通/修复关系",
+          "effects": {
+            "friendship": 3,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "回避/冷处理",
+          "effects": {
+            "stress": 2,
+            "family": -2,
+            "friendship": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "用钱或时间解决（请客/外包/陪伴）",
+          "effects": {
+            "money": -120,
+            "family": 2,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_SOC_011",
+      "title": "婚礼邀请",
+      "text": "你收到婚礼邀请函，像收到一张账单。\n你看了一眼银行App，数字像在眨眼。",
+      "primary_tag": "social",
+      "tags": [
+        "social"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "主动沟通/修复关系",
+          "effects": {
+            "family": 3,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "回避/冷处理",
+          "effects": {
+            "stress": 2,
+            "family": -2,
+            "friendship": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "用钱或时间解决（请客/外包/陪伴）",
+          "effects": {
+            "money": -120,
+            "family": 2,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_SOC_012",
+      "title": "钱的争吵",
+      "text": "你和伴侣讨论钱，讨论着讨论着就变成了争吵。\n你看了一眼银行App，数字像在眨眼。",
+      "primary_tag": "social",
+      "tags": [
+        "social"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "主动沟通/修复关系",
+          "effects": {
+            "friendship": 3,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "吵起来了",
+          "effects": {
+            "family": -6,
+            "stress": 5
+          },
+          "add_states": [
+            "S_FAMILY_CRISIS"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "用钱或时间解决（请客/外包/陪伴）",
+          "effects": {
+            "money": -90,
+            "friendship": 2,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_SOC_013",
+      "title": "周末陪玩",
+      "text": "你答应孩子周末陪玩，但你只想睡觉。\n你看了一眼银行App，数字像在眨眼。",
+      "primary_tag": "social",
+      "tags": [
+        "social"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "主动沟通/修复关系",
+          "effects": {
+            "family": 3,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "回避/冷处理",
+          "effects": {
+            "stress": 2,
+            "family": -2,
+            "friendship": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "用钱或时间解决（请客/外包/陪伴）",
+          "effects": {
+            "money": -120,
+            "family": 2,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_SOC_014",
+      "title": "最近缺席",
+      "text": "朋友说你最近很少出现，你突然有点难过。\n你突然意识到，很多选择其实都是在买时间。",
+      "primary_tag": "social",
+      "tags": [
+        "social"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "主动沟通/修复关系",
+          "effects": {
+            "friendship": 3,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "回避/冷处理",
+          "effects": {
+            "stress": 2,
+            "family": -2,
+            "friendship": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "用钱或时间解决（请客/外包/陪伴）",
+          "effects": {
+            "money": -120,
+            "family": 2,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_SOC_015",
+      "title": "只剩事务",
+      "text": "你发现自己很久没真正‘聊天’了，都是事务。\n你看了一眼银行App，数字像在眨眼。",
+      "primary_tag": "social",
+      "tags": [
+        "social"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "主动沟通/修复关系",
+          "effects": {
+            "family": 3,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "回避/冷处理",
+          "effects": {
+            "stress": 2,
+            "family": -2,
+            "friendship": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "用钱或时间解决（请客/外包/陪伴）",
+          "effects": {
+            "money": -90,
+            "friendship": 2,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_SOC_016",
+      "title": "超市寒暄",
+      "text": "你在超市遇到熟人，寒暄让你耗尽电量。\n你想起上个月的教训，但这次又不完全一样。",
+      "primary_tag": "social",
+      "tags": [
+        "social"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "主动沟通/修复关系",
+          "effects": {
+            "friendship": 3,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "回避/冷处理",
+          "effects": {
+            "stress": 2,
+            "family": -2,
+            "friendship": -1
+          },
+          "add_states": [
+            "S_SOCIAL_ISOLATION"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "用钱或时间解决（请客/外包/陪伴）",
+          "effects": {
+            "money": -120,
+            "family": 2,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_SOC_017",
+      "title": "成绩不理想",
+      "text": "孩子考试成绩不理想，你安慰他也在安慰自己。\n你突然意识到，很多选择其实都是在买时间。",
+      "primary_tag": "social",
+      "tags": [
+        "social"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "主动沟通/修复关系",
+          "effects": {
+            "family": 3,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "回避/冷处理",
+          "effects": {
+            "stress": 2,
+            "family": -2,
+            "friendship": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "用钱或时间解决（请客/外包/陪伴）",
+          "effects": {
+            "money": -120,
+            "family": 2,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_SOC_018",
+      "title": "沉默支持",
+      "text": "伴侣说想要一点支持，你沉默太久。\n你突然意识到，很多选择其实都是在买时间。",
+      "primary_tag": "social",
+      "tags": [
+        "social"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "主动沟通/修复关系",
+          "effects": {
+            "friendship": 3,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "回避/冷处理",
+          "effects": {
+            "stress": 2,
+            "family": -2,
+            "friendship": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "用钱或时间解决（请客/外包/陪伴）",
+          "effects": {
+            "money": -90,
+            "friendship": 2,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_SOC_019",
+      "title": "想去探望",
+      "text": "你想去看朋友，但路途让你打退堂鼓。\n你想起上个月的教训，但这次又不完全一样。",
+      "primary_tag": "social",
+      "tags": [
+        "social"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "主动沟通/修复关系",
+          "effects": {
+            "family": 3,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "回避/冷处理",
+          "effects": {
+            "stress": 2,
+            "family": -2,
+            "friendship": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "用钱或时间解决（请客/外包/陪伴）",
+          "effects": {
+            "money": -120,
+            "family": 2,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_SOC_020",
+      "title": "搬家帮忙",
+      "text": "你帮朋友搬家，腰痛但关系升温。\n你看了一眼银行App，数字像在眨眼。",
+      "primary_tag": "social",
+      "tags": [
+        "social"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "帮忙搬家（累但暖）",
+          "effects": {
+            "health": -1,
+            "friendship": 4,
+            "stress": -1
+          },
+          "add_states": [
+            "S_BEST_FRIEND_SUPPORT"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "回避/冷处理",
+          "effects": {
+            "stress": 2,
+            "family": -2,
+            "friendship": -1
+          },
+          "add_states": [
+            "S_SOCIAL_ISOLATION"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "用钱或时间解决（请客/外包/陪伴）",
+          "effects": {
+            "money": -120,
+            "family": 2,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_SOC_021",
+      "title": "误会解释",
+      "text": "你被朋友误会，解释像在爬坡。\n你突然意识到，很多选择其实都是在买时间。",
+      "primary_tag": "social",
+      "tags": [
+        "social"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "主动沟通/修复关系",
+          "effects": {
+            "family": 3,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "回避/冷处理",
+          "effects": {
+            "stress": 2,
+            "family": -2,
+            "friendship": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "用钱或时间解决（请客/外包/陪伴）",
+          "effects": {
+            "money": -90,
+            "friendship": 2,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_SOC_022",
+      "title": "想独处",
+      "text": "你突然很想一个人待着，但家里不允许。\n你深呼吸了一下，试图把它当作普通的一天。",
+      "primary_tag": "social",
+      "tags": [
+        "social"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "主动沟通/修复关系",
+          "effects": {
+            "friendship": 3,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "回避/冷处理",
+          "effects": {
+            "stress": 2,
+            "family": -2,
+            "friendship": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "用钱或时间解决（请客/外包/陪伴）",
+          "effects": {
+            "money": -120,
+            "family": 2,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_SOC_023",
+      "title": "旅行取消",
+      "text": "你计划一个小旅行，结果因为预算取消。\n你想起上个月的教训，但这次又不完全一样。",
+      "primary_tag": "social",
+      "tags": [
+        "social"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "主动沟通/修复关系",
+          "effects": {
+            "family": 3,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "回避/冷处理",
+          "effects": {
+            "stress": 2,
+            "family": -2,
+            "friendship": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "用钱或时间解决（请客/外包/陪伴）",
+          "effects": {
+            "money": -120,
+            "family": 2,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_SOC_024",
+      "title": "认真沟通",
+      "text": "你决定认真沟通一次，但开口就哽住。\n你看了一眼银行App，数字像在眨眼。",
+      "primary_tag": "social",
+      "tags": [
+        "social"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "主动沟通/修复关系",
+          "effects": {
+            "friendship": 3,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "回避/冷处理",
+          "effects": {
+            "stress": 2,
+            "family": -2,
+            "friendship": -1
+          },
+          "add_states": [
+            "S_SOCIAL_ISOLATION"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "用钱或时间解决（请客/外包/陪伴）",
+          "effects": {
+            "money": -90,
+            "friendship": 2,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_SOC_025",
+      "title": "终于谢谢",
+      "text": "你终于收到一句‘谢谢’，你发现自己很久没听到。\n你想起上个月的教训，但这次又不完全一样。",
+      "primary_tag": "social",
+      "tags": [
+        "social"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "主动沟通/修复关系",
+          "effects": {
+            "family": 3,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "回避/冷处理",
+          "effects": {
+            "stress": 2,
+            "family": -2,
+            "friendship": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "用钱或时间解决（请客/外包/陪伴）",
+          "effects": {
+            "money": -120,
+            "family": 2,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_ADM_001",
+      "title": "官方信件",
+      "text": "信箱里有一封看起来很官方的信，你盯着它像盯着炸弹。\n你想起上个月的教训，但这次又不完全一样。",
+      "primary_tag": "admin",
+      "tags": [
+        "admin"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "今天就处理（耗时但省心）",
+          "effects": {
+            "money": -220,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "拖到明天（风险累积）",
+          "effects": {
+            "stress": 3
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "花钱找人/买服务解决",
+          "effects": {
+            "money": -520,
+            "stress": -2
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_ADM_002",
+      "title": "语音迷宫",
+      "text": "你拨打客服电话，语音菜单像迷宫。\n你想起上个月的教训，但这次又不完全一样。",
+      "primary_tag": "admin",
+      "tags": [
+        "admin"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "今天就处理（耗时但省心）",
+          "effects": {
+            "money": -220,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "拖到明天（风险累积）",
+          "effects": {
+            "stress": 3
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "花钱找人/买服务解决",
+          "effects": {
+            "money": -520,
+            "stress": -2
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_ADM_003",
+      "title": "材料缺失",
+      "text": "你需要补交一份材料，但你找不到原件。\n你想起上个月的教训，但这次又不完全一样。",
+      "primary_tag": "admin",
+      "tags": [
+        "admin"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "今天就处理（耗时但省心）",
+          "effects": {
+            "money": -220,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "拖到明天（风险累积）",
+          "effects": {
+            "stress": 3
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "花钱找人/买服务解决",
+          "effects": {
+            "money": -520,
+            "stress": -2
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_ADM_004",
+      "title": "身份验证",
+      "text": "税务平台提示你需要验证身份，你的耐心被消耗。\n你深呼吸了一下，试图把它当作普通的一天。",
+      "primary_tag": "admin",
+      "tags": [
+        "admin"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "今天就处理（耗时但省心）",
+          "effects": {
+            "money": -220,
+            "stress": -1
+          },
+          "add_states": [
+            "S_TAX_DUE"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "拖到明天（风险累积）",
+          "effects": {
+            "stress": 3
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "花钱找人/买服务解决",
+          "effects": {
+            "money": -520,
+            "stress": -2
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_ADM_005",
+      "title": "医保过期",
+      "text": "你发现医保卡过期，续费流程像在考试。\n你看了一眼银行App，数字像在眨眼。",
+      "primary_tag": "admin",
+      "tags": [
+        "admin"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "今天就处理（耗时但省心）",
+          "effects": {
+            "money": -380,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "拖到明天（风险累积）",
+          "effects": {
+            "stress": 3
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "花钱找人/买服务解决",
+          "effects": {
+            "money": -520,
+            "stress": -2
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_ADM_006",
+      "title": "DMV排队",
+      "text": "你去DMV排队，队伍像一条慢慢移动的生活。\n你看了一眼银行App，数字像在眨眼。",
+      "primary_tag": "admin",
+      "tags": [
+        "admin"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "今天就处理（耗时但省心）",
+          "effects": {
+            "money": -220,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "拖到明天（风险累积）",
+          "effects": {
+            "stress": 3
+          },
+          "add_states": [
+            "S_COLLECTIONS_NOTICE"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "花钱找人/买服务解决",
+          "effects": {
+            "money": -520,
+            "stress": -2
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_ADM_007",
+      "title": "车险更新",
+      "text": "你的车险需要更新信息，否则涨价。\n你突然意识到，很多选择其实都是在买时间。",
+      "primary_tag": "admin",
+      "tags": [
+        "admin"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "今天就处理（耗时但省心）",
+          "effects": {
+            "money": -220,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "拖到明天（风险累积）",
+          "effects": {
+            "stress": 3
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "花钱找人/买服务解决",
+          "effects": {
+            "money": -520,
+            "stress": -2
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_ADM_008",
+      "title": "陪审团通知",
+      "text": "你收到法院陪审团通知，时间刚好撞上工作。\n你深呼吸了一下，试图把它当作普通的一天。",
+      "primary_tag": "admin",
+      "tags": [
+        "admin"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "今天就处理（耗时但省心）",
+          "effects": {
+            "money": -220,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "拖到明天（风险累积）",
+          "effects": {
+            "stress": 3
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "花钱找人/买服务解决",
+          "effects": {
+            "money": -520,
+            "stress": -2
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_ADM_009",
+      "title": "驾照到期",
+      "text": "你发现驾照快到期，照片还停留在五年前。\n你深呼吸了一下，试图把它当作普通的一天。",
+      "primary_tag": "admin",
+      "tags": [
+        "admin"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "今天就处理（耗时但省心）",
+          "effects": {
+            "money": -220,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "拖到明天（风险累积）",
+          "effects": {
+            "stress": 3
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "花钱找人/买服务解决",
+          "effects": {
+            "money": -520,
+            "stress": -2
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_ADM_010",
+      "title": "公证预约",
+      "text": "你需要公证/认证一份文件，但预约要排很久。\n你突然意识到，很多选择其实都是在买时间。",
+      "primary_tag": "admin",
+      "tags": [
+        "admin"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "今天就处理（耗时但省心）",
+          "effects": {
+            "money": -380,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "拖到明天（风险累积）",
+          "effects": {
+            "stress": 3
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "花钱找人/买服务解决",
+          "effects": {
+            "money": -520,
+            "stress": -2
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_ADM_011",
+      "title": "碎片收费",
+      "text": "你收到学校/社区的收费通知，项目看似小但很碎。\n你深呼吸了一下，试图把它当作普通的一天。",
+      "primary_tag": "admin",
+      "tags": [
+        "admin"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "今天就处理（耗时但省心）",
+          "effects": {
+            "money": -220,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "拖到明天（风险累积）",
+          "effects": {
+            "stress": 3
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "花钱找人/买服务解决",
+          "effects": {
+            "money": -520,
+            "stress": -2
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_ADM_012",
+      "title": "异常登录",
+      "text": "你的邮箱被提示有异常登录，你改密码改到怀疑人生。\n你突然意识到，很多选择其实都是在买时间。",
+      "primary_tag": "admin",
+      "tags": [
+        "admin"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "今天就处理（耗时但省心）",
+          "effects": {
+            "money": -220,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "拖到明天（风险累积）",
+          "effects": {
+            "stress": 3
+          },
+          "add_states": [
+            "S_COLLECTIONS_NOTICE"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "花钱找人/买服务解决",
+          "effects": {
+            "money": -520,
+            "stress": -2
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_ADM_013",
+      "title": "新协议",
+      "text": "你要和房东/公司签一份新协议，条款密密麻麻。\n你看了一眼银行App，数字像在眨眼。",
+      "primary_tag": "admin",
+      "tags": [
+        "admin"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "今天就处理（耗时但省心）",
+          "effects": {
+            "money": -220,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "拖到明天（风险累积）",
+          "effects": {
+            "stress": 3
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "花钱找人/买服务解决",
+          "effects": {
+            "money": -520,
+            "stress": -2
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_ADM_014",
+      "title": "补贴报错",
+      "text": "你申请某个补贴，但系统一直报错。\n你看了一眼银行App，数字像在眨眼。",
+      "primary_tag": "admin",
+      "tags": [
+        "admin"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "今天就处理（耗时但省心）",
+          "effects": {
+            "money": -220,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "拖到明天（风险累积）",
+          "effects": {
+            "stress": 3
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "花钱找人/买服务解决",
+          "effects": {
+            "money": -520,
+            "stress": -2
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_ADM_015",
+      "title": "罚单申诉",
+      "text": "你要处理停车罚单申诉，流程比罚款更磨人。\n你看了一眼银行App，数字像在眨眼。",
+      "primary_tag": "admin",
+      "tags": [
+        "admin"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "今天就处理（耗时但省心）",
+          "effects": {
+            "money": -380,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "拖到明天（风险累积）",
+          "effects": {
+            "stress": 3
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "花钱找人/买服务解决",
+          "effects": {
+            "money": -520,
+            "stress": -2
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_ADM_016",
+      "title": "体检改期",
+      "text": "你预约体检却被改期，所有计划都被打乱。\n你突然意识到，很多选择其实都是在买时间。",
+      "primary_tag": "admin",
+      "tags": [
+        "admin"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "今天就处理（耗时但省心）",
+          "effects": {
+            "money": -220,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "拖到明天（风险累积）",
+          "effects": {
+            "stress": 3
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "花钱找人/买服务解决",
+          "effects": {
+            "money": -520,
+            "stress": -2
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_ADM_017",
+      "title": "补材料通知",
+      "text": "你收到移民/身份相关的补材料通知，心里一沉。\n你深呼吸了一下，试图把它当作普通的一天。",
+      "primary_tag": "admin",
+      "tags": [
+        "admin"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "今天就处理（耗时但省心）",
+          "effects": {
+            "money": -220,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "拖到明天（风险累积）",
+          "effects": {
+            "stress": 3
+          },
+          "add_states": [
+            "S_IMMIGRATION_ISSUE"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "花钱找人/买服务解决",
+          "effects": {
+            "money": -520,
+            "stress": -2
+          },
+          "add_states": [],
+          "remove_states": [
+            "S_IMMIGRATION_ISSUE"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "E_ADM_018",
+      "title": "地址证明",
+      "text": "你被要求提供地址证明，像被质疑你存在。\n你突然意识到，很多选择其实都是在买时间。",
+      "primary_tag": "admin",
+      "tags": [
+        "admin"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "今天就处理（耗时但省心）",
+          "effects": {
+            "money": -220,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "拖到明天（风险累积）",
+          "effects": {
+            "stress": 3
+          },
+          "add_states": [
+            "S_COLLECTIONS_NOTICE"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "花钱找人/买服务解决",
+          "effects": {
+            "money": -520,
+            "stress": -2
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_ADM_019",
+      "title": "表格海",
+      "text": "你要给孩子填一堆表格，最后一项永远是签字。\n你深呼吸了一下，试图把它当作普通的一天。",
+      "primary_tag": "admin",
+      "tags": [
+        "admin"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "今天就处理（耗时但省心）",
+          "effects": {
+            "money": -220,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "拖到明天（风险累积）",
+          "effects": {
+            "stress": 3
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "花钱找人/买服务解决",
+          "effects": {
+            "money": -520,
+            "stress": -2
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_ADM_020",
+      "title": "取消按钮",
+      "text": "你想退一个服务，取消按钮藏得很深。\n你深呼吸了一下，试图把它当作普通的一天。",
+      "primary_tag": "admin",
+      "tags": [
+        "admin"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "今天就处理（耗时但省心）",
+          "effects": {
+            "money": -380,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "拖到明天（风险累积）",
+          "effects": {
+            "stress": 3
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "花钱找人/买服务解决",
+          "effects": {
+            "money": -520,
+            "stress": -2
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_ADM_021",
+      "title": "提醒邮件",
+      "text": "你收到一封‘催收/提醒’邮件，标题很礼貌。\n你深呼吸了一下，试图把它当作普通的一天。",
+      "primary_tag": "admin",
+      "tags": [
+        "admin"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "今天就处理（耗时但省心）",
+          "effects": {
+            "money": -220,
+            "stress": -1
+          },
+          "add_states": [
+            "S_TAX_DUE"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "拖到明天（风险累积）",
+          "effects": {
+            "stress": 3
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "花钱找人/买服务解决",
+          "effects": {
+            "money": -520,
+            "stress": -2
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_ADM_022",
+      "title": "法律咨询",
+      "text": "你需要处理一次小的法律咨询，但咨询费不小。\n你看了一眼银行App，数字像在眨眼。",
+      "primary_tag": "admin",
+      "tags": [
+        "admin"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "今天就处理（耗时但省心）",
+          "effects": {
+            "money": -220,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "拖到明天（风险累积）",
+          "effects": {
+            "stress": 3
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "花钱找人/买服务解决",
+          "effects": {
+            "money": -520,
+            "stress": -2
+          },
+          "add_states": [
+            "S_LEGAL_TROUBLE"
+          ],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_ADM_023",
+      "title": "信用报告错",
+      "text": "你发现信用报告里有错误，需要打很多电话。\n你看了一眼银行App，数字像在眨眼。",
+      "primary_tag": "admin",
+      "tags": [
+        "admin"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "今天就处理（耗时但省心）",
+          "effects": {
+            "money": -220,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "拖到明天（风险累积）",
+          "effects": {
+            "stress": 3
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "花钱找人/买服务解决",
+          "effects": {
+            "money": -520,
+            "stress": -2
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_ADM_024",
+      "title": "新系统",
+      "text": "你被迫学习一个新系统，只为了完成一个表格。\n你想起上个月的教训，但这次又不完全一样。",
+      "primary_tag": "admin",
+      "tags": [
+        "admin"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "今天就处理（耗时但省心）",
+          "effects": {
+            "money": -220,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "拖到明天（风险累积）",
+          "effects": {
+            "stress": 3
+          },
+          "add_states": [
+            "S_COLLECTIONS_NOTICE"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "花钱找人/买服务解决",
+          "effects": {
+            "money": -520,
+            "stress": -2
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_ADM_025",
+      "title": "整理生活",
+      "text": "你想把生活整理一下，但整理生活也需要生活。\n你看了一眼银行App，数字像在眨眼。",
+      "primary_tag": "admin",
+      "tags": [
+        "admin"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "今天就处理（耗时但省心）",
+          "effects": {
+            "money": -380,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "拖到明天（风险累积）",
+          "effects": {
+            "stress": 3
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "花钱找人/买服务解决",
+          "effects": {
+            "money": -520,
+            "stress": -2
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_CAR_001",
+      "title": "警示灯",
+      "text": "车子点亮了一个你不认识的警示灯，像在用陌生语言求救。\n你突然意识到，很多选择其实都是在买时间。",
+      "primary_tag": "car",
+      "tags": [
+        "car"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "立刻维修/处理",
+          "effects": {
+            "money": -520,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "先凑合（赌一把）",
+          "effects": {
+            "health": -1,
+            "stress": 2
+          },
+          "add_states": [
+            "S_CAR_BROKEN"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "改走替代方案（公交/拼车）",
+          "effects": {
+            "money": -80,
+            "stress": 1,
+            "friendship": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_CAR_002",
+      "title": "引擎节奏",
+      "text": "你听到引擎里有不属于音乐的节奏，心里一紧。\n你看了一眼银行App，数字像在眨眼。",
+      "primary_tag": "car",
+      "tags": [
+        "car"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "立刻维修/处理",
+          "effects": {
+            "money": -520,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "先凑合（赌一把）",
+          "effects": {
+            "health": -1,
+            "stress": 2
+          },
+          "add_states": [
+            "S_CAR_BROKEN"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "改走替代方案（公交/拼车）",
+          "effects": {
+            "money": -80,
+            "stress": 1,
+            "friendship": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_CAR_003",
+      "title": "慢漏气",
+      "text": "轮胎慢漏气，你每天早上都在赌。\n你深呼吸了一下，试图把它当作普通的一天。",
+      "primary_tag": "car",
+      "tags": [
+        "car"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "立刻维修/处理",
+          "effects": {
+            "money": -520,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "先凑合（赌一把）",
+          "effects": {
+            "health": -1,
+            "stress": 2
+          },
+          "add_states": [
+            "S_CAR_BROKEN"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "改走替代方案（公交/拼车）",
+          "effects": {
+            "money": -80,
+            "stress": 1,
+            "friendship": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_CAR_004",
+      "title": "油价上涨",
+      "text": "油价又涨，你开车时像在烧钱。\n你看了一眼银行App，数字像在眨眼。",
+      "primary_tag": "car",
+      "tags": [
+        "car"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "立刻维修/处理",
+          "effects": {
+            "money": -520,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "先凑合（赌一把）",
+          "effects": {
+            "health": -1,
+            "stress": 2
+          },
+          "add_states": [
+            "S_CAR_BROKEN"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "改走替代方案（公交/拼车）",
+          "effects": {
+            "money": -80,
+            "stress": 1,
+            "friendship": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_CAR_005",
+      "title": "拖车等待",
+      "text": "你被迫叫拖车，等待的每分钟都在掉耐心。\n你深呼吸了一下，试图把它当作普通的一天。",
+      "primary_tag": "car",
+      "tags": [
+        "car"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "立刻维修/处理",
+          "effects": {
+            "money": -520,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "先凑合（赌一把）",
+          "effects": {
+            "health": -1,
+            "stress": 2
+          },
+          "add_states": [
+            "S_CAR_BROKEN"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "改走替代方案（公交/拼车）",
+          "effects": {
+            "money": -80,
+            "stress": 1,
+            "friendship": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_CAR_006",
+      "title": "高速惊魂",
+      "text": "你在高速上差点剐蹭，手心出汗到发冷。\n你深呼吸了一下，试图把它当作普通的一天。",
+      "primary_tag": "car",
+      "tags": [
+        "car"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "立刻维修/处理",
+          "effects": {
+            "money": -650,
+            "stress": 1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "先凑合（赌一把）",
+          "effects": {
+            "health": -1,
+            "stress": 3
+          },
+          "add_states": [
+            "S_CAR_BROKEN"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "改走替代方案（公交/拼车）",
+          "effects": {
+            "money": -80,
+            "stress": 1,
+            "friendship": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_CAR_007",
+      "title": "停车罚单",
+      "text": "你收到停车罚单，位置明明看起来没问题。\n你突然意识到，很多选择其实都是在买时间。",
+      "primary_tag": "car",
+      "tags": [
+        "car"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "立刻缴罚单",
+          "effects": {
+            "money": -120,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": [
+            "S_TRAFFIC_TICKET"
+          ]
+        },
+        {
+          "desc": "先拖着（等以后）",
+          "effects": {
+            "stress": 2
+          },
+          "add_states": [
+            "S_TRAFFIC_TICKET"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "改走替代方案（公交/拼车）",
+          "effects": {
+            "money": -80,
+            "stress": 1,
+            "friendship": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_CAR_008",
+      "title": "雨天刹车",
+      "text": "雨天刹车感觉变软，你开始怀疑安全。\n你想起上个月的教训，但这次又不完全一样。",
+      "primary_tag": "car",
+      "tags": [
+        "car"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "立刻维修/处理",
+          "effects": {
+            "money": -520,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "先凑合（赌一把）",
+          "effects": {
+            "health": -1,
+            "stress": 2
+          },
+          "add_states": [
+            "S_CAR_BROKEN"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "改走替代方案（公交/拼车）",
+          "effects": {
+            "money": -80,
+            "stress": 1,
+            "friendship": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_CAR_009",
+      "title": "钥匙锁车",
+      "text": "你把钥匙锁车里了，尴尬得想消失。\n你想起上个月的教训，但这次又不完全一样。",
+      "primary_tag": "car",
+      "tags": [
+        "car"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "立刻维修/处理",
+          "effects": {
+            "money": -520,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "先凑合（赌一把）",
+          "effects": {
+            "health": -1,
+            "stress": 2
+          },
+          "add_states": [
+            "S_CAR_BROKEN"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "改走替代方案（公交/拼车）",
+          "effects": {
+            "money": -80,
+            "stress": 1,
+            "friendship": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_CAR_010",
+      "title": "电瓶抽奖",
+      "text": "你发现电瓶快不行，启动像投硬币抽奖。\n你突然意识到，很多选择其实都是在买时间。",
+      "primary_tag": "car",
+      "tags": [
+        "car"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "立刻维修/处理",
+          "effects": {
+            "money": -520,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "先凑合（赌一把）",
+          "effects": {
+            "health": -1,
+            "stress": 2
+          },
+          "add_states": [
+            "S_CAR_BROKEN"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "改走替代方案（公交/拼车）",
+          "effects": {
+            "money": -80,
+            "stress": 1,
+            "friendship": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_CAR_011",
+      "title": "公交通勤",
+      "text": "你改坐公共交通，时间成本像另一个房租。\n你想起上个月的教训，但这次又不完全一样。",
+      "primary_tag": "car",
+      "tags": [
+        "car"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "立刻维修/处理",
+          "effects": {
+            "money": -520,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "先凑合（赌一把）",
+          "effects": {
+            "health": -1,
+            "stress": 2
+          },
+          "add_states": [
+            "S_CAR_BROKEN"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "改走替代方案（公交/拼车）",
+          "effects": {
+            "money": -80,
+            "stress": 1,
+            "friendship": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_CAR_012",
+      "title": "并线争吵",
+      "text": "你和别人因为并线吵了一架，回家还在生气。\n你深呼吸了一下，试图把它当作普通的一天。",
+      "primary_tag": "car",
+      "tags": [
+        "car"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "立刻维修/处理",
+          "effects": {
+            "money": -520,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "先凑合（赌一把）",
+          "effects": {
+            "health": -1,
+            "stress": 2
+          },
+          "add_states": [
+            "S_CAR_BROKEN"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "改走替代方案（公交/拼车）",
+          "effects": {
+            "money": -80,
+            "stress": 1,
+            "friendship": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_CAR_013",
+      "title": "车窗被砸",
+      "text": "你车窗被砸，里面没丢东西但心里空了一块。\n你深呼吸了一下，试图把它当作普通的一天。",
+      "primary_tag": "car",
+      "tags": [
+        "car"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "立刻维修/处理",
+          "effects": {
+            "money": -520,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "先凑合（赌一把）",
+          "effects": {
+            "health": -1,
+            "stress": 2
+          },
+          "add_states": [
+            "S_CAR_BROKEN"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "改走替代方案（公交/拼车）",
+          "effects": {
+            "money": -80,
+            "stress": 1,
+            "friendship": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_CAR_014",
+      "title": "保养账单",
+      "text": "你要做保养，但你也要吃饭。\n你看了一眼银行App，数字像在眨眼。",
+      "primary_tag": "car",
+      "tags": [
+        "car"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "立刻维修/处理",
+          "effects": {
+            "money": -520,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "先凑合（赌一把）",
+          "effects": {
+            "health": -1,
+            "stress": 2
+          },
+          "add_states": [
+            "S_CAR_BROKEN"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "改走替代方案（公交/拼车）",
+          "effects": {
+            "money": -80,
+            "stress": 1,
+            "friendship": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_CAR_015",
+      "title": "拼车尴尬",
+      "text": "你决定拼车/顺风车，社交和尴尬一起上车。\n你看了一眼银行App，数字像在眨眼。",
+      "primary_tag": "car",
+      "tags": [
+        "car"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "立刻维修/处理",
+          "effects": {
+            "money": -520,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "先凑合（赌一把）",
+          "effects": {
+            "health": -1,
+            "stress": 2
+          },
+          "add_states": [
+            "S_CAR_BROKEN"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "改走替代方案（公交/拼车）",
+          "effects": {
+            "money": -80,
+            "stress": 1,
+            "friendship": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_CAR_016",
+      "title": "刹车片磨",
+      "text": "你发现刹车片磨损，维修单像一张小型判决。\n你突然意识到，很多选择其实都是在买时间。",
+      "primary_tag": "car",
+      "tags": [
+        "car"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "立刻维修/处理",
+          "effects": {
+            "money": -520,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "先凑合（赌一把）",
+          "effects": {
+            "health": -1,
+            "stress": 2
+          },
+          "add_states": [
+            "S_CAR_BROKEN"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "改走替代方案（公交/拼车）",
+          "effects": {
+            "money": -80,
+            "stress": 1,
+            "friendship": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_CAR_017",
+      "title": "理赔拍照",
+      "text": "你车险理赔需要照片，你在雨里拍到崩溃。\n你想起上个月的教训，但这次又不完全一样。",
+      "primary_tag": "car",
+      "tags": [
+        "car"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "立刻维修/处理",
+          "effects": {
+            "money": -520,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "先凑合（赌一把）",
+          "effects": {
+            "health": -1,
+            "stress": 2
+          },
+          "add_states": [
+            "S_CAR_BROKEN"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "改走替代方案（公交/拼车）",
+          "effects": {
+            "money": -80,
+            "stress": 1,
+            "friendship": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_CAR_018",
+      "title": "收费路段",
+      "text": "你误闯收费路段，账单在路上等你。\n你深呼吸了一下，试图把它当作普通的一天。",
+      "primary_tag": "car",
+      "tags": [
+        "car"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "立刻维修/处理",
+          "effects": {
+            "money": -520,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "先凑合（赌一把）",
+          "effects": {
+            "health": -1,
+            "stress": 2
+          },
+          "add_states": [
+            "S_CAR_BROKEN"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "改走替代方案（公交/拼车）",
+          "effects": {
+            "money": -80,
+            "stress": 1,
+            "friendship": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_CAR_019",
+      "title": "堵车接娃",
+      "text": "你开车去接孩子，路上堵到怀疑人生。\n你深呼吸了一下，试图把它当作普通的一天。",
+      "primary_tag": "car",
+      "tags": [
+        "car"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "立刻维修/处理",
+          "effects": {
+            "money": -520,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "先凑合（赌一把）",
+          "effects": {
+            "health": -1,
+            "stress": 2
+          },
+          "add_states": [
+            "S_CAR_BROKEN"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "改走替代方案（公交/拼车）",
+          "effects": {
+            "money": -80,
+            "stress": 1,
+            "friendship": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_CAR_020",
+      "title": "延迟保养",
+      "text": "你为了省钱延迟保养，车用异味提醒你别省。\n你深呼吸了一下，试图把它当作普通的一天。",
+      "primary_tag": "car",
+      "tags": [
+        "car"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "立刻维修/处理",
+          "effects": {
+            "money": -520,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "先凑合（赌一把）",
+          "effects": {
+            "health": -1,
+            "stress": 2
+          },
+          "add_states": [
+            "S_CAR_BROKEN"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "改走替代方案（公交/拼车）",
+          "effects": {
+            "money": -80,
+            "stress": 1,
+            "friendship": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_CAR_021",
+      "title": "兜圈找位",
+      "text": "你找不到停车位，兜圈像在烧生命。\n你想起上个月的教训，但这次又不完全一样。",
+      "primary_tag": "car",
+      "tags": [
+        "car"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "立刻维修/处理",
+          "effects": {
+            "money": -520,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "先凑合（赌一把）",
+          "effects": {
+            "health": -1,
+            "stress": 2
+          },
+          "add_states": [
+            "S_CAR_BROKEN"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "改走替代方案（公交/拼车）",
+          "effects": {
+            "money": -80,
+            "stress": 1,
+            "friendship": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_CAR_022",
+      "title": "导航坏了",
+      "text": "你汽车导航坏了，你在陌生路口做选择题。\n你深呼吸了一下，试图把它当作普通的一天。",
+      "primary_tag": "car",
+      "tags": [
+        "car"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "立刻维修/处理",
+          "effects": {
+            "money": -520,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "先凑合（赌一把）",
+          "effects": {
+            "health": -1,
+            "stress": 2
+          },
+          "add_states": [
+            "S_CAR_BROKEN"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "改走替代方案（公交/拼车）",
+          "effects": {
+            "money": -80,
+            "stress": 1,
+            "friendship": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_CAR_023",
+      "title": "追尾处理",
+      "text": "你被追尾但不严重，处理保险耗尽精力。\n你想起上个月的教训，但这次又不完全一样。",
+      "primary_tag": "car",
+      "tags": [
+        "car"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "立刻维修/处理",
+          "effects": {
+            "money": -650,
+            "stress": 1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "先凑合（赌一把）",
+          "effects": {
+            "health": -1,
+            "stress": 3
+          },
+          "add_states": [
+            "S_CAR_BROKEN"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "改走替代方案（公交/拼车）",
+          "effects": {
+            "money": -80,
+            "stress": 1,
+            "friendship": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_CAR_024",
+      "title": "卖车估价",
+      "text": "你决定卖车，但估价比你心里低很多。\n你深呼吸了一下，试图把它当作普通的一天。",
+      "primary_tag": "car",
+      "tags": [
+        "car"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "立刻维修/处理",
+          "effects": {
+            "money": -520,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "先凑合（赌一把）",
+          "effects": {
+            "health": -1,
+            "stress": 2
+          },
+          "add_states": [
+            "S_CAR_BROKEN"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "改走替代方案（公交/拼车）",
+          "effects": {
+            "money": -80,
+            "stress": 1,
+            "friendship": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_CAR_025",
+      "title": "借车划痕",
+      "text": "你把车借给朋友，回来时多了一个划痕。\n你想起上个月的教训，但这次又不完全一样。",
+      "primary_tag": "car",
+      "tags": [
+        "car"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "立刻维修/处理",
+          "effects": {
+            "money": -520,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        },
+        {
+          "desc": "先凑合（赌一把）",
+          "effects": {
+            "health": -1,
+            "stress": 2
+          },
+          "add_states": [
+            "S_CAR_BROKEN"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "改走替代方案（公交/拼车）",
+          "effects": {
+            "money": -80,
+            "stress": 1,
+            "friendship": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_MNY_001",
+      "title": "口袋礼品卡",
+      "text": "你在旧外套口袋里摸到一张忘记的礼品卡，像捡到一口气。\n你突然意识到，很多选择其实都是在买时间。",
+      "primary_tag": "money",
+      "tags": [
+        "money"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "存起来当缓冲",
+          "effects": {
+            "money": 320,
+            "stress": -2
+          },
+          "add_states": [
+            "S_WINDFALL_BUFFER"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "用来还债/补坑",
+          "effects": {
+            "money": 280,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": [
+            "S_CREDIT_CARD_DEBT",
+            "S_OVERDRAFT",
+            "S_RENT_ARREARS"
+          ]
+        },
+        {
+          "desc": "给自己一点奖励（别太多）",
+          "effects": {
+            "money": 180,
+            "family": 1,
+            "friendship": 1,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_MNY_002",
+      "title": "超市大折",
+      "text": "超市打折，你像中了大奖一样囤了半车食物。\n你看了一眼银行App，数字像在眨眼。",
+      "primary_tag": "money",
+      "tags": [
+        "money"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "存起来当缓冲",
+          "effects": {
+            "money": 320,
+            "stress": -2
+          },
+          "add_states": [
+            "S_WINDFALL_BUFFER"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "用来还债/补坑",
+          "effects": {
+            "money": 280,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": [
+            "S_CREDIT_CARD_DEBT",
+            "S_OVERDRAFT",
+            "S_RENT_ARREARS"
+          ]
+        },
+        {
+          "desc": "给自己一点奖励（别太多）",
+          "effects": {
+            "money": 180,
+            "family": 1,
+            "friendship": 1,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_MNY_003",
+      "title": "取消订阅",
+      "text": "你退了一个一直没用的订阅，金额不大但很爽。\n你看了一眼银行App，数字像在眨眼。",
+      "primary_tag": "money",
+      "tags": [
+        "money"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "存起来当缓冲",
+          "effects": {
+            "money": 320,
+            "stress": -2
+          },
+          "add_states": [
+            "S_WINDFALL_BUFFER"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "用来还债/补坑",
+          "effects": {
+            "money": 280,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": [
+            "S_CREDIT_CARD_DEBT",
+            "S_OVERDRAFT",
+            "S_RENT_ARREARS"
+          ]
+        },
+        {
+          "desc": "给自己一点奖励（别太多）",
+          "effects": {
+            "money": 180,
+            "family": 1,
+            "friendship": 1,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_MNY_004",
+      "title": "被请吃饭",
+      "text": "朋友请你吃饭，你突然觉得被世界善待了一次。\n你看了一眼银行App，数字像在眨眼。",
+      "primary_tag": "money",
+      "tags": [
+        "money"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "存起来当缓冲",
+          "effects": {
+            "money": 320,
+            "stress": -2
+          },
+          "add_states": [
+            "S_WINDFALL_BUFFER"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "用来还债/补坑",
+          "effects": {
+            "money": 280,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": [
+            "S_CREDIT_CARD_DEBT",
+            "S_OVERDRAFT",
+            "S_RENT_ARREARS"
+          ]
+        },
+        {
+          "desc": "给自己一点奖励（别太多）",
+          "effects": {
+            "money": 180,
+            "family": 1,
+            "friendship": 1,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_MNY_005",
+      "title": "旧物卖出",
+      "text": "你卖掉旧家具，聊天砍价像一场小型谈判。\n你深呼吸了一下，试图把它当作普通的一天。",
+      "primary_tag": "money",
+      "tags": [
+        "money"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "存起来当缓冲",
+          "effects": {
+            "money": 320,
+            "stress": -2
+          },
+          "add_states": [
+            "S_WINDFALL_BUFFER"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "用来还债/补坑",
+          "effects": {
+            "money": 280,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": [
+            "S_CREDIT_CARD_DEBT",
+            "S_OVERDRAFT",
+            "S_RENT_ARREARS"
+          ]
+        },
+        {
+          "desc": "给自己一点奖励（别太多）",
+          "effects": {
+            "money": 180,
+            "family": 1,
+            "friendship": 1,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_MNY_006",
+      "title": "小项目到账",
+      "text": "你做了一个小项目，客户爽快转账。\n你想起上个月的教训，但这次又不完全一样。",
+      "primary_tag": "money",
+      "tags": [
+        "money"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "存起来当缓冲",
+          "effects": {
+            "money": 320,
+            "stress": -2
+          },
+          "add_states": [
+            "S_WINDFALL_BUFFER"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "用来还债/补坑",
+          "effects": {
+            "money": 280,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": [
+            "S_CREDIT_CARD_DEBT",
+            "S_OVERDRAFT",
+            "S_RENT_ARREARS"
+          ]
+        },
+        {
+          "desc": "给自己一点奖励（别太多）",
+          "effects": {
+            "money": 180,
+            "family": 1,
+            "friendship": 1,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_MNY_007",
+      "title": "退税到账",
+      "text": "你收到税务退税，比预想多一点点。\n你想起上个月的教训，但这次又不完全一样。",
+      "primary_tag": "money",
+      "tags": [
+        "money"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "存起来当缓冲",
+          "effects": {
+            "money": 520,
+            "stress": -2
+          },
+          "add_states": [
+            "S_WINDFALL_BUFFER"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "用来还债/补坑",
+          "effects": {
+            "money": 480,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": [
+            "S_CREDIT_CARD_DEBT",
+            "S_OVERDRAFT",
+            "S_RENT_ARREARS"
+          ]
+        },
+        {
+          "desc": "给自己一点奖励（别太多）",
+          "effects": {
+            "money": 180,
+            "family": 1,
+            "friendship": 1,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_MNY_008",
+      "title": "更便宜保险",
+      "text": "你找到一个更便宜的保险方案，省下来的钱像多活一天。\n你深呼吸了一下，试图把它当作普通的一天。",
+      "primary_tag": "money",
+      "tags": [
+        "money"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "存起来当缓冲",
+          "effects": {
+            "money": 320,
+            "stress": -2
+          },
+          "add_states": [
+            "S_WINDFALL_BUFFER"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "用来还债/补坑",
+          "effects": {
+            "money": 280,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": [
+            "S_CREDIT_CARD_DEBT",
+            "S_OVERDRAFT",
+            "S_RENT_ARREARS"
+          ]
+        },
+        {
+          "desc": "给自己一点奖励（别太多）",
+          "effects": {
+            "money": 180,
+            "family": 1,
+            "friendship": 1,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_MNY_009",
+      "title": "预算规划",
+      "text": "你决定做一次预算规划，纸面上看起来像有希望。\n你看了一眼银行App，数字像在眨眼。",
+      "primary_tag": "money",
+      "tags": [
+        "money"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "存起来当缓冲",
+          "effects": {
+            "money": 320,
+            "stress": -2
+          },
+          "add_states": [
+            "S_WINDFALL_BUFFER"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "用来还债/补坑",
+          "effects": {
+            "money": 280,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": [
+            "S_CREDIT_CARD_DEBT",
+            "S_OVERDRAFT",
+            "S_RENT_ARREARS"
+          ]
+        },
+        {
+          "desc": "给自己一点奖励（别太多）",
+          "effects": {
+            "money": 180,
+            "family": 1,
+            "friendship": 1,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_MNY_010",
+      "title": "短工见钱",
+      "text": "你抓住了一个短期兼职，虽然累但立刻见钱。\n你突然意识到，很多选择其实都是在买时间。",
+      "primary_tag": "money",
+      "tags": [
+        "money"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "存起来当缓冲",
+          "effects": {
+            "money": 320,
+            "stress": -2
+          },
+          "add_states": [
+            "S_WINDFALL_BUFFER"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "用来还债/补坑",
+          "effects": {
+            "money": 280,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": [
+            "S_CREDIT_CARD_DEBT",
+            "S_OVERDRAFT",
+            "S_RENT_ARREARS"
+          ]
+        },
+        {
+          "desc": "给自己一点奖励（别太多）",
+          "effects": {
+            "money": 180,
+            "family": 1,
+            "friendship": 1,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_MNY_011",
+      "title": "套餐更换",
+      "text": "你换了手机套餐，客服绕来绕去但结果不错。\n你想起上个月的教训，但这次又不完全一样。",
+      "primary_tag": "money",
+      "tags": [
+        "money"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "存起来当缓冲",
+          "effects": {
+            "money": 320,
+            "stress": -2
+          },
+          "add_states": [
+            "S_WINDFALL_BUFFER"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "用来还债/补坑",
+          "effects": {
+            "money": 280,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": [
+            "S_CREDIT_CARD_DEBT",
+            "S_OVERDRAFT",
+            "S_RENT_ARREARS"
+          ]
+        },
+        {
+          "desc": "给自己一点奖励（别太多）",
+          "effects": {
+            "money": 180,
+            "family": 1,
+            "friendship": 1,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_MNY_012",
+      "title": "自己修理",
+      "text": "你学会自己修一个小毛病，省下维修费。\n你突然意识到，很多选择其实都是在买时间。",
+      "primary_tag": "money",
+      "tags": [
+        "money"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "存起来当缓冲",
+          "effects": {
+            "money": 320,
+            "stress": -2
+          },
+          "add_states": [
+            "S_WINDFALL_BUFFER"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "用来还债/补坑",
+          "effects": {
+            "money": 280,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": [
+            "S_CREDIT_CARD_DEBT",
+            "S_OVERDRAFT",
+            "S_RENT_ARREARS"
+          ]
+        },
+        {
+          "desc": "给自己一点奖励（别太多）",
+          "effects": {
+            "money": 180,
+            "family": 1,
+            "friendship": 1,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_MNY_013",
+      "title": "批量出清",
+      "text": "你把闲置物品批量出清，房间和心情都轻一点。\n你想起上个月的教训，但这次又不完全一样。",
+      "primary_tag": "money",
+      "tags": [
+        "money"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "存起来当缓冲",
+          "effects": {
+            "money": 320,
+            "stress": -2
+          },
+          "add_states": [
+            "S_WINDFALL_BUFFER"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "用来还债/补坑",
+          "effects": {
+            "money": 280,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": [
+            "S_CREDIT_CARD_DEBT",
+            "S_OVERDRAFT",
+            "S_RENT_ARREARS"
+          ]
+        },
+        {
+          "desc": "给自己一点奖励（别太多）",
+          "effects": {
+            "money": 180,
+            "family": 1,
+            "friendship": 1,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_MNY_014",
+      "title": "赢过冲动",
+      "text": "你拒绝了冲动消费，像赢了一次自己。\n你突然意识到，很多选择其实都是在买时间。",
+      "primary_tag": "money",
+      "tags": [
+        "money"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "存起来当缓冲",
+          "effects": {
+            "money": 320,
+            "stress": -2
+          },
+          "add_states": [
+            "S_WINDFALL_BUFFER"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "用来还债/补坑",
+          "effects": {
+            "money": 280,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": [
+            "S_CREDIT_CARD_DEBT",
+            "S_OVERDRAFT",
+            "S_RENT_ARREARS"
+          ]
+        },
+        {
+          "desc": "给自己一点奖励（别太多）",
+          "effects": {
+            "money": 180,
+            "family": 1,
+            "friendship": 1,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_MNY_015",
+      "title": "补回报销",
+      "text": "你发现公司报销漏了一笔，补回来的钱像回血。\n你想起上个月的教训，但这次又不完全一样。",
+      "primary_tag": "money",
+      "tags": [
+        "money"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "存起来当缓冲",
+          "effects": {
+            "money": 320,
+            "stress": -2
+          },
+          "add_states": [
+            "S_WINDFALL_BUFFER"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "用来还债/补坑",
+          "effects": {
+            "money": 280,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": [
+            "S_CREDIT_CARD_DEBT",
+            "S_OVERDRAFT",
+            "S_RENT_ARREARS"
+          ]
+        },
+        {
+          "desc": "给自己一点奖励（别太多）",
+          "effects": {
+            "money": 180,
+            "family": 1,
+            "friendship": 1,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_MNY_016",
+      "title": "意外红包",
+      "text": "你收到一笔意外红包，留言只写‘加油’。\n你深呼吸了一下，试图把它当作普通的一天。",
+      "primary_tag": "money",
+      "tags": [
+        "money"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "存起来当缓冲",
+          "effects": {
+            "money": 320,
+            "stress": -2
+          },
+          "add_states": [
+            "S_WINDFALL_BUFFER"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "用来还债/补坑",
+          "effects": {
+            "money": 280,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": [
+            "S_CREDIT_CARD_DEBT",
+            "S_OVERDRAFT",
+            "S_RENT_ARREARS"
+          ]
+        },
+        {
+          "desc": "给自己一点奖励（别太多）",
+          "effects": {
+            "money": 180,
+            "family": 1,
+            "friendship": 1,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_MNY_017",
+      "title": "利息到账",
+      "text": "你在银行看到利息到账，虽然少但很稳。\n你深呼吸了一下，试图把它当作普通的一天。",
+      "primary_tag": "money",
+      "tags": [
+        "money"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "存起来当缓冲",
+          "effects": {
+            "money": 320,
+            "stress": -2
+          },
+          "add_states": [
+            "S_WINDFALL_BUFFER"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "用来还债/补坑",
+          "effects": {
+            "money": 280,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": [
+            "S_CREDIT_CARD_DEBT",
+            "S_OVERDRAFT",
+            "S_RENT_ARREARS"
+          ]
+        },
+        {
+          "desc": "给自己一点奖励（别太多）",
+          "effects": {
+            "money": 180,
+            "family": 1,
+            "friendship": 1,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_MNY_018",
+      "title": "社区代金券",
+      "text": "你参加社区活动拿到代金券，像被生活奖励。\n你看了一眼银行App，数字像在眨眼。",
+      "primary_tag": "money",
+      "tags": [
+        "money"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "存起来当缓冲",
+          "effects": {
+            "money": 320,
+            "stress": -2
+          },
+          "add_states": [
+            "S_WINDFALL_BUFFER"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "用来还债/补坑",
+          "effects": {
+            "money": 280,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": [
+            "S_CREDIT_CARD_DEBT",
+            "S_OVERDRAFT",
+            "S_RENT_ARREARS"
+          ]
+        },
+        {
+          "desc": "给自己一点奖励（别太多）",
+          "effects": {
+            "money": 180,
+            "family": 1,
+            "friendship": 1,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_MNY_019",
+      "title": "优惠券胜利",
+      "text": "你用优惠券省下一顿饭的钱，开心得很具体。\n你突然意识到，很多选择其实都是在买时间。",
+      "primary_tag": "money",
+      "tags": [
+        "money"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "存起来当缓冲",
+          "effects": {
+            "money": 320,
+            "stress": -2
+          },
+          "add_states": [
+            "S_WINDFALL_BUFFER"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "用来还债/补坑",
+          "effects": {
+            "money": 280,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": [
+            "S_CREDIT_CARD_DEBT",
+            "S_OVERDRAFT",
+            "S_RENT_ARREARS"
+          ]
+        },
+        {
+          "desc": "给自己一点奖励（别太多）",
+          "effects": {
+            "money": 180,
+            "family": 1,
+            "friendship": 1,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_MNY_020",
+      "title": "二手好物",
+      "text": "你找到一份二手好物，价格友好到像善意。\n你深呼吸了一下，试图把它当作普通的一天。",
+      "primary_tag": "money",
+      "tags": [
+        "money"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "存起来当缓冲",
+          "effects": {
+            "money": 320,
+            "stress": -2
+          },
+          "add_states": [
+            "S_WINDFALL_BUFFER"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "用来还债/补坑",
+          "effects": {
+            "money": 280,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": [
+            "S_CREDIT_CARD_DEBT",
+            "S_OVERDRAFT",
+            "S_RENT_ARREARS"
+          ]
+        },
+        {
+          "desc": "给自己一点奖励（别太多）",
+          "effects": {
+            "money": 180,
+            "family": 1,
+            "friendship": 1,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_MNY_021",
+      "title": "积分抵扣",
+      "text": "你把信用卡积分换成现金抵扣，像薅了一点羊毛。\n你突然意识到，很多选择其实都是在买时间。",
+      "primary_tag": "money",
+      "tags": [
+        "money"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "存起来当缓冲",
+          "effects": {
+            "money": 320,
+            "stress": -2
+          },
+          "add_states": [
+            "S_WINDFALL_BUFFER"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "用来还债/补坑",
+          "effects": {
+            "money": 280,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": [
+            "S_CREDIT_CARD_DEBT",
+            "S_OVERDRAFT",
+            "S_RENT_ARREARS"
+          ]
+        },
+        {
+          "desc": "给自己一点奖励（别太多）",
+          "effects": {
+            "money": 180,
+            "family": 1,
+            "friendship": 1,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_MNY_022",
+      "title": "开始记账",
+      "text": "你开始用记账软件，第一次感觉钱不完全是谜。\n你看了一眼银行App，数字像在眨眼。",
+      "primary_tag": "money",
+      "tags": [
+        "money"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "存起来当缓冲",
+          "effects": {
+            "money": 320,
+            "stress": -2
+          },
+          "add_states": [
+            "S_WINDFALL_BUFFER"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "用来还债/补坑",
+          "effects": {
+            "money": 280,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": [
+            "S_CREDIT_CARD_DEBT",
+            "S_OVERDRAFT",
+            "S_RENT_ARREARS"
+          ]
+        },
+        {
+          "desc": "给自己一点奖励（别太多）",
+          "effects": {
+            "money": 180,
+            "family": 1,
+            "friendship": 1,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_MNY_023",
+      "title": "技能互换",
+      "text": "你和朋友交换技能互帮互助，少花钱也不孤独。\n你深呼吸了一下，试图把它当作普通的一天。",
+      "primary_tag": "money",
+      "tags": [
+        "money"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "存起来当缓冲",
+          "effects": {
+            "money": 320,
+            "stress": -2
+          },
+          "add_states": [
+            "S_WINDFALL_BUFFER"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "用来还债/补坑",
+          "effects": {
+            "money": 280,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": [
+            "S_CREDIT_CARD_DEBT",
+            "S_OVERDRAFT",
+            "S_RENT_ARREARS"
+          ]
+        },
+        {
+          "desc": "给自己一点奖励（别太多）",
+          "effects": {
+            "money": 180,
+            "family": 1,
+            "friendship": 1,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_MNY_024",
+      "title": "外卖变少",
+      "text": "你学会做饭后外卖变少，钱包和胃都更舒服。\n你想起上个月的教训，但这次又不完全一样。",
+      "primary_tag": "money",
+      "tags": [
+        "money"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "存起来当缓冲",
+          "effects": {
+            "money": 320,
+            "stress": -2
+          },
+          "add_states": [
+            "S_WINDFALL_BUFFER"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "用来还债/补坑",
+          "effects": {
+            "money": 280,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": [
+            "S_CREDIT_CARD_DEBT",
+            "S_OVERDRAFT",
+            "S_RENT_ARREARS"
+          ]
+        },
+        {
+          "desc": "给自己一点奖励（别太多）",
+          "effects": {
+            "money": 180,
+            "family": 1,
+            "friendship": 1,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    },
+    {
+      "id": "E_MNY_025",
+      "title": "紧急基金",
+      "text": "你决定为自己准备一个紧急基金，哪怕很小。\n你深呼吸了一下，试图把它当作普通的一天。",
+      "primary_tag": "money",
+      "tags": [
+        "money"
+      ],
+      "base_weight": 1.0,
+      "ban_states": [],
+      "choices": [
+        {
+          "desc": "存起来当缓冲",
+          "effects": {
+            "money": 240,
+            "stress": -3
+          },
+          "add_states": [
+            "S_WINDFALL_BUFFER"
+          ],
+          "remove_states": []
+        },
+        {
+          "desc": "用来还债/补坑",
+          "effects": {
+            "money": 280,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": [
+            "S_CREDIT_CARD_DEBT",
+            "S_OVERDRAFT",
+            "S_RENT_ARREARS"
+          ]
+        },
+        {
+          "desc": "给自己一点奖励（别太多）",
+          "effects": {
+            "money": 180,
+            "family": 1,
+            "friendship": 1,
+            "stress": -1
+          },
+          "add_states": [],
+          "remove_states": []
+        }
+      ]
+    }
+  ]
+}
