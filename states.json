@@ -20,7 +20,7 @@
       "duration": null,
       "desc": "房租未付。每月产生滞纳金并累计欠缴月数，达到阈值会被驱逐。",
       "monthly_effect": {
-        "money": -120
+        "money": -100
       },
       "counter_key": "rent_arrears_months",
       "tags": [
@@ -48,7 +48,7 @@
       "duration": null,
       "desc": "高利率借贷每月扣减更重，并让金钱恢复更难（正向金钱收益打折）。",
       "monthly_effect": {
-        "money": -420
+        "money": -380
       },
       "tags": [
         "debt",
@@ -62,7 +62,7 @@
       "duration": null,
       "desc": "医疗账单分期每月扣减，压力上升。",
       "monthly_effect": {
-        "money": -260,
+        "money": -230,
         "stress": 2
       },
       "tags": [
@@ -152,7 +152,7 @@
       "duration": null,
       "desc": "基础工资（默认）。若处于失业中则本月不发。",
       "monthly_effect": {
-        "money": 1500,
+        "money": 1580,
         "stress": 1
       },
       "tags": [

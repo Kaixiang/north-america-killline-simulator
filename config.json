@@ -8,7 +8,7 @@
     "attrs": {
       "money": {
         "type": "float",
-        "start": 1800
+        "start": 2200
       },
       "health": {
         "type": "int",
@@ -41,8 +41,8 @@
       "collections_strikes": 3
     },
     "economy": {
-      "rent": 2150,
-      "base_paycheck": 1500,
+      "rent": 2050,
+      "base_paycheck": 1620,
       "inflation_per_year": 0.1,
       "wage_growth_per_year": 0.01
     },
@@ -62,18 +62,18 @@
     },
     "balance": {
       "pos_money_mult": 1.0,
-      "neg_money_mult": 1.1,
-      "stress_mult": 1.02
+      "neg_money_mult": 1.05,
+      "stress_mult": 1.0
     }
   },
   "metrics_2000_runs": {
-    "win_rate": 0.085,
-    "uniq_ge_100": 0.9295,
-    "uniq_avg": 162.611,
-    "top10_share": 0.06311665065921593,
-    "top25_share": 0.15646737390494483,
-    "uniq_p10": 108,
-    "uniq_p50": 174,
-    "uniq_p90": 198
+    "win_rate": 0.0595,
+    "uniq_ge_100": 0.9255,
+    "uniq_avg": 158.7345,
+    "top10_share": 0.06306745594445148,
+    "top25_share": 0.15617752898840465,
+    "uniq_p10": 105,
+    "uniq_p50": 169,
+    "uniq_p90": 197
   }
 }
