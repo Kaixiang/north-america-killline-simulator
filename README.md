@@ -26,3 +26,16 @@ This prototype implements:
 - Fragility model and annual risk checks.
 - Bankruptcy trigger (`cash < 0` for 2 consecutive years).
 - Endgame scoring (max drawdown, average risk exposure, stability, net worth).
+
+## Feedback demo
+
+A single-page playtest and feedback collection demo is available at:
+
+- `index_feedback.html`
+
+Run locally:
+
+```bash
+python -m http.server 8000
+# open http://localhost:8000/index_feedback.html
+```

@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Kill Line 反馈收集 Demo</title>
+  <style>
+    :root { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
+    body { margin:0; background:#0b1220; color:#e6edf3; }
+    .wrap { max-width:1100px; margin:0 auto; padding:16px; display:grid; grid-template-columns:1.2fr .8fr; gap:14px; }
+    @media (max-width: 960px){ .wrap{ grid-template-columns:1fr; } }
+    .card { background:#0f1728; border:1px solid #243246; border-radius:14px; padding:14px; }
+    h1,h2,h3 { margin:0 0 10px; }
+    .muted { color:#93a7bd; font-size:12px; }
+    .row { display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
+    .pill { border:1px solid #314760; border-radius:999px; padding:2px 8px; font-size:12px; color:#cdd9e5; }
+    .btn { border:1px solid #32506f; background:#122033; color:#e6edf3; padding:8px 10px; border-radius:10px; cursor:pointer; }
+    .btn:hover { border-color:#4b6b8d; }
+    .btn:disabled{ opacity:.5; cursor:not-allowed; }
+    .grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+    .metric { border:1px solid #243246; border-radius:10px; padding:8px; }
+    .event { border:1px solid #27405b; border-radius:12px; padding:10px; background:#0c1422; }
+    .choice { margin-top:8px; border:1px solid #2c445d; border-radius:10px; padding:8px; cursor:pointer; font-size:13px; }
+    .choice:hover { border-color:#4f769b; }
+    .log { max-height:280px; overflow:auto; border:1px solid #243246; border-radius:12px; padding:8px; }
+    .line { border-bottom:1px dashed #243246; padding:6px 4px; font-size:12px; }
+    label { display:block; margin:8px 0 4px; font-size:13px; }
+    input, textarea, select { width:100%; box-sizing:border-box; background:#0c1422; color:#e6edf3; border:1px solid #2f455f; border-radius:8px; padding:8px; }
+    textarea { min-height:80px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="card">
+      <h1>Kill Line: North America · 单页反馈 Demo</h1>
+      <div class="muted">基于当前 <code>events.json / states.json / config.json</code> 进行轻量试玩（每次1张事件），并在右侧直接提交反馈。</div>
+      <div class="row" style="margin-top:10px;">
+        <button class="btn" id="btnLoad">加载当前数值</button>
+        <button class="btn" id="btnStart" disabled>开始试玩（12 回合）</button>
+        <button class="btn" id="btnNext" disabled>下一回合</button>
+        <span class="pill" id="progress">未开始</span>
+      </div>
+
+      <h3 style="margin-top:14px;">玩家状态</h3>
+      <div class="grid" id="stats"></div>
+
+      <h3 style="margin-top:14px;">当前事件</h3>
+      <div id="eventBox" class="event muted">请先加载数据并开始试玩。</div>
+
+      <h3 style="margin-top:14px;">试玩日志</h3>
+      <div class="log" id="log"></div>
+    </section>
+
+    <aside class="card">
+      <h2>反馈收集</h2>
+      <div class="muted">建议完成 12 回合后填写。提交后会保存到浏览器本地，并可导出 JSON。</div>
+
+      <label>体验编号</label>
+      <input id="sessionId" readonly />
+
+      <label>整体难度感受（1=太简单，5=过难）</label>
+      <select id="difficulty"><option>1</option><option>2</option><option selected>3</option><option>4</option><option>5</option></select>
+
+      <label>决策张力（1-5）</label>
+      <select id="tension"><option>1</option><option>2</option><option selected>3</option><option>4</option><option>5</option></select>
+
+      <label>反馈清晰度（1-5）</label>
+      <select id="clarity"><option>1</option><option>2</option><option selected>3</option><option>4</option><option>5</option></select>
+
+      <label>你最常遇到的压力来源</label>
+      <input id="painPoint" placeholder="例如：房租、债务、健康、随机性" />
+
+      <label>希望调整的系统数值/机制</label>
+      <textarea id="suggestion" placeholder="例如：提高工资状态收益、降低某类事件权重、修改strikes阈值"></textarea>
+
+      <div class="row" style="margin-top:10px;">
+        <button class="btn" id="btnSubmit">保存反馈</button>
+        <button class="btn" id="btnExport">导出全部反馈</button>
+      </div>
+      <div class="muted" id="fbCount" style="margin-top:8px;">已保存反馈：0 条</div>
+    </aside>
+  </div>
+
+<script>
+const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
+const fmt = n => Math.round(n).toString();
+
+const state = {
+  events: [], states: [], config: null, stateIndex: {},
+  stats: null, active: {}, turn: 0, maxTurns: 12, ended: false, recent: []
+};
+
+const $ = id => document.getElementById(id);
+function log(msg){
+  const d=document.createElement('div'); d.className='line'; d.innerHTML=msg; $('log').prepend(d);
+}
+function uid(){ return 'FB-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2,7); }
+
+function renderStats(){
+  if(!state.stats){ $('stats').innerHTML=''; return; }
+  const s=state.stats;
+  $('stats').innerHTML = [
+    ['money', s.money], ['health', s.health], ['stress', s.stress], ['family', s.family], ['friendship', s.friendship]
+  ].map(([k,v])=>`<div class="metric"><b>${k}</b><div>${fmt(v)}</div></div>`).join('');
+  $('progress').textContent = `回合 ${state.turn}/${state.maxTurns}`;
+}
+
+function addState(id){
+  const def = state.stateIndex[id]; if(!def) return;
+  if(def.type==='counter'){ state.active[id] = {remaining:null}; return; }
+  const dur = def.duration ?? null;
+  state.active[id] = {remaining: dur};
+}
+function removeState(id){ delete state.active[id]; }
+
+function applyEffects(eff){
+  const s=state.stats;
+  for(const [k,v] of Object.entries(eff||{})){
+    if(!(k in s)) continue;
+    s[k]+=v;
+    if(['health','stress','family','friendship'].includes(k)) s[k]=clamp(Math.round(s[k]),0,100);
+  }
+}
+
+function drawEvent(){
+  // lightweight weighted by base_weight and simple anti-repeat
+  const cand=[]; const weights=[];
+  const recent = new Set(state.recent.slice(-10));
+  for(const ev of state.events){
+    let w = ev.base_weight ?? 1;
+    if(recent.has(ev.id)) w*=0.25;
+    cand.push(ev); weights.push(w);
+  }
+  let total=weights.reduce((a,b)=>a+b,0), r=Math.random()*total, acc=0;
+  for(let i=0;i<cand.length;i++){ acc+=weights[i]; if(r<=acc) return cand[i]; }
+  return cand[cand.length-1];
+}
+
+function endIfNeeded(){
+  const c=state.config.thresholds.collections_strikes;
+  let strikes=0;
+  if(state.stats.money < state.config.thresholds.money_hard) strikes++;
+  if(state.stats.health<=0) strikes++;
+  if(state.stats.stress>=100) strikes++;
+  if(state.stats.family<=0) strikes++;
+  if(state.stats.friendship<=0) strikes++;
+  if(strikes>=c){
+    state.ended = true;
+    $('btnNext').disabled = true;
+    log(`<span style="color:#fda4af">游戏结束：strikes=${strikes}/${c}</span>`);
+  }
+  if(state.turn>=state.maxTurns){
+    state.ended = true;
+    $('btnNext').disabled = true;
+    log(`<span style="color:#86efac">试玩完成：已到 ${state.maxTurns} 回合，可填写反馈。</span>`);
+  }
+}
+
+function playTurn(){
+  if(state.ended) return;
+  const ev = drawEvent();
+  state.recent.push(ev.id);
+
+  const box = $('eventBox');
+  box.className='event';
+  box.innerHTML = `<div><b>${ev.title}</b> <span class="muted">(${ev.primary_tag})</span></div><div class="muted" style="margin-top:4px">${ev.text}</div>`;
+
+  for(const [i,ch] of ev.choices.entries()){
+    const el=document.createElement('div');
+    el.className='choice';
+    const eff = Object.entries(ch.effects||{}).map(([k,v])=>`${k} ${v>0?'+':''}${v}`).join(' · ') || '无直接数值变化';
+    el.innerHTML = `<b>${i+1}. ${ch.desc}</b><div class="muted">${eff}</div>`;
+    el.onclick = ()=>{
+      applyEffects(ch.effects||{});
+      (ch.add_states||[]).forEach(addState);
+      (ch.remove_states||[]).forEach(removeState);
+      state.turn += 1;
+      log(`T${state.turn}: <b>${ev.title}</b> -> ${ch.desc}`);
+      renderStats();
+      endIfNeeded();
+      if(!state.ended) playTurn();
+    };
+    box.appendChild(el);
+  }
+}
+
+async function loadData(){
+  const [e,s,c] = await Promise.all([
+    fetch('./events.json').then(r=>r.json()),
+    fetch('./states.json').then(r=>r.json()),
+    fetch('./config.json').then(r=>r.json()),
+  ]);
+  state.events = e.events ?? e;
+  state.states = s.states ?? s;
+  state.config = c.config ?? c;
+  state.stateIndex = Object.fromEntries(state.states.map(x=>[x.id,x]));
+
+  $('btnStart').disabled = false;
+  log(`<span style="color:#86efac">加载成功：events=${state.events.length}, states=${state.states.length}</span>`);
+}
+
+function startGame(){
+  const a = state.config.attrs;
+  state.stats = {
+    money: a.money.start,
+    health: a.health.start,
+    stress: a.stress.start,
+    family: a.family.start,
+    friendship: a.friendship.start,
+  };
+  state.turn=0; state.ended=false; state.recent=[]; state.active={};
+  addState('S_PAYCHECK'); addState('S_RENT_DUE');
+  $('btnNext').disabled = false;
+  $('eventBox').innerHTML='';
+  renderStats();
+  log('<span style="color:#93c5fd">新试玩开始（12回合）</span>');
+  playTurn();
+}
+
+function loadFeedbacks(){
+  try{return JSON.parse(localStorage.getItem('killline_feedbacks')||'[]');}catch{return [];}
+}
+function saveFeedbacks(list){ localStorage.setItem('killline_feedbacks', JSON.stringify(list)); }
+function refreshFbCount(){ $('fbCount').textContent = `已保存反馈：${loadFeedbacks().length} 条`; }
+
+function submitFeedback(){
+  const data = {
+    sessionId: $('sessionId').value,
+    ts: new Date().toISOString(),
+    turnReached: state.turn,
+    ended: state.ended,
+    finalStats: state.stats,
+    difficulty: Number($('difficulty').value),
+    tension: Number($('tension').value),
+    clarity: Number($('clarity').value),
+    painPoint: $('painPoint').value.trim(),
+    suggestion: $('suggestion').value.trim(),
+  };
+  const arr = loadFeedbacks(); arr.push(data); saveFeedbacks(arr); refreshFbCount();
+  alert('反馈已保存到本地浏览器。');
+}
+
+function exportFeedback(){
+  const blob = new Blob([JSON.stringify(loadFeedbacks(), null, 2)], {type:'application/json'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `killline_feedback_${Date.now()}.json`;
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+
+$('sessionId').value = uid();
+refreshFbCount();
+$('btnLoad').onclick = loadData;
+$('btnStart').onclick = startGame;
+$('btnNext').onclick = playTurn;
+$('btnSubmit').onclick = submitFeedback;
+$('btnExport').onclick = exportFeedback;
+</script>
+</body>
+</html>
